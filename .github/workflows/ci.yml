@@ -1,0 +1,36 @@
+name: Vérifications
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - name: index.html est à jour avec src/
+        run: |
+          python3 build.py
+          git diff --exit-code index.html || (echo "Lancez python3 build.py et commitez index.html" && exit 1)
+      - name: Syntaxe JavaScript
+        run: node -e "const s=require('fs').readFileSync('index.html','utf8');new Function(s.match(/<script>([\s\S]*)<\/script>/)[1]);console.log('OK')"
+      - name: Tests navigateur (Playwright)
+        run: |
+          npm i --no-save playwright@1.56.0
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y ffmpeg
+          node tests/smoke.mjs
+      - name: Serveur IA (base)
+        working-directory: server
+        run: |
+          pip install -r requirements.txt
+          python -c "import app; print(app.capabilities())"

@@ -1,0 +1,15 @@
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.env
+models/
+*.onnx
+*.safetensors
+*.pth
+.DS_Store
+test-results/
+tests/out/

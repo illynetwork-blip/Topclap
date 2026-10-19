@@ -1,122 +1,80 @@
 # Crépuscule Studio
 
-Éditeur vidéo **100 % open source** qui tourne dans le navigateur, inspiré de CapCut et pensé pour les **vidéos immobilières** : timeline multipiste, textes animés, 24 transitions, effets, filtres et effets « Immo IA » (Jour → Nuit, ciel bleu, fenêtres allumées, avant/après…).
+Éditeur vidéo **open source** dans le navigateur, inspiré de CapCut, DaVinci Resolve, Premiere Pro et After Effects, pensé pour créer automatiquement des vidéos **immobilières** pour YouTube, Instagram Reels, Facebook et TikTok.
 
-Un seul fichier `index.html`, aucune dépendance à installer, aucun serveur : vos photos et vidéos ne quittent jamais votre appareil.
+- Fonctionne sur **téléphone, tablette et ordinateur**, sans installation ni compte.
+- Vos photos et vidéos **ne quittent pas votre appareil**.
+- Modèles d'IA **open source** dans le navigateur, et serveur IA optionnel pour les plus lourds (voir [MODELS.md](MODELS.md)).
+- Licence **MIT**.
 
-Fonctionne sur **ordinateur, tablette et téléphone** (interface adaptative).
-
----
-
-## Démarrage rapide
+## Démarrer
 
 ```bash
-git clone https://github.com/<votre-compte>/crepuscule-studio.git
+git clone https://github.com/illynetwork-blip/crepuscule-studio.git
 cd crepuscule-studio
-# ouvrez simplement index.html dans Chrome, Edge, Firefox ou Safari
-# ou servez-le en local :
-python3 -m http.server 8080   # puis http://localhost:8080
+python3 -m http.server 8080        # puis http://localhost:8080
 ```
 
-### Mise en ligne gratuite avec GitHub Pages
+Ou en ligne gratuitement : *Settings › Pages › Source : GitHub Actions* (dépôt public, ou plan GitHub payant pour un dépôt privé). Le workflow publie l'appli à chaque push sur `main`.
 
-1. Poussez ce dépôt sur GitHub.
-2. *Settings › Pages › Build and deployment › Source* : choisissez **GitHub Actions**.
-3. Le workflow `.github/workflows/pages.yml` publie l'appli à chaque `push` sur `main`.
-4. L'appli est disponible sur `https://<votre-compte>.github.io/crepuscule-studio/`.
+## Tout automatiser
 
----
+**Assistant vidéo** (bouton en haut) : choisissez un objectif, renseignez le bien une fois, et l'appli génère tout.
 
-## Fonctionnalités
-
-### Montage
-- Timeline multipiste : vidéo principale (magnétique), incrustations, textes, audio. Ajout / masquage / suppression de pistes.
-- Glisser-déposer des fichiers, déplacement des clips entre pistes, rognage par les bords, aimantation sur les bords et la tête de lecture.
-- Couper (`S`), dupliquer (`Ctrl+D`), supprimer, annuler / rétablir illimités (`Ctrl+Z` / `Ctrl+Maj+Z`).
-- Vitesse 0,25× à 4×, volume, fondus audio, opacité, modes de fusion, position / échelle / rotation directement dans l'aperçu (poignées).
-- Formats 16:9 (YouTube), 9:16 (Reels / TikTok / Shorts), 1:1 et 4:5, avec cadrage « Adapter + fond flou » pour passer de l'horizontal au vertical.
-- **Montage automatique** : assemble vos médias en annonce avec mouvements de caméra, transitions, prix, caractéristiques et musique.
-- Sauvegarde automatique (localStorage + IndexedDB pour les médias), export / import du projet en `.json`.
-
-### Textes
-- 40 polices Google Fonts (serif de luxe, scripts, condensées, display…).
-- Contour, ombre / néon, fond arrondi, interligne, espacement, lignes secondaires plus petites.
-- 12 animations d'entrée (lettre par lettre, machine à écrire, pop, flou, révélation…) et 7 de sortie.
-- 12 modèles immobiliers : titre élégant, prix, adresse, caractéristiques, surface, « Nouveauté », visite virtuelle, coup de cœur, exclusivité, portes ouvertes, contact, sous-titre.
-- Import de sous-titres `.srt`.
-
-### Transitions (24)
-Fondu enchaîné, fondu au noir / blanc, ouverture portes, rideau, glisser, pousser, volets, zoom avant / arrière, plongée drone, cercle, losange, stores, flou, whip pan, rotation, glitch, brûlure film, flash.
-
-### Effets (22)
-- **Caméra** : Ken Burns avant / arrière, panoramiques, travelling vertical, drone push-in, orbite, zoom au tempo, caméra épaule.
-- **Lumière** : flash d'entrée, light leaks, bokeh doré, vignette, bandes cinéma.
-- **Stylisés** : grain film, VHS, glitch, décalage RGB, flou, miroir.
-- **Météo** : neige, pluie.
-
-### Filtres (14)
-Immo Clean, Lumineux, Luxe chaud, Cinéma (teal & orange), Heure dorée, HDR vif, Nordique, Heure bleue, Mat, Pastel, Vintage, Noir & blanc, Sépia — avec intensité et réglages fins (luminosité, contraste, saturation, température, teinte, couleur, vignette, grain, fondu mat).
-
-### Immo IA (traitement local WebGL)
-| Effet | Ce qu'il fait |
+| Objectif | Ce qui est généré |
 |---|---|
-| Jour → Nuit | Ciel crépusculaire, façade bleutée, fenêtres et piscine éclairées |
-| Coucher de soleil animé | Passage progressif jour → nuit pendant le clip |
-| Ciel bleu parfait | Remplace un ciel terne par un ciel bleu nuageux |
-| Golden hour | Lumière chaude de fin de journée |
-| HDR immobilier | Détails dans les ombres et hautes lumières |
-| Fenêtres allumées | Lueur chaleureuse derrière les vitres |
-| Avant / Après | Volet fixe ou animé original / retouché |
-| Hiver enneigé | Ambiance froide + flocons |
-| Drone cinématique | Approche aérienne, bandes cinéma, étalonnage |
-| Heure bleue | Ciel profond juste après le coucher du soleil |
+| Annonce immobilière | Plans classés (extérieur d'accroche → intérieurs → extérieur de nuit), mouvements caméra, transitions, prix animé, atouts, écran de fin |
+| Reel / Short / TikTok | 9:16, accroche en 1 s, plans démultipliés, coupes sur le rythme, sous-titres animés |
+| Visite guidée | Plans longs, effet drone, voix off descriptive |
+| Vidéo YouTube | 16:9, chapitres (marqueurs), écran de fin |
+| Avant / Après | Volets animés : photo d'origine vs nuit / HDR / ciel |
+| Face caméra | Silences coupés, sous-titres Whisper, musique avec ducking |
 
-La détection du ciel et des fenêtres est algorithmique (couleur, luminance, position, ligne d'horizon réglable). Elle donne de très bons résultats sur les photos d'extérieur classiques ; baissez la *ligne d'horizon* dans **Réglages › Immo IA** si une façade claire est prise pour du ciel.
+Ensuite : **export multi-format** en une fois (16:9, 9:16, 4:5, 1:1), **textes pour les réseaux** (titre, description avec chapitres, hashtags par plateforme), **miniature YouTube / couverture Reels**.
 
-### Audio
-Import de musiques, deux pistes libres de droits générées par l'appli, enregistrement de voix off (micro), forme d'onde dans la timeline.
+Outils automatiques à l'unité (onglet **Auto**) : montage express, coupes sur le rythme (détection du tempo), découpage en plans, suppression des silences, arrêt sur image, calque de réglage, passage au 9:16, marqueurs sur les temps, ducking, normalisation, voix claire, sous-titres automatiques ou depuis un texte, import `.srt` / `.vtt`.
 
-### Export
-- Vidéo **MP4 (H.264)** ou **WebM** selon le navigateur, 720p / 1080p / 1440p, 24 / 30 / 60 i/s.
-- Image PNG de l'instant, projet `.json`.
-- L'export se fait en temps réel : gardez l'onglet au premier plan.
+## Fonctions de montage
 
----
+**Timeline** : multipiste, piste principale magnétique, glisser entre pistes, rognage, aimantation, marqueurs (M), J / K / L, couper (S), annuler illimité, sauvegarde automatique.
 
-## Aller plus loin avec de vrais modèles génératifs
+**Animation (After Effects)** : images clés position / échelle / rotation / opacité avec lissage, animation directe dans l'aperçu, 13 animations de texte (lettre par lettre, machine à écrire, compteur de prix…), sous-titres mot à mot (karaoké, encadré, un mot à la fois, classique, élégant), formes et pictos immobiliers, barre de progression.
 
-Les effets « Immo IA » fonctionnent sans serveur. Pour de la génération par IA (ex. transformer une vidéo de jour en vraie vidéo de nuit, mobilier virtuel, ciel réaliste), voici des briques **open source** à brancher :
+**Étalonnage (DaVinci)** : roues ombres / tons moyens / hautes lumières, 6 LUT intégrées + import `.cube`, 14 filtres, réglages fins, scopes (forme d'onde, parade RVB, histogramme, vecteurscope), masques (rectangle, ellipse, dégradé), incrustation fond vert, calque de réglage.
 
-- **Segmentation du ciel / des fenêtres** : Segment Anything (Meta) ou des modèles de segmentation sémantique exécutés dans le navigateur avec ONNX Runtime Web ou Transformers.js.
-- **Jour → nuit photoréaliste, home staging virtuel** : Stable Diffusion (img2img + ControlNet) via ComfyUI ou `diffusers`, à exposer derrière une petite API.
-- **Profondeur / effet parallaxe 2,5D** : Depth Anything ou MiDaS.
-- **Sous-titres automatiques** : Whisper (whisper.cpp, ou Transformers.js côté navigateur).
-- **Amélioration de netteté** : Real-ESRGAN.
+**Immobilier** : Jour → Nuit (fixe ou animé), ciel bleu, fenêtres allumées, golden hour, heure bleue, HDR, hiver, Photo 3D (parallaxe), Avant / Après, drone cinématique.
 
-Le moteur de rendu est isolé dans les fonctions `clipParams()` (paramètres), `GLX.run()` (shader WebGL) et `renderClip()` (composition) : un traitement IA peut y produire une image ou une texture qui remplace la source.
+**24 transitions, 22 effets, 40 polices, 4 formats**, repères (zones sûres Reels / TikTok / Shorts, tiers).
 
----
+**Audio** : musiques libres générées, import, voix off (micro ou IA), ducking, voix claire (EQ + compresseur), normalisation, fondus, forme d'onde.
 
-## Architecture
+**Export** : MP4 ou WebM jusqu'en 4K, plusieurs formats à la suite, PNG, projet `.json`, sous-titres `.srt`, finalisation MP4 −14 LUFS via le serveur.
+
+## IA open source
+
+| Dans le navigateur | Sur le serveur (`server/`) |
+|---|---|
+| Whisper (sous-titres), Depth Anything V2 (photo 3D), BiRefNet (détourage), Swin2SR (agrandissement), Piper (voix FR), Qwen3 0.6B (rédaction) | faster-whisper, Chatterbox (voix + clonage), Qwen-Image-Edit (nuit photoréaliste, home staging), Z-Image / FLUX.2 klein 4B, Wan 2.2 (photo → vidéo), ACE-Step (musique), Demucs, DeepFilterNet, Real-ESRGAN, rembg, Ollama, FFmpeg |
+
+Détails, licences et modèles exclus : [MODELS.md](MODELS.md). Installation du serveur : [server/README.md](server/README.md).
+
+## Développement
 
 ```
-index.html
-├── CSS        thème « crépuscule », grille responsive (bureau / tablette / téléphone)
-├── Catalogues FONTS, FILTERS, FX, TRANS, TEXT_TPL, SHAPES, IMMO
-├── Scènes     makeScene() : 3 scènes immobilières de démonstration dessinées en Canvas
-├── GLX        shader WebGL : étalonnage, Jour → Nuit, ciel, fenêtres, HDR, VHS, flou…
-├── Rendu      renderFrame() → renderClip() (Canvas 2D) → compose() pour les transitions
-├── Timeline   renderTimeline(), glisser / rogner / aimanter, piste magnétique
-├── Panneaux   renderPanel() (onglets) et renderInspector() (réglages du clip)
-└── Export     MediaRecorder (canvas.captureStream + Web Audio)
+src/head.html, src/styles.css, src/body.html   interface
+src/js/*.js                                     modules (ordre alphabétique)
+build.py                                        assemble index.html (à commiter)
+tests/smoke.mjs                                 tests navigateur
+server/                                         serveur IA optionnel
 ```
 
-Navigateurs recommandés : Chrome / Edge récents (export MP4). Firefox et Safari sont pris en charge ; le format d'export dépend de leur `MediaRecorder`.
+```bash
+python3 build.py                     # régénère index.html
+npm i --no-save playwright && npx playwright install chromium && node tests/smoke.mjs
+```
 
-## Contribuer
-
-Les contributions sont bienvenues : nouvelles transitions (ajoutez un `case` dans `compose()` et une entrée dans `TRANS`), nouveaux effets (`FX` + `fxMotion()` / `fxOverlay()` / `clipParams()`), nouveaux modèles de texte (`TEXT_TPL`).
+Sécurité : [SECURITY.md](SECURITY.md). Audit et limites connues : [AUDIT.md](AUDIT.md).
 
 ## Licence
 
-[MIT](LICENSE) — libre d'utilisation, de modification et de redistribution, y compris commerciale.
+[MIT](LICENSE). Les modèles d'IA gardent leur propre licence (voir [MODELS.md](MODELS.md)).

@@ -1,0 +1,23 @@
+# docker compose up -d   →  API sur http://localhost:8000, Ollama sur http://localhost:11434
+services:
+  ai:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - OLLAMA_MODEL=qwen3:8b
+      - CREPUSCULE_TOKEN=${CREPUSCULE_TOKEN:-}
+      # - ACESTEP_CMD=python /opt/ACE-Step/infer.py --prompt {prompt} --duration {seconds} --output {out}
+    volumes: ["models:/models"]
+    deploy:
+      resources:
+        reservations:
+          devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]
+    depends_on: [ollama]
+  ollama:
+    image: ollama/ollama:latest
+    ports: ["11434:11434"]
+    volumes: ["ollama:/root/.ollama"]
+volumes:
+  models:
+  ollama:

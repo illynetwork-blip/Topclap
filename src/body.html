@@ -1,0 +1,60 @@
+<div id="app">
+  <header id="top">
+    <div class="logo"><span class="logo-mark" aria-hidden="true"></span><span>Crépuscule <small>STUDIO</small></span></div>
+    <input id="projName" aria-label="Nom du projet" value="Villa Les Oliviers">
+    <div class="sp"></div>
+    <button class="btn icon ghost" id="undoBtn" title="Annuler (Ctrl+Z)" aria-label="Annuler"></button>
+    <button class="btn icon ghost" id="redoBtn" title="Rétablir (Ctrl+Maj+Z)" aria-label="Rétablir"></button>
+    <select class="sel" id="aspectSel" aria-label="Format" title="Format de la vidéo">
+      <option value="16:9">16:9 YouTube</option><option value="9:16">9:16 Reels</option><option value="1:1">1:1 Carré</option><option value="4:5">4:5 Post</option>
+    </select>
+    <button class="btn hide-m" id="autoBtn" title="Créer un montage automatique"></button>
+    <button class="btn icon ghost" id="menuBtn" aria-label="Menu projet" title="Projet"></button>
+    <button class="btn pri" id="exportBtn"></button>
+  </header>
+
+  <nav id="rail" aria-label="Outils"></nav>
+
+  <aside id="panel">
+    <div class="sheet-h"><span id="panelTitle">Médias</span><span class="sp"></span><button class="btn icon ghost x" data-close="panel" aria-label="Fermer"></button></div>
+    <div class="sheet-b" id="panelBody"></div>
+  </aside>
+
+  <main id="stage">
+    <div id="stageBox">
+      <div id="viewport">
+        <canvas id="cv" width="960" height="540"></canvas>
+        <div id="selBox"><div class="hd sc" data-h="sc"></div><div class="hd ro" data-h="ro"></div></div>
+      </div>
+    </div>
+    <div id="transport">
+      <div class="tc" id="tc"><b>00:00.00</b> / 00:00.00</div>
+      <button class="btn icon ghost" id="toStart" aria-label="Début"></button>
+      <button class="btn icon ghost" id="stepB" aria-label="Image précédente"></button>
+      <button id="playBtn" aria-label="Lecture"></button>
+      <button class="btn icon ghost" id="stepF" aria-label="Image suivante"></button>
+      <button class="btn icon ghost" id="toEnd" aria-label="Fin"></button>
+      <div class="tr-right">
+        <button class="btn icon ghost" id="guideBtn" title="Repères : zones sûres réseaux, tiers" aria-label="Repères"></button>
+        <button class="btn icon ghost" id="scopeBtn" title="Scopes : forme d'onde, histogramme, vecteurscope" aria-label="Scopes"></button>
+        <button class="btn icon ghost" id="loopBtn" title="Lecture en boucle" aria-label="Boucle"></button>
+        <button class="btn icon ghost" id="fsBtn" title="Plein écran" aria-label="Plein écran"></button>
+      </div>
+    </div>
+  </main>
+
+  <aside id="insp">
+    <div class="sheet-h"><span>Réglages</span><span class="sp"></span><button class="btn icon ghost x" data-close="insp" aria-label="Fermer"></button></div>
+    <div class="sheet-b" id="inspBody" style="padding-top:0"></div>
+  </aside>
+
+  <section id="tl">
+    <div id="tlBar"></div>
+    <div id="tlScroll"><div id="tlGrid"><div class="tl-heads" id="tlHeads"></div><div id="tlBody"></div></div></div>
+  </section>
+</div>
+<div id="toasts"></div>
+<input type="file" id="fileIn" multiple accept="video/*,image/*,audio/*,.srt,.vtt,.cube,.json" hidden>
+<input type="file" id="srtIn" accept=".srt,.vtt,text/plain,text/vtt" hidden>
+<input type="file" id="lutIn" accept=".cube" hidden>
+<input type="file" id="projIn" accept=".json,application/json" hidden>

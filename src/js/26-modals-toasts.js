@@ -1,0 +1,4 @@
+/* ---------- modals & toasts ---------- */
+function modal(html){const bg=document.createElement('div');bg.className='modal-bg';bg.innerHTML=`<div class="modal" role="dialog" aria-modal="true">${html}</div>`;document.body.appendChild(bg);return bg.firstChild}
+function confirmBox(title,msg,ok){return new Promise(res=>{const m=modal(`<h3>${esc(title)}</h3><p class="note">${esc(msg)}</p><div class="mrow"><button class="btn" data-c="0">Annuler</button><button class="btn pri" data-c="1">${esc(ok)}</button></div>`);m.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;m.parentElement.remove();res(b.dataset.c==='1')})})}
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),2600)}
