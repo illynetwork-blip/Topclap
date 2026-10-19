@@ -1,6 +1,6 @@
 # Base (léger) : API + FFmpeg (stabilisation, ralenti, MP4 final, loudnorm)
 fastapi>=0.110
 uvicorn[standard]>=0.29
-python-multipart>=0.0.9
+python-multipart>=0.0.32
 pillow>=10.0
 numpy>=1.26
