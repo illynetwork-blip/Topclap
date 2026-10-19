@@ -1402,7 +1402,7 @@ async function startExport(scale,fps,mbps,mime){
   recChunks=[];try{rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:mbps*1e6*scale*scale,audioBitsPerSecond:192000}:{})}catch(e){try{rec=new MediaRecorder(stream)}catch(e2){toast('Export impossible sur ce navigateur');S.exporting=false;setRes(exportRestore);return}}
   rec.ondataavailable=e=>{if(e.data&&e.data.size)recChunks.push(e.data)};
   rec.onstop=()=>{if(!exportUI||!recChunks.length)return;const type=(rec.mimeType||mime||'video/webm').split(';')[0];const blob=new Blob(recChunks,{type});const url=URL.createObjectURL(blob);const ext=type.includes('mp4')?'mp4':'webm';
-    $('#exStage',exportUI).innerHTML=`<video src="${url}" controls playsinline></video><p class="note">${(blob.size/1048576).toFixed(1)} Mo · ${ext.toUpperCase()}. Si le téléchargement ne démarre pas (aperçu intégré), faites un clic droit sur la vidéo › Enregistrer, ou utilisez l'appli hébergée sur GitHub Pages.</p><div class="mrow"><button class="btn pri" id="exDl">${ic('download')}Télécharger</button></div>`;
+    $('#exStage',exportUI).innerHTML=`<video src="${url}" controls playsinline></video><p class="note">${(blob.size/1048576).toFixed(1)} Mo · ${ext.toUpperCase()}. Vous pouvez aussi faire un clic droit sur la vidéo › Enregistrer.</p><div class="mrow"><button class="btn pri" id="exDl">${ic('download')}Télécharger</button></div>`;
     $('#exDl',exportUI).onclick=()=>download(blob,slug()+'.'+ext);};
   S.t=0;syncMedia(0,false);req();await new Promise(r=>setTimeout(r,450));
   rec.start(250);S.playing=true;lastNow=performance.now();updateTransport();
@@ -1410,7 +1410,11 @@ async function startExport(scale,fps,mbps,mime){
 }
 function finishExport(){S.exporting=false;S.playing=false;pauseAll();updateTransport();try{rec&&rec.state!=='inactive'&&rec.stop()}catch(e){}setRes(exportRestore||S.pq);toast('Export terminé')}
 function cancelExport(){S.exporting=false;S.playing=false;pauseAll();recChunks=[];try{rec&&rec.state!=='inactive'&&rec.stop()}catch(e){}setRes(exportRestore||S.pq);updateTransport()}
-function download(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{a.remove()},1000)}
+let dlCap;const dlReady=(window.claude&&window.claude.use)?window.claude.use('downloads').then(d=>dlCap=d).catch(()=>dlCap=null):Promise.resolve(dlCap=null);
+async function download(blob,name){
+  await dlReady;
+  if(dlCap){try{await dlCap.save({filename:name,data:blob});toast('Fichier enregistré');}catch(e){if(e&&e.code==='declined')return;if(e&&e.code==='rate_limited'){toast('Patientez un instant puis réessayez');return}toast('Téléchargement indisponible ici : clic droit sur la vidéo › Enregistrer')}return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{a.remove()},1000)}
 function projectJSON(){return JSON.stringify({app:'crepuscule-studio',version:1,project:P,media:Object.values(media).map(m=>({id:m.id,type:m.type,name:m.name,demo:m.demo||null}))},null,1)}
 function openProjectText(txt){try{const o=JSON.parse(txt);if(!o.project)throw 0;(o.media||[]).forEach(m=>{if(m.demo)ensureDemoMusic(m.demo,m.id)});Object.assign(P,o.project);normalizeProject();
   const missing=P.clips.filter(c=>c.mediaId&&!media[c.mediaId]).length;P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);$('#aspectSel').value=P.aspect;$('#projName').value=P.name;setRes(S.pq);S.sel=null;commit();refreshAll();toast(missing?`Projet ouvert. ${missing} clip(s) sans média ont été retirés : réimportez vos fichiers.`:'Projet ouvert')}catch(e){toast('Ce fichier n\'est pas un projet Crépuscule valide')}}
