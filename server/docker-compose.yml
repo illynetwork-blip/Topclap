@@ -6,7 +6,7 @@ services:
     environment:
       - OLLAMA_URL=http://ollama:11434
       - OLLAMA_MODEL=qwen3:8b
-      - CREPUSCULE_TOKEN=${CREPUSCULE_TOKEN:-}
+      - TOPCLAP_TOKEN=${TOPCLAP_TOKEN:-}
       # - ACESTEP_CMD=python /opt/ACE-Step/infer.py --prompt {prompt} --duration {seconds} --output {out}
     volumes: ["models:/models"]
     deploy:

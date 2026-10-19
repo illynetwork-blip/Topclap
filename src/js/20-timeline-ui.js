@@ -26,7 +26,7 @@ function renderTimeline(){
     lanes+=`<div class="lane" data-track="${tr.id}" data-kind="${tr.kind}" style="height:${h}px;width:${W}px">${inner}</div>`}
   tlHeads.innerHTML=heads;
   tlBody.style.width=W+'px';
-  tlBody.innerHTML=`<div id="tlRuler" style="width:${W}px">${ticks}${(P.markers||[]).map((m,i)=>`<button class="mk" data-mk="${i}" style="left:${m.t*S.pps}px;--mc:${m.color||'#F2A65E'}" title="${esc(m.label||'Marqueur')} · ${fmtT(m.t)}"></button>`).join('')}</div>${lanes}<div id="tlPh" style="left:${S.t*S.pps}px"><div class="knob"></div></div>`;
+  tlBody.innerHTML=`<div id="tlRuler" style="width:${W}px">${ticks}${(P.markers||[]).map((m,i)=>`<button class="mk" data-mk="${i}" style="left:${m.t*S.pps}px;--mc:${m.color||'#6C5CE7'}" title="${esc(m.label||'Marqueur')} · ${fmtT(m.t)}"></button>`).join('')}</div>${lanes}<div id="tlPh" style="left:${S.t*S.pps}px"><div class="knob"></div></div>`;
   updateClock();
 }
 function renderTimelineSel(){$$('.clip',tlBody).forEach(e=>e.classList.toggle('sel',e.dataset.id===S.sel))}
@@ -97,5 +97,5 @@ $('#tlBar').addEventListener('click',e=>{const b=e.target.closest('[data-a]');if
   else if(a==='zin')setZoom(S.pps*1.3);else if(a==='zout')setZoom(S.pps/1.3)});
 $('#tlBar').addEventListener('input',e=>{if(e.target.id==='zoomR')setZoom(Math.exp(+e.target.value))});
 let delTrackArmed=0;function confirmSync(n){const now=Date.now();if(now-delTrackArmed<3000){delTrackArmed=0;return true}delTrackArmed=now;toast(`Cette piste contient ${n} clip(s). Cliquez à nouveau sur × pour la supprimer.`);return false}
-function addMarker(t=S.t,label='',color='#F2A65E'){P.markers=P.markers||[];if(P.markers.some(m=>Math.abs(m.t-t)<.05))return;P.markers.push({t:+t.toFixed(3),label,color});P.markers.sort((a,b)=>a.t-b.t)}
+function addMarker(t=S.t,label='',color='#6C5CE7'){P.markers=P.markers||[];if(P.markers.some(m=>Math.abs(m.t-t)<.05))return;P.markers.push({t:+t.toFixed(3),label,color});P.markers.sort((a,b)=>a.t-b.t)}
 tlBody.addEventListener('dblclick',e=>{const mk=e.target.closest('.mk');if(!mk)return;P.markers.splice(+mk.dataset.mk,1);commit();renderTimeline();toast('Marqueur supprimé')});

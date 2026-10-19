@@ -175,7 +175,7 @@ function addCaptionClip(words,name='Sous-titres',style){
 }
 const CAPTION_STYLES={
   karaoke:{style:'karaoke',font:'Montserrat',weight:900,color:'#FFFFFF',hl:'#FFD23F',stroke:'#000000',sw:8,upper:true,maxWords:3,bgA:0},
-  boxed:{style:'boxed',font:'Poppins',weight:700,color:'#FFFFFF',hl:'#F2A65E',stroke:'#000000',sw:0,upper:true,maxWords:4,bgA:0},
+  boxed:{style:'boxed',font:'Poppins',weight:700,color:'#FFFFFF',hl:'#6C5CE7',stroke:'#000000',sw:0,upper:true,maxWords:4,bgA:0},
   pop:{style:'pop',font:'Bebas Neue',weight:400,size:110,color:'#FFFFFF',hl:'#FFFFFF',stroke:'#000000',sw:10,upper:true,maxWords:1,bgA:0},
   classic:{style:'classic',font:'Lexend',weight:700,size:54,color:'#FFFFFF',hl:'#FFFFFF',stroke:'#000000',sw:0,upper:false,maxWords:8,bg:'#000000',bgA:.6},
   luxe:{style:'karaoke',font:'Playfair Display',weight:700,size:66,color:'#F4EFE6',hl:'#F2C38B',stroke:'#000000',sw:0,upper:false,maxWords:5,bgA:0},

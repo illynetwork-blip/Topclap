@@ -1,5 +1,5 @@
 """
-Crépuscule Studio — serveur IA open source (optionnel).
+Top Clap — serveur IA open source (optionnel).
 
 Expose des modèles open source derrière une petite API HTTP que l'éditeur appelle
 (onglet « Modèles IA » › Serveur IA). Chaque fonction n'est activée que si ses
@@ -27,8 +27,8 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from starlette.background import BackgroundTask
 
 VERSION = "2.0.0"
-TOKEN = os.getenv("CREPUSCULE_TOKEN", "")
-CACHE = Path(os.getenv("CREPUSCULE_CACHE", Path.home() / ".cache" / "crepuscule"))
+TOKEN = os.getenv("TOPCLAP_TOKEN", "")
+CACHE = Path(os.getenv("TOPCLAP_CACHE", Path.home() / ".cache" / "topclap"))
 CACHE.mkdir(parents=True, exist_ok=True)
 
 # Models (override with environment variables). All open source, see MODELS.md for licences.
@@ -48,7 +48,7 @@ M = {
 }
 LOW_VRAM = os.getenv("LOW_VRAM", "1") == "1"
 
-app = FastAPI(title="Crépuscule Studio AI server", version=VERSION)
+app = FastAPI(title="Top Clap AI server", version=VERSION)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=os.getenv("CORS_ORIGINS", "*").split(","),
@@ -207,7 +207,7 @@ def png(img) -> Response:
 @app.get("/health")
 def health():
     return {
-        "app": "crepuscule-ai",
+        "app": "topclap-ai",
         "version": VERSION,
         "device": device(),
         "capabilities": capabilities(),

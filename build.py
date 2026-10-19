@@ -4,7 +4,7 @@
 Usage:  python3 build.py            -> index.html (standalone, GitHub Pages)
         python3 build.py --embed    -> also dist/embed.html (no doctype, for HTML hosts that add their own skeleton)
 """
-import pathlib, sys
+import base64, pathlib, sys, urllib.parse
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / "src"
@@ -19,6 +19,11 @@ def assemble():
     body = (SRC / "body.html").read_text(encoding="utf-8").strip()
     js_files = sorted((SRC / "js").glob("*.js"))
     js = "\n\n".join(f"/* ===== {p.name} ===== */\n" + p.read_text(encoding="utf-8").strip() for p in js_files)
+    fonts = {k: "data:font/woff2;base64," + base64.b64encode((ROOT / "brand" / "fonts" / f).read_bytes()).decode() for k, f in (("__FONT_INTER__", "Inter-latin.woff2"), ("__FONT_MONTSERRAT__", "Montserrat-latin.woff2"))}
+    for k, v in fonts.items():
+        css = css.replace(k, v)
+    icon = (ROOT / "brand" / "logo-icon.svg").read_text(encoding="utf-8")
+    head = head.replace("__FAVICON__", "data:image/svg+xml," + urllib.parse.quote(" ".join(icon.split())))
     return f"{head}\n<style>\n{css}\n</style>\n\n{body}\n\n<script>\n\"use strict\";\n{js}\n</script>\n"
 
 def main():
@@ -27,7 +32,7 @@ def main():
         '<!doctype html>\n<html lang="fr">\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<meta http-equiv="Content-Security-Policy" content="' + CSP + '">\n<meta name="referrer" content="no-referrer">\n'
-        '<!-- Crépuscule Studio — éditeur vidéo open source (MIT). Fichier généré par build.py depuis src/ -->\n'
+        '<!-- Top Clap — éditeur vidéo open source (MIT). Fichier généré par build.py depuis src/ -->\n'
         + page.replace(":root{", ":root{\n  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);", 1)
         + "</html>\n"
     )

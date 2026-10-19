@@ -69,7 +69,7 @@ const SHAPES=[
  ['tag','Étiquette prix'],['pin','Repère carte'],['stamp','Tampon VENDU'],['ribbon','Ruban'],['house','Icône maison'],['lowerbar','Bandeau bas'],['progress','Barre de progression'],
 ];
 const SCENES={villa:'Villa piscine',salon:'Salon lumineux',facade:'Façade d\'immeuble'};
-const COLORS=[['#141824','#2B3352','Nuit'],['#F4EFE6','#E6DCCB','Lin'],['#2E2A26','#5B4B3B','Noyer'],['#1F3B4D','#3F7A8C','Lagon'],['#F2A65E','#E27E92','Crépuscule'],['#0F0F10','#0F0F10','Noir']];
+const COLORS=[['#141824','#2B3352','Nuit'],['#F4EFE6','#E6DCCB','Lin'],['#2E2A26','#5B4B3B','Noyer'],['#1F3B4D','#3F7A8C','Lagon'],['#6C5CE7','#FF6EC7','Néon'],['#0F0F10','#0F0F10','Noir']];
 
 const TEXT_TPL=[
  {name:'Titre élégant',p:{text:'Villa Les Oliviers\nAix-en-Provence',font:'Playfair Display',size:112,weight:700,sub:.4,animIn:'letters',inDur:1.4,shadowBlur:30,shadowColor:'rgba(0,0,0,.45)'}},
@@ -77,11 +77,11 @@ const TEXT_TPL=[
  {name:'Adresse',p:{text:'12 chemin des Oliviers\n13100 Aix-en-Provence',font:'Outfit',size:54,weight:700,sub:.6,align:'left',bg:'#11131A',bgA:.7,pad:26,radius:6,animIn:'slide-right',x:.3,y:.82}},
  {name:'Caractéristiques',p:{text:'5 ch · 4 sdb · 260 m² · piscine',font:'Lexend',size:46,weight:400,bg:'#000000',bgA:.55,pad:22,radius:40,animIn:'slide-up',y:.86}},
  {name:'Surface',p:{text:'260 m²\nhabitables',font:'Bebas Neue',size:170,weight:400,sub:.28,ls:2,animIn:'zoom',shadowBlur:24,shadowColor:'rgba(0,0,0,.5)'}},
- {name:'Nouveauté',p:{text:'NOUVEAUTÉ',font:'Archivo Black',size:40,weight:400,ls:6,color:'#2B1708',bg:'#F2A65E',bgA:1,pad:20,radius:4,animIn:'slide-right',x:.17,y:.12}},
+ {name:'Nouveauté',p:{text:'NOUVEAUTÉ',font:'Archivo Black',size:40,weight:400,ls:6,color:'#FFFFFF',bg:'#6C5CE7',bgA:1,pad:20,radius:4,animIn:'slide-right',x:.17,y:.12}},
  {name:'Visite virtuelle',p:{text:'VISITE VIRTUELLE',font:'Cinzel',size:64,weight:700,ls:16,animIn:'wipe',inDur:1.2,shadowBlur:20,shadowColor:'rgba(0,0,0,.5)'}},
  {name:'Coup de cœur',p:{text:'Coup de cœur',font:'Great Vibes',size:130,weight:400,color:'#F7D9A8',animIn:'blur',inDur:1,shadowBlur:22,shadowColor:'rgba(0,0,0,.5)'}},
  {name:'Exclusivité',p:{text:'Exclusivité',font:'Bodoni Moda',size:96,weight:400,italic:true,animIn:'fade',inDur:1,shadowBlur:18,shadowColor:'rgba(0,0,0,.45)'}},
- {name:'Portes ouvertes',p:{text:'Portes ouvertes\nsamedi 10h – 18h',font:'Righteous',size:84,weight:400,sub:.5,color:'#FFE9CC',shadowBlur:40,shadowColor:'#F2A65E',animIn:'pop'}},
+ {name:'Portes ouvertes',p:{text:'Portes ouvertes\nsamedi 10h – 18h',font:'Righteous',size:84,weight:400,sub:.5,color:'#FFE9CC',shadowBlur:40,shadowColor:'#6C5CE7',animIn:'pop'}},
  {name:'Contact',p:{text:'Prenez rendez-vous\n04 00 00 00 00',font:'Lexend',size:76,weight:700,sub:.55,bg:'#11131A',bgA:.75,pad:40,radius:20,animIn:'zoom'}},
  {name:'Sous-titre',p:{text:'Votre texte ici',font:'Montserrat',size:46,weight:700,bg:'#000000',bgA:.6,pad:14,radius:8,y:.86,animIn:'fade',inDur:.15,animOut:'fade',outDur:.15}},
 ];

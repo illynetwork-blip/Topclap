@@ -19,7 +19,7 @@ function openExport(formats){
     if(x==='close'){if(S.exporting)cancelExport();m.parentElement.remove();exportUI=null}
     else if(x==='png'){renderFrame(S.t);cv.toBlob(bl=>bl&&download(bl,slug()+'-'+fmtT(S.t).replace(/[:.]/g,'')+'.png'),'image/png')}
     else if(x==='thumb'){openThumb()}
-    else if(x==='json')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.crepuscule.json');
+    else if(x==='json')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.topclap.json');
     else if(x==='go'){const fm=$$('input[name=exFmt]:checked',m).map(i=>i.value);if(!fm.length){toast('Choisissez au moins un format');return}runExportQueue(fm,+$('#exRes',m).value,+$('#exFps',m).value,+$('#exQ',m).value,mime,!!($('#exSrv',m)||{}).checked)}});
 }
 function slug(){return (P.name||'projet').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'projet'}
@@ -61,6 +61,6 @@ async function download(blob,name){
   await dlReady;
   if(dlCap){try{await dlCap.save({filename:name,data:blob});toast('Fichier enregistré');}catch(e){if(e&&e.code==='declined')return;if(e&&e.code==='rate_limited'){toast('Patientez un instant puis réessayez');return}if(e&&e.code==='rejected_extension'&&!/\.txt$/.test(name)){return download(blob,name.replace(/\.[^.]+$/,'')+'.txt')}toast('Téléchargement indisponible ici : clic droit sur la vidéo › Enregistrer')}return}
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{a.remove()},1000)}
-function projectJSON(){return JSON.stringify({app:'crepuscule-studio',version:2,project:P,media:Object.values(media).map(m=>({id:m.id,type:m.type,name:m.name,demo:m.demo||null}))},null,1)}
+function projectJSON(){return JSON.stringify({app:'topclap',version:2,project:P,media:Object.values(media).map(m=>({id:m.id,type:m.type,name:m.name,demo:m.demo||null}))},null,1)}
 function openProjectText(txt){try{const o=JSON.parse(txt);if(!o.project)throw 0;(o.media||[]).forEach(m=>{if(m.demo)ensureDemoMusic(m.demo,m.id)});Object.assign(P,o.project);normalizeProject();
-  const missing=P.clips.filter(c=>c.mediaId&&!media[c.mediaId]).length;P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);$('#aspectSel').value=P.aspect;$('#projName').value=P.name;setRes(S.pq);S.sel=null;commit();refreshAll();toast(missing?`Projet ouvert. ${missing} clip(s) sans média ont été retirés : réimportez vos fichiers.`:'Projet ouvert')}catch(e){toast('Ce fichier n\'est pas un projet Crépuscule valide')}}
+  const missing=P.clips.filter(c=>c.mediaId&&!media[c.mediaId]).length;P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);$('#aspectSel').value=P.aspect;$('#projName').value=P.name;setRes(S.pq);S.sel=null;commit();refreshAll();toast(missing?`Projet ouvert. ${missing} clip(s) sans média ont été retirés : réimportez vos fichiers.`:'Projet ouvert')}catch(e){toast('Ce fichier n\'est pas un projet Top Clap valide')}}

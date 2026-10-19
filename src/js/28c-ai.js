@@ -3,7 +3,7 @@ const AI_CFG={
   tjs:'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/dist/transformers.min.js',
   piper:'https://cdn.jsdelivr.net/npm/@mintplex-labs/piper-tts-web@1.0.5/+esm',
 };
-const AI_BLOCKED='Les modèles IA se téléchargent depuis Hugging Face et jsDelivr. Cette fenêtre bloque ces téléchargements : ouvrez Crépuscule depuis GitHub Pages ou en local.';
+const AI_BLOCKED='Les modèles IA se téléchargent depuis Hugging Face et jsDelivr. Cette fenêtre bloque ces téléchargements : ouvrez Top Clap depuis GitHub Pages ou en local.';
 /* Registry of every model wired into the app. where: 'browser' runs on the viewer's device, 'server' needs the optional AI server (server/). */
 const MODELS=[
   {id:'whisper',where:'browser',name:'Whisper base (multilingue)',task:'Sous-titres et transcription mot à mot',repo:'onnx-community/whisper-base_timestamped',size:'≈ 80 Mo',license:'MIT',ok:true,url:'https://github.com/openai/whisper'},
@@ -120,8 +120,8 @@ async function swapMedia(c,blob,type,name){
 
 /* ===== optional self-hosted AI server (server/ folder, FastAPI) ===== */
 const SRV={url:'',token:'',caps:{},
-  load(){try{const o=JSON.parse(localStorage.getItem('crepuscule-srv')||'{}');this.url=o.url||'';this.token=o.token||''}catch(e){}},
-  save(){try{localStorage.setItem('crepuscule-srv',JSON.stringify({url:this.url,token:this.token}))}catch(e){}},
+  load(){try{const o=JSON.parse(localStorage.getItem('topclap-srv')||'{}');this.url=o.url||'';this.token=o.token||''}catch(e){}},
+  save(){try{localStorage.setItem('topclap-srv',JSON.stringify({url:this.url,token:this.token}))}catch(e){}},
   has(cap){return !!(this.url&&this.caps&&this.caps[cap])},
   headers(){return this.token?{Authorization:'Bearer '+this.token}:{}},
   async health(){if(!this.url){this.caps={};return null}try{const r=await fetch(this.url.replace(/\/$/,'')+'/health',{headers:this.headers()});const j=await r.json();this.caps=j.capabilities||{};return j}catch(e){this.caps={};throw new Error('Serveur injoignable : vérifiez l\'adresse, le CORS et que le serveur tourne.')}},

@@ -7,7 +7,7 @@ function getSrc(c){
   return null;
 }
 const fitWH=(sw,sh,W,H,mode)=>{const r=mode==='cover'?Math.max(W/sw,H/sh):Math.min(W/sw,H/sh);return [sw*r,sh*r]};
-const fontStr=(c,sz,font=c.font,w=c.weight)=>`${c.italic?'italic ':''}${w} ${sz}px "${font}", "Onest", sans-serif`;
+const fontStr=(c,sz,font=c.font,w=c.weight)=>`${c.italic?'italic ':''}${w} ${sz}px "${font}", "Inter", sans-serif`;
 const fontsReq=new Set();
 function ensureFont(f,w){const k=f+w;if(fontsReq.has(k)||!document.fonts)return;fontsReq.add(k);document.fonts.load(`${w} 40px "${f}"`).then(req).catch(()=>{})}
 
@@ -52,7 +52,7 @@ function drawText(g,c,lt,u,measure){
 function drawShape(g,c,u,lt=0){
   const w=c.w*u,h=c.h*u,sw=c.sw*u;g.fillStyle=c.fill;g.strokeStyle=c.stroke;g.lineWidth=sw;g.lineJoin='round';
   const fillStroke=()=>{if(c.shape!=='frame'&&c.shape!=='line')g.fill();if(sw>0)g.stroke()};
-  const label=(col=c.labelColor,sz=Math.min(h*.42,w*.18),x=0,al='center',weight=800)=>{if(!c.label)return;g.save();g.fillStyle=col;g.font=`${weight} ${sz}px "${c.font}", "Onest", sans-serif`;ensureFont(c.font,weight);g.textAlign=al;g.textBaseline='middle';g.fillText(c.label,x,0);g.restore()};
+  const label=(col=c.labelColor,sz=Math.min(h*.42,w*.18),x=0,al='center',weight=800)=>{if(!c.label)return;g.save();g.fillStyle=col;g.font=`${weight} ${sz}px "${c.font}", "Inter", sans-serif`;ensureFont(c.font,weight);g.textAlign=al;g.textBaseline='middle';g.fillText(c.label,x,0);g.restore()};
   switch(c.shape){
     case'rect':g.beginPath();g.rect(-w/2,-h/2,w,h);fillStroke();label();break;
     case'round':rr(g,-w/2,-h/2,w,h,Math.min(w,h)*.22);fillStroke();label();break;

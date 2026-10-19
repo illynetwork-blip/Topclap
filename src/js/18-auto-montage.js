@@ -1,6 +1,6 @@
 /* ---------- auto montage ---------- */
 async function autoMontage(){
-  const ok=await confirmBox('Créer un montage automatique ?','Crépuscule assemble vos photos et vidéos (ou les scènes de démo) avec mouvements de caméra, transitions, textes immobiliers et musique. La timeline actuelle est remplacée, vous pouvez annuler avec Ctrl+Z.','Créer le montage');if(!ok)return;
+  const ok=await confirmBox('Créer un montage automatique ?','Top Clap assemble vos photos et vidéos (ou les scènes de démo) avec mouvements de caméra, transitions, textes immobiliers et musique. La timeline actuelle est remplacée, vous pouvez annuler avec Ctrl+Z.','Créer le montage');if(!ok)return;
   pause();const vis=Object.values(media).filter(m=>m.type==='video'||m.type==='image');
   const items=vis.length?vis.slice(0,14):['villa','salon','facade','villa'].map(s=>({scene:s}));
   P.tracks=defaultTracks();P.clips=[];const [Tt,To,Tm,Ta]=P.tracks;

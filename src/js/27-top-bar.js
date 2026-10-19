@@ -1,5 +1,5 @@
 /* ---------- top bar ---------- */
-$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
+$('#logoMark').innerHTML=LOGO('tl');$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
 $('#exportBtn').innerHTML=ic('download')+'<span class="hide-m">Exporter</span>';$('#autoBtn').innerHTML=ic('wand')+'Assistant vidéo';$('#guideBtn').innerHTML=ic('grid');$('#scopeBtn').innerHTML=ic('scope');
 $('#toStart').innerHTML=ic('skipB');$('#toEnd').innerHTML=ic('skipF');$('#stepB').innerHTML=ic('stepB');$('#stepF').innerHTML=ic('stepF');$('#loopBtn').innerHTML=ic('loop');$('#fsBtn').innerHTML=ic('max');
 $('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;$('#exportBtn').onclick=()=>openExport();$('#autoBtn').onclick=()=>openAssistant();
@@ -17,7 +17,7 @@ $('#menuBtn').onclick=e=>{
   document.body.appendChild(m);m.style.top=(r.bottom+6)+'px';m.style.right=Math.max(8,innerWidth-r.right)+'px';
   m.onclick=async ev=>{const b=ev.target.closest('[data-m]');if(!b)return;m.remove();const a=b.dataset.m;
     if(a==='auto')autoMontage();else if(a==='wizard')openAssistant();else if(a==='import')$('#fileIn').click();else if(a==='srt')$('#srtIn').click();else if(a==='open')$('#projIn').click();
-    else if(a==='save')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.crepuscule.json');
+    else if(a==='save')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.topclap.json');
     else if(a==='demo'){if(await confirmBox('Charger le projet exemple ?','La timeline actuelle sera remplacée. Vous pouvez annuler avec Ctrl+Z.','Charger')){buildDemo();commit();refreshAll()}}
     else if(a==='new'){if(await confirmBox('Nouveau projet ?','La timeline sera vidée. Vos médias importés restent disponibles.','Vider la timeline')){P.tracks=defaultTracks();P.clips=[];P.name='Nouveau projet';$('#projName').value=P.name;S.sel=null;S.t=0;commit();refreshAll()}}};
   setTimeout(()=>document.addEventListener('pointerdown',function h(ev){if(!m.contains(ev.target)&&ev.target!==$('#menuBtn')&&!$('#menuBtn').contains(ev.target)){m.remove()}document.removeEventListener('pointerdown',h)},{once:false}),0);

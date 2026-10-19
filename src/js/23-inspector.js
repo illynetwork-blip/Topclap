@@ -18,7 +18,7 @@ function renderInspector(){
       ${SEL('b_logo','Logo',B.logo||'',[['','Aucun'],...Object.values(media).filter(m=>m.type==='image').map(m=>[m.id,m.name])])}`,false);
     h+=sec(`Marqueurs (${(P.markers||[]).length})`,`${(P.markers||[]).length?(P.markers.slice(0,40).map((m,i)=>`<div class="fx-applied"><span><button class="linkb" data-goto="${m.t}">${fmtT(m.t)}</button> ${esc(m.label||'')}</span><span></span><button class="mini" data-mkdel="${i}" aria-label="Supprimer le marqueur">${ic('x')}</button></div>`).join('')):'<p class="note">Touche M pour poser un marqueur à la tête de lecture.</p>'}<button class="btn wide" data-ia="mkadd">${ic('flag')}Ajouter un marqueur</button>`,false);
     h+=sec('Raccourcis clavier',`<div class="kbd"><kbd>Espace</kbd><span>Lecture / pause</span><kbd>J K L</kbd><span>Arrière / pause / avant (×2 en répétant)</span><kbd>S</kbd><span>Couper à la tête de lecture</span><kbd>M</kbd><span>Marqueur</span><kbd>Suppr</kbd><span>Supprimer le clip</span><kbd>Ctrl D</kbd><span>Dupliquer</span><kbd>Ctrl Z</kbd><span>Annuler</span><kbd>Ctrl Maj Z</kbd><span>Rétablir</span><kbd>← →</kbd><span>Image par image (Maj : 1 s)</span><kbd>Ctrl molette</kbd><span>Zoom timeline</span></div>`,false);
-    h+=sec('À propos',`<p class="note">Crépuscule Studio est un logiciel libre (licence MIT). Le montage, les effets et l'export se font dans votre navigateur : vos fichiers ne quittent pas votre appareil.</p>`,false);
+    h+=sec('À propos',`<p class="note">Top Clap est un logiciel libre (licence MIT). Le montage, les effets et l'export se font dans votre navigateur : vos fichiers ne quittent pas votre appareil.</p>`,false);
     inspBody.innerHTML=h;return;
   }
   const lt=clamp(S.t-c.start,0,c.dur);

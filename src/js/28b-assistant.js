@@ -9,7 +9,7 @@ const GOALS=[
 ];
 const STYLES={
   luxe:{name:'Luxe',title:'Playfair Display',body:'Montserrat',filter:'luxe',fa:.55,lut:'lut-luxe-gold',la:.45,trans:['fade','doors','dive','burn','fade'],motion:['kb-in','drone','pan-l','kb-out','orbit'],music:'ambient',cap:'luxe',accent:'#F2C38B'},
-  moderne:{name:'Moderne',title:'Outfit',body:'Lexend',filter:'clean',fa:.8,lut:'lut-clean-white',la:.35,trans:['push-l','wipe-l','zoom-in','slide-u','blinds'],motion:['kb-in','pan-r','tilt-up','drone','pan-l'],music:'pulse',cap:'boxed',accent:'#F2A65E'},
+  moderne:{name:'Moderne',title:'Outfit',body:'Lexend',filter:'clean',fa:.8,lut:'lut-clean-white',la:.35,trans:['push-l','wipe-l','zoom-in','slide-u','blinds'],motion:['kb-in','pan-r','tilt-up','drone','pan-l'],music:'pulse',cap:'boxed',accent:'#6C5CE7'},
   chaleureux:{name:'Chaleureux',title:'Lora',body:'Nunito',filter:'golden',fa:.5,lut:'lut-film-warm',la:.35,trans:['fade','circle','curtain','fade'],motion:['kb-in','pan-l','kb-out','pan-r'],music:'ambient',cap:'classic',accent:'#E9B872'},
   dynamique:{name:'Dynamique',title:'Bebas Neue',body:'Poppins',filter:'hdr',fa:.5,lut:'lut-teal-orange',la:.35,trans:['whip','zoom-in','push-l','glitch','flash'],motion:['pulse','kb-in','pan-l','drone','shake'],music:'pulse',cap:'karaoke',accent:'#FFD23F'},
 };
@@ -124,12 +124,12 @@ function renderThumb(kind,title,sub,badge){
   const [w,h]=kind==='cover'?[1080,1920]:[1280,720];const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');
   const r=Math.max(w/cv.width,h/cv.height);g.drawImage(cv,(w-cv.width*r)/2,(h-cv.height*r)/2,cv.width*r,cv.height*r);
   const gr=g.createLinearGradient(0,h*.35,0,h);gr.addColorStop(0,'rgba(10,11,16,0)');gr.addColorStop(1,'rgba(10,11,16,.88)');g.fillStyle=gr;g.fillRect(0,0,w,h);
-  const u=Math.min(w,h)/720,acc=P.brand.color||'#F2A65E';g.textBaseline='alphabetic';g.textAlign='left';
-  const lines=title.toUpperCase().split('\n');g.font=`900 ${kind==='cover'?118:96}px "Montserrat","Onest",sans-serif`;
+  const u=Math.min(w,h)/720,acc=P.brand.color||'#6C5CE7';g.textBaseline='alphabetic';g.textAlign='left';
+  const lines=title.toUpperCase().split('\n');g.font=`900 ${kind==='cover'?118:96}px "Montserrat","Inter",sans-serif`;
   let y=h-(kind==='cover'?420:120)*u-(lines.length-1)*96*u;g.lineJoin='round';
   lines.forEach(l=>{g.lineWidth=14*u;g.strokeStyle='rgba(0,0,0,.6)';g.strokeText(l,48*u,y);g.fillStyle='#fff';g.fillText(l,48*u,y);y+=(kind==='cover'?126:100)*u});
-  if(sub){g.font=`700 ${44*u}px "Montserrat","Onest",sans-serif`;g.fillStyle=acc;g.fillText(sub,52*u,y+4*u)}
-  if(badge){g.font=`900 ${52*u}px "Montserrat","Onest",sans-serif`;const bw=g.measureText(badge).width+56*u;g.fillStyle=acc;rr(g,w-bw-40*u,40*u,bw,88*u,16*u);g.fill();g.fillStyle=pickInk(acc);g.fillText(badge,w-bw-12*u,100*u)}
+  if(sub){g.font=`700 ${44*u}px "Montserrat","Inter",sans-serif`;g.fillStyle=acc;g.fillText(sub,52*u,y+4*u)}
+  if(badge){g.font=`900 ${52*u}px "Montserrat","Inter",sans-serif`;const bw=g.measureText(badge).width+56*u;g.fillStyle=acc;rr(g,w-bw-40*u,40*u,bw,88*u,16*u);g.fill();g.fillStyle=pickInk(acc);g.fillText(badge,w-bw-12*u,100*u)}
   return c;
 }
 function openThumb(){

@@ -1,4 +1,13 @@
-# Crépuscule Studio
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="brand/png/logo-horizontal.png">
+    <img src="brand/png/logo-horizontal-clair.png" alt="Top Clap — éditeur vidéo" width="460">
+  </picture>
+</p>
+
+<p align="center"><b>Créez · Montez · Partagez</b> — donnez vie à vos idées.</p>
+
+# Top Clap
 
 Éditeur vidéo **open source** dans le navigateur, inspiré de CapCut, DaVinci Resolve, Premiere Pro et After Effects, pensé pour créer automatiquement des vidéos **immobilières** pour YouTube, Instagram Reels, Facebook et TikTok.
 
@@ -10,8 +19,8 @@
 ## Démarrer
 
 ```bash
-git clone https://github.com/illynetwork-blip/crepuscule-studio.git
-cd crepuscule-studio
+git clone https://github.com/illynetwork-blip/Topclap.git
+cd Topclap
 python3 -m http.server 8080        # puis http://localhost:8080
 ```
 
@@ -73,7 +82,7 @@ python3 build.py                     # régénère index.html
 npm i --no-save playwright && npx playwright install chromium && node tests/smoke.mjs
 ```
 
-Sécurité : [SECURITY.md](SECURITY.md). Audit et limites connues : [AUDIT.md](AUDIT.md).
+Charte graphique et logos : [brand/](brand/README.md). Sécurité : [SECURITY.md](SECURITY.md). Audit et limites connues : [AUDIT.md](AUDIT.md).
 
 ## Licence
 

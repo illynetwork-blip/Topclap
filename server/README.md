@@ -1,4 +1,4 @@
-# Serveur IA Crépuscule (optionnel)
+# Serveur IA Top Clap (optionnel)
 
 Petite API FastAPI qui fait tourner des modèles open source trop lourds pour le navigateur. L'éditeur s'y connecte depuis **Modèles IA › Serveur IA**.
 
@@ -40,7 +40,7 @@ Avec Docker (GPU NVIDIA + Ollama inclus) : `docker compose up -d`, puis `docker 
 
 | Variable | Défaut |
 |---|---|
-| `CREPUSCULE_TOKEN` | vide (aucune authentification) — **à définir si le serveur est accessible par d'autres** |
+| `TOPCLAP_TOKEN` | vide (aucune authentification) — **à définir si le serveur est accessible par d'autres** |
 | `CORS_ORIGINS` | `*` — mettez l'adresse de votre éditeur, ex. `https://illynetwork-blip.github.io` |
 | `WHISPER_MODEL` | `large-v3-turbo` |
 | `EDIT_MODEL` | `Qwen/Qwen-Image-Edit-2511` |

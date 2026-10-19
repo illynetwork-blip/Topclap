@@ -1,5 +1,5 @@
 /* =========================================================================
-   Crépuscule Studio — éditeur vidéo open source (MIT)
+   Top Clap — éditeur vidéo open source (MIT)
    Un seul fichier : rendu Canvas 2D + WebGL, export MediaRecorder.
    ========================================================================= */
 const $=(s,el=document)=>el.querySelector(s);

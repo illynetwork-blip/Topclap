@@ -15,7 +15,7 @@ Merci de **ne pas ouvrir d'issue publique**. Utilisez *Security › Report a vul
 ## Serveur IA (dossier `server/`)
 
 - À exécuter sur **votre** machine ou réseau privé. Ne l'exposez pas sur Internet sans :
-  - `CREPUSCULE_TOKEN` défini (authentification `Bearer` sur toutes les routes de traitement),
+  - `TOPCLAP_TOKEN` défini (authentification `Bearer` sur toutes les routes de traitement),
   - `CORS_ORIGINS` limité à l'adresse de votre éditeur (ex. `https://<compte>.github.io`),
   - un reverse proxy HTTPS (Caddy, Traefik, Nginx).
 - Les fichiers reçus sont écrits dans des dossiers temporaires uniques et supprimés après la réponse.

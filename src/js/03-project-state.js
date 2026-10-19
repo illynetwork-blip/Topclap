@@ -13,7 +13,7 @@ function newClip(kind,o={}){
     volume:1,fadeIn:0,fadeOutA:0,role:'',duck:0,voiceFx:false};
   if(kind==='text')Object.assign(c,DEF_TEXT());
   if(kind==='caption')Object.assign(c,DEF_CAPTION());
-  if(kind==='shape')Object.assign(c,{shape:'round',w:520,h:180,fill:'#F2A65E',stroke:'#FFFFFF',sw:0,label:'',labelColor:'#FFFFFF',font:'Montserrat'});
+  if(kind==='shape')Object.assign(c,{shape:'round',w:520,h:180,fill:'#6C5CE7',stroke:'#FFFFFF',sw:0,label:'',labelColor:'#FFFFFF',font:'Montserrat'});
   if(kind==='color')Object.assign(c,{c1:'#141824',c2:'#2B3352',angle:135});
   if(kind==='adjust')Object.assign(c,{name:'Calque de réglage'});
   const {adj,immo,grade,key,mask,...rest}=o;Object.assign(c,rest);
@@ -21,7 +21,7 @@ function newClip(kind,o={}){
   return c;
 }
 const DEF_INFO=()=>({type:'Villa',city:'Aix-en-Provence',area:'Quartier Mazarin',price:'1 250 000 €',surface:'260',rooms:'6',bedrooms:'5',baths:'4',land:'2 400',feats:['Piscine','Jardin','Terrasse','Garage'],dpe:'B',ref:''});
-const DEF_BRAND=()=>({agency:'Votre agence',phone:'04 00 00 00 00',web:'',color:'#F2A65E',logo:null});
+const DEF_BRAND=()=>({agency:'Votre agence',phone:'04 00 00 00 00',web:'',color:'#6C5CE7',logo:null});
 let P={name:'Villa Les Oliviers',aspect:'16:9',bg:'#000000',tracks:[],clips:[],markers:[],info:DEF_INFO(),brand:DEF_BRAND()};
 const media={};      // id -> {id,type,name,url,el,dur,w,h,thumb,strip,wave,demo,depth,mono,beats}
 const S={t:0,playing:false,sel:null,pps:60,magnet:true,snap:true,tab:'media',pq:.5,loop:false,exporting:false,guides:'none',scopes:false};

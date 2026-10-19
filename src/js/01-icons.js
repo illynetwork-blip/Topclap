@@ -42,3 +42,6 @@ const IP={
  freeze:'M12 2v20 M4.9 7l14.2 10 M19.1 7L4.9 17', wave:'M2 12h2l2-6 3 12 3-9 2 5 2-2h6',
 };
 const ic=(n,cls='')=>`<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true"><path d="${IP[n]||''}"/></svg>`;
+
+/* Top Clap logo: clapperboard opening on a play button (pink → violet → cyan). Generated from brand/logo-icon.svg. */
+const LOGO=(id='tc')=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" aria-hidden="true"> <defs> <linearGradient id="${id}g" gradientUnits="userSpaceOnUse" x1="12" y1="18" x2="116" y2="118"> <stop offset="0" stop-color="#FF6EC7"/> <stop offset=".5" stop-color="#7C5CFF"/> <stop offset="1" stop-color="#00D1FF"/> </linearGradient> <clipPath id="${id}k"><rect x="12" y="20" width="104" height="23" rx="7"/></clipPath> </defs> <rect x="12" y="49" width="104" height="69" rx="18" fill="url(#${id}g)"/> <g transform="rotate(-13 12 44)"> <rect x="12" y="20" width="104" height="23" rx="7" fill="url(#${id}g)"/> <g clip-path="url(#${id}k)" fill="#FFFFFF"> <path d="M29 20h15L31 43H16z"/><path d="M58 20h15L60 43H45z"/><path d="M87 20h15L89 43H74z"/> </g> </g> <path d="M55 68L55 98L81 83Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="11" stroke-linejoin="round"/> </svg>`;
