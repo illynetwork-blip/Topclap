@@ -1,7 +1,7 @@
 # Modèles IA open source (GPU NVIDIA conseillé). Installez seulement ce dont vous avez besoin.
 torch>=2.4
 torchaudio>=2.4
-transformers>=4.51
+transformers>=5.20.1
 accelerate>=1.0
 diffusers>=0.36          # Qwen-Image-Edit, Z-Image, FLUX.2 klein, Wan 2.2 (DiffusionPipeline)
 faster-whisper>=1.1      # transcription mot à mot (MIT)
