@@ -18,7 +18,7 @@ function renderClip(c,t,L){
       if(c.fit==='blurfill'){const [bw2,bh2]=fitWH(sw,sh,W,H,'cover');g.save();if(hasFilter)g.filter=`blur(${Math.round(28*u)}px) brightness(.7)`;g.drawImage(src,-bw2/2*1.08,-bh2/2*1.08,bw2*1.08,bh2*1.08);g.restore()}
       const p=clipParams(c,lt),ex=glExtras(c);let img=src;
       if(GLX&&needsGL(p,ex)){const cap=S.exporting?2400:1400;const k=clamp(Math.min(cap/Math.max(sw,sh),Math.max(dw*sc,64)/sw*1.15),.25,1);try{img=GLX.run(src,sw*k,sh*k,p,t,ex)}catch(e){img=src}}
-      g.drawImage(img,-dw/2,-dh/2,dw,dh);wh=[dw,dh];
+      img=visionPass(c,src,img);g.drawImage(img,-dw/2,-dh/2,dw,dh);wh=[dw,dh];
       if(p.split>-.5)drawSplit(g,p.split,dw,dh,H,u);
     }
   }else if(c.kind==='text')wh=drawText(g,c,lt,u);

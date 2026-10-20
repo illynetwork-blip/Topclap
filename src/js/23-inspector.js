@@ -49,7 +49,7 @@ function renderInspector(){
   if(c.kind==='color')h+=sec('Fond',`${COL('k_c1','Couleur 1',c.c1)}${COL('k_c2','Couleur 2',c.c2)}${R('k_angle','Angle',c.angle,0,360,1,'°')}`);
   if(isVisual(c)&&c.kind!=='adjust'){
     let tf=`${R('k_x','Position X',kv(c,'x',lt),-.5,1.5,.001,'%',KB('x'))}${R('k_y','Position Y',kv(c,'y',lt),-.5,1.5,.001,'%',KB('y'))}${R('k_scale','Échelle',kv(c,'scale',lt),.05,4,.01,'%',KB('scale'))}${R('k_rot','Rotation',kv(c,'rot',lt),-180,180,1,'°',KB('rot'))}${R('k_opacity','Opacité',kv(c,'opacity',lt),0,1,.01,'%',KB('opacity'))}`;
-    const nk=kfTimes(c).length;tf+=`<div class="chip-row kf-nav"><button class="btn" data-ia="kfprev" aria-label="Image clé précédente">${ic('stepB')}</button><span class="note" style="margin:0">${nk?nk+' image(s) clé':'◆ pour animer'}</span><button class="btn" data-ia="kfnext" aria-label="Image clé suivante">${ic('stepF')}</button>${nk?`<button class="btn" data-ia="kfclear">Effacer</button>`:''}</div>`;
+    const nk=kfTimes(c).length;tf+=`<div class="chip-row kf-nav"><button class="btn" data-ia="kfprev" aria-label="Image clé précédente">${ic('stepB')}</button><span class="note" style="margin:0">${nk?nk+' image(s) clé':'◆ pour animer'}</span><button class="btn" data-ia="kfnext" aria-label="Image clé suivante">${ic('stepF')}</button>${nk?`<button class="btn" data-ia="kfclear">Effacer</button>`:''}</div>${nk?`<div class="row r2"><label for="kf_ease">Courbe d'animation</label><select id="kf_ease"><option value="">Choisir…</option><option value="ease">Douce (entrée et sortie)</option><option value="out">Décélération</option><option value="in">Accélération</option><option value="linear">Linéaire</option><option value="back">Dépassement</option><option value="bounce">Rebond</option><option value="hold">Maintien (saut)</option></select></div>`:''}`;
     tf+=`${R('k_fadeOut','Fondu sortie',c.fadeOut,0,3,.05,'s')}${SEL('k_blend','Fusion',c.blend,BLENDS)}`;
     if(isMedia(c))tf+=SEL('k_fit','Cadrage',c.fit,[['cover','Remplir le cadre'],['contain','Adapter'],['blurfill','Adapter + fond flou']]);
     if(isGraphic(c))tf+=TG('k_autofit','Garder dans le cadre (tous formats)',c.autofit!==false);
@@ -58,16 +58,17 @@ function renderInspector(){
   }
   if(isMedia(c)||c.kind==='adjust'){
     h+=sec('Filtre & couleur',`${SEL('k_filter','Filtre',c.filter,Object.entries(FILTERS).map(([k,f])=>[k,f.name]))}${R('k_filterAmt','Intensité',c.filterAmt,0,1,.01,'%')}
-      ${R('a_bright','Luminosité',c.adj.bright,-1,1,.01,'±')}${R('a_contrast','Contraste',c.adj.contrast,-1,1,.01,'±')}${R('a_sat','Saturation',c.adj.sat,-1,1,.01,'±')}${R('a_temp','Température',c.adj.temp,-1,1,.01,'±')}${R('a_tint','Teinte',c.adj.tint,-1,1,.01,'±')}${R('a_hue','Couleur',c.adj.hue,-1,1,.01,'±')}${R('a_vig','Vignette',c.adj.vig,0,1,.01,'%')}${R('a_grain','Grain',c.adj.grain,0,1,.01,'%')}${R('a_fade','Fondu mat',c.adj.fade,0,1,.01,'%')}
+      ${R('a_sharp','Netteté',c.adj.sharp||0,0,1,.01,'%')}${R('a_bright','Luminosité',c.adj.bright,-1,1,.01,'±')}${R('a_contrast','Contraste',c.adj.contrast,-1,1,.01,'±')}${R('a_sat','Saturation',c.adj.sat,-1,1,.01,'±')}${R('a_temp','Température',c.adj.temp,-1,1,.01,'±')}${R('a_tint','Teinte',c.adj.tint,-1,1,.01,'±')}${R('a_hue','Couleur',c.adj.hue,-1,1,.01,'±')}${R('a_vig','Vignette',c.adj.vig,0,1,.01,'%')}${R('a_grain','Grain',c.adj.grain,0,1,.01,'%')}${R('a_fade','Fondu mat',c.adj.fade,0,1,.01,'%')}
       <button class="btn wide" data-ia="resetcol">Réinitialiser la couleur</button>`,c.kind==='adjust');
     const W3=n=>`<div class="wheel"><canvas data-wheel="${n}" width="104" height="104" aria-label="Roue ${n}"></canvas><span>${{lift:'Ombres',gamma:'Tons moyens',gain:'Hautes lumières'}[n]}</span><input type="range" id="w_${n}" min="-1" max="1" step="0.01" value="${c.grade.wheels[n][2]}" aria-label="Niveau ${n}"></div>`;
     h+=sec('Étalonnage pro',`<div class="wheels">${W3('lift')}${W3('gamma')}${W3('gain')}</div><p class="note">Faites glisser le point pour teinter, le curseur pour le niveau. Double-clic pour remettre à zéro.</p>
-      ${SEL('g_lut','LUT 3D',c.grade.lut||'',[['','Aucune'],...Object.values(LUTS).map(l=>[l.id,l.name+(l.builtin?'':' (importée)')])])}${R('g_lutAmt','Intensité LUT',c.grade.lutAmt,0,1,.01,'%')}<button class="btn wide" data-ia="lutimp">${ic('upload')}Importer une LUT .cube</button>`,false);
+      <div class="grp" style="margin-top:10px">Courbes</div><div class="chip-row">${[['m','Maître'],['r','Rouge'],['g','Vert'],['b','Bleu']].map(([k,n])=>`<button class="btn${curveCh===k?' on':''}" data-cch="${k}" style="height:28px">${n}</button>`).join('')}</div><canvas id="curveCv" width="260" height="170" style="width:100%;border-radius:8px;touch-action:none;cursor:crosshair" aria-label="Courbes de couleur"></canvas><div class="chip-row"><select id="curvePreset" class="sel" aria-label="Préréglage de courbe"><option value="">Préréglages…</option><option value="contrast">Contraste en S</option><option value="soft">Doux</option><option value="fade">Noirs délavés</option><option value="bright">Éclaircir les tons moyens</option><option value="dark">Assombrir les tons moyens</option></select><button class="btn" id="curveReset" style="height:30px">Réinitialiser</button></div><p class="note">Cliquez pour ajouter un point, glissez pour le déplacer, double-cliquez pour le retirer.</p>${SEL('g_lut','LUT 3D',c.grade.lut||'',[['','Aucune'],...Object.values(LUTS).map(l=>[l.id,l.name+(l.builtin?'':' (importée)')])])}${R('g_lutAmt','Intensité LUT',c.grade.lutAmt,0,1,.01,'%')}<button class="btn wide" data-ia="lutimp">${ic('upload')}Importer une LUT .cube</button>`,false);
   }
   if(isMedia(c)){
     h+=sec('Immo IA',`${R('m_tw','Jour → Nuit',c.immo.tw,0,1,.01,'%')}${SEL('m_twAnim','Animation',c.immo.twAnim,[['none','Fixe'],['in','Jour vers nuit'],['out','Nuit vers jour']])}${R('m_horizon','Ligne d\'horizon',c.immo.horizon,.15,1,.01,'%')}${R('m_sky','Ciel bleu',c.immo.sky,0,1,.01,'%')}${R('m_glow','Fenêtres allumées',c.immo.glow,0,1.5,.01,'%')}${R('m_hdr','HDR',c.immo.hdr,0,1,.01,'%')}${R('m_gold','Golden hour',c.immo.gold,0,1,.01,'%')}${R('m_winter','Hiver',c.immo.winter,0,1,.01,'%')}
       ${R('m_parallax','Photo 3D',c.immo.parallax,0,1.5,.01,'%')}${SEL('m_parDir','Mouvement 3D',c.immo.parDir,[['push','Avancer'],['left','Vers la gauche'],['right','Vers la droite'],['up','Vertical']])}
       ${SEL('m_compare','Avant / Après',c.immo.compare,[['off','Désactivé'],['static','Volet fixe'],['slide','Volet animé']])}${c.immo.compare==='static'?R('m_splitPos','Position volet',c.immo.splitPos,0,1,.01,'%'):''}<p class="note">Baissez la ligne d'horizon si une façade claire est prise pour du ciel.${c.immo.parallax>0&&!(media[c.mediaId]&&media[c.mediaId].depth)?' Profondeur estimée ; « Photo 3D (profondeur) » dans Modèles IA calcule la vraie.':''}</p>`,c.immo.tw>0||c.immo.sky>0||c.immo.compare!=='off'||c.immo.parallax>0);
+    h+=sec('Vision IA (sur l\'appareil)',`${TG('v_bgRemove','Retirer l\'arrière-plan (personne)',c.bgRemove)}${TG('v_blurFaces','Flouter les visages automatiquement',c.blurFaces)}${c.kind==='video'?`<button class="btn wide" data-ia="reframe">${ic('max')}Recadrer automatiquement sur la personne</button>`:''}<p class="note">MediaPipe (Google, open source) : calculé sur votre appareil, rien n'est envoyé. Utile pour le droit à l'image des passants et des occupants.</p>`,!!(c.bgRemove||c.blurFaces));
     h+=sec('Incrustation (fond vert)',`${TG('y_on','Activer le chroma key',c.key.on)}${COL('y_color','Couleur à retirer',c.key.color)}${R('y_tol','Tolérance',c.key.tol,0,.5,.005,'')}${R('y_soft','Douceur',c.key.soft,0,.4,.005,'')}${R('y_spill','Anti-débordement',c.key.spill,0,1,.01,'%')}`,c.key.on);
     h+=sec('Masque',`${SEL('q_type','Forme',c.mask.type,[['none','Aucun'],['rect','Rectangle'],['ellipse','Ellipse'],['linear','Dégradé']])}${c.mask.type!=='none'?`${R('q_x','Centre X',c.mask.x,0,1,.005,'%')}${R('q_y','Centre Y',c.mask.y,0,1,.005,'%')}${c.mask.type!=='linear'?R('q_w','Largeur',c.mask.w,.02,2,.005,'%')+R('q_h','Hauteur',c.mask.h,.02,2,.005,'%'):''}${R('q_feather','Contour doux',c.mask.feather,0,.4,.005,'')}${TG('q_invert','Inverser',c.mask.invert)}`:''}`,c.mask.type!=='none');
   }
@@ -79,7 +80,7 @@ function renderInspector(){
     ${SEL('k_role','Rôle',c.role,[['','Normal'],['voice','Voix (déclenche le ducking)'],['music','Musique']])}${c.role!=='voice'?R('k_duck','Ducking sous la voix',c.duck,0,1,.01,'%'):''}${TG('k_voiceFx','Voix claire (EQ + compresseur)',c.voiceFx)}
     <div class="chip-row"><button class="btn" data-ia="normalize">${ic('wave')}Normaliser</button><button class="btn" data-ia="silences">${ic('scissors')}Couper les silences</button><button class="btn" data-ia="transcribe">${ic('subs')}Sous-titrer</button></div>`);
   inspBody.innerHTML=h;
-  bindWheels(inspBody,c);
+  bindWheels(inspBody,c);bindCurves(inspBody,c);
 }
 const fmtV=(v,f)=>{v=+v;if(f==='%')return Math.round(v*100)+'%';if(f==='x')return v.toFixed(2)+'×';if(f==='s')return v.toFixed(2)+'s';if(f==='°')return Math.round(v)+'°';if(f==='±')return (v>0?'+':'')+Math.round(v*100);return Math.round(v*10)/10};
 function toHex(c){if(/^#[0-9a-f]{6}$/i.test(c))return c;if(/^#[0-9a-f]{3}$/i.test(c))return '#'+[...c.slice(1)].map(x=>x+x).join('');const m=String(c).match(/rgba?\(([^)]+)\)/);if(m){const [r,g,b]=m[1].split(',').map(x=>parseFloat(x));return '#'+[r,g,b].map(x=>clamp(Math.round(x),0,255).toString(16).padStart(2,'0')).join('')}return '#000000'}
@@ -102,13 +103,15 @@ inspBody.addEventListener('input',e=>{
     if(['start','dur','speed','text','role','duck'].includes(key))renderTimeline();
     if(key==='font'||key==='weight')ensureFont(c.font,c.weight);
   }else if(pre==='a')c.adj[key]=v;else if(pre==='m')c.immo[key]=v;else if(pre==='t'){c.trans[key]=v;if(key==='type')renderTimeline()}
-  else if(pre==='y')c.key[key]=v;else if(pre==='q')c.mask[key]=v;
+  else if(pre==='y')c.key[key]=v;else if(pre==='v'){c[key]=v;if(v)VIS.load()}else if(pre==='q')c.mask[key]=v;
   else if(pre==='g'){if(key==='lut')c.grade.lut=v||null;else c.grade[key]=v}
   else if(pre==='w'){const w=c.grade.wheels[key];w[2]=v;c.grade[key]=wheelVec(key,w)}
   req();
 });
 function captionSpans(c){const sp=[];c.words.forEach(w=>{const l=sp[sp.length-1];if(l&&w.s-l.e<.25)l.e=w.e;else sp.push({s:w.s,e:w.e})});return sp}
 inspBody.addEventListener('change',e=>{const t=e.target;const c=selClip();
+  if(c&&t.id==='kf_ease'&&t.value){for(const p in c.kf)c.kf[p].forEach(k=>k.e=t.value);commit();toast('Courbe appliquée à toutes les images clés');req();return}
+  if(t.id==='curvePreset')return;
   if(!c){if(t.id==='pAspect')setAspect(t.value);else if(t.id==='pPq'){S.pq=+t.value;setRes(S.pq)}else commit();return}
   if(t.id==='k_start'||t.id==='k_dur'){packTrack(trackOf(c));refreshAll()}
   if(['m_compare','k_filter','k_shape','t_type','q_type','k_role','g_lut','m_parallax'].includes(t.id)){renderInspector();renderTimeline()}
@@ -130,7 +133,7 @@ inspBody.addEventListener('click',async e=>{
   else if(a==='lutimp')$('#lutIn').click();
   else if(a==='kfprev'||a==='kfnext'){const ts=kfTimes(c).map(x=>c.start+x);const n=a==='kfnext'?ts.find(x=>x>S.t+.01):[...ts].reverse().find(x=>x<S.t-.01);if(n!=null){pause();setTime(n);renderInspector()}}
   else if(a==='kfclear'){c.kf={};commit();renderInspector();renderTimeline();req()}
-  else if(a==='normalize')normalizeClip(c);else if(a==='silences')removeSilences(c);else if(a==='transcribe')aiTranscribe(c,'french');
+  else if(a==='reframe')autoReframe(c);else if(a==='normalize')normalizeClip(c);else if(a==='silences')removeSilences(c);else if(a==='transcribe')aiTranscribe(c,'french');
   else if(a==='capsrt')download(new Blob([captionsToSRT(c)],{type:'text/plain'}),slug()+'-sous-titres.srt');
 });
 function setAspect(a){P.aspect=a;$('#aspectSel').value=a;setRes(S.pq);commit();renderInspector();renderGuides();toast('Format '+a)}

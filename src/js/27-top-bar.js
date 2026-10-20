@@ -1,5 +1,5 @@
 /* ---------- top bar ---------- */
-$('#logoMark').innerHTML=LOGO('tl');$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
+$('#logoMark').innerHTML=LOGO('tl');$('.logo').style.cursor='pointer';$('.logo').onclick=()=>openStart();$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
 $('#exportBtn').innerHTML=ic('download')+'<span class="hide-m">Exporter</span>';$('#autoBtn').innerHTML=ic('wand')+'Assistant vidéo';$('#guideBtn').innerHTML=ic('grid');$('#scopeBtn').innerHTML=ic('scope');
 $('#toStart').innerHTML=ic('skipB');$('#toEnd').innerHTML=ic('skipF');$('#stepB').innerHTML=ic('stepB');$('#stepF').innerHTML=ic('stepF');$('#loopBtn').innerHTML=ic('loop');$('#fsBtn').innerHTML=ic('max');
 $('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;$('#exportBtn').onclick=()=>openExport();$('#autoBtn').onclick=()=>openAssistant();
@@ -13,10 +13,10 @@ $('#projName').oninput=e=>{P.name=e.target.value};$('#projName').onchange=()=>co
 $('#menuBtn').onclick=e=>{
   const old=$('.menu');if(old){old.remove();return}
   const r=e.currentTarget.getBoundingClientRect();const m=document.createElement('div');m.className='menu';
-  m.innerHTML=`<button data-m="wizard">${ic('wand')}Assistant vidéo</button><button data-m="auto">${ic('film')}Montage express</button><button data-m="demo">${ic('house')}Charger le projet exemple</button><button data-m="new">${ic('plus')}Nouveau projet vide</button><hr><button data-m="open">${ic('upload')}Ouvrir un projet .json</button><button data-m="save">${ic('download')}Enregistrer le projet .json</button><hr><button data-m="import">${ic('film')}Importer des médias</button><button data-m="srt">${ic('subs')}Importer des sous-titres .srt</button>`;
+  m.innerHTML=`<button data-m="home">${ic('house')}Accueil et mes projets</button><button data-m="check">${ic('check')}Vérifier ma vidéo</button><button data-m="tips">${ic('star')}Astuces et pièges à éviter</button><button data-m="rec">${ic('mic')}Enregistrer caméra / écran</button><hr><button data-m="wizard">${ic('wand')}Assistant vidéo</button><button data-m="auto">${ic('film')}Montage express</button><button data-m="demo">${ic('house')}Charger le projet exemple</button><button data-m="new">${ic('plus')}Nouveau projet vide</button><hr><button data-m="open">${ic('upload')}Ouvrir un projet .json</button><button data-m="save">${ic('download')}Enregistrer le projet .json</button><hr><button data-m="import">${ic('film')}Importer des médias</button><button data-m="srt">${ic('subs')}Importer des sous-titres .srt</button>`;
   document.body.appendChild(m);m.style.top=(r.bottom+6)+'px';m.style.right=Math.max(8,innerWidth-r.right)+'px';
   m.onclick=async ev=>{const b=ev.target.closest('[data-m]');if(!b)return;m.remove();const a=b.dataset.m;
-    if(a==='auto')autoMontage();else if(a==='wizard')openAssistant();else if(a==='import')$('#fileIn').click();else if(a==='srt')$('#srtIn').click();else if(a==='open')$('#projIn').click();
+    if(a==='auto')autoMontage();else if(a==='wizard')openAssistant();else if(a==='home')openStart();else if(a==='check')openCheck();else if(a==='tips')openTips();else if(a==='rec')openRecorder();else if(a==='import')$('#fileIn').click();else if(a==='srt')$('#srtIn').click();else if(a==='open')$('#projIn').click();
     else if(a==='save')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.topclap.json');
     else if(a==='demo'){if(await confirmBox('Charger le projet exemple ?','La timeline actuelle sera remplacée. Vous pouvez annuler avec Ctrl+Z.','Charger')){buildDemo();commit();refreshAll()}}
     else if(a==='new'){if(await confirmBox('Nouveau projet ?','La timeline sera vidée. Vos médias importés restent disponibles.','Vider la timeline')){P.tracks=defaultTracks();P.clips=[];P.name='Nouveau projet';$('#projName').value=P.name;S.sel=null;S.t=0;commit();refreshAll()}}};
@@ -51,5 +51,5 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='ArrowLeft'){e.preventDefault();pause();setTime(S.t-(e.shiftKey?1:1/30))}
   else if(e.key==='ArrowRight'){e.preventDefault();pause();setTime(S.t+(e.shiftKey?1:1/30))}
   else if(e.key==='Home'){pause();setTime(0)}else if(e.key==='End'){pause();setTime(projDur())}
-  else if(e.key==='Escape'){select(null);closeSheet('panel');closeSheet('insp')}
+  else if(e.key==='Escape'){if(!startEl.hidden){closeStart();return}select(null);closeSheet('panel');closeSheet('insp')}
 });

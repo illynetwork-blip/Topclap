@@ -24,6 +24,7 @@ function renderPanel(){
   else if(S.tab==='text'){
     h+=`<button class="btn pri wide" data-act="addtext">${ic('plus')}Ajouter un texte</button>`;
     h+=`<div class="grp">Modèles immobilier</div><div class="grid2">${TEXT_TPL.map((t,i)=>{const p={...DEF_TEXT(),...t.p};const fs=Math.max(11,Math.min(22,p.size/5));return `<button class="tpl" data-tpl="${i}"><div class="pv"><span style="font-family:'${p.font}',sans-serif;font-weight:${p.weight};font-style:${p.italic?'italic':'normal'};color:${p.color};font-size:${fs}px;letter-spacing:${p.ls/4}px;${p.bgA?`background:${p.bg};padding:4px 8px;border-radius:${p.radius/3}px`:''};${p.shadowBlur?`text-shadow:0 0 ${p.shadowBlur/3}px ${p.shadowColor}`:''}">${esc(p.text.split('\n')[0])}</span></div><div class="tl">${t.name}</div></button>`}).join('')}</div>`;
+    h+=`<div class="grp">Émojis & stickers</div><div class="emo">${EMOJIS.map(e=>`<button data-emoji="${e}" aria-label="Ajouter ${e}">${e}</button>`).join('')}</div>`;
     h+=`<div class="grp">Sous-titres</div><button class="btn wide" data-act="srt">${ic('subs')}Importer un fichier .srt / .vtt</button><p class="note">Les répliques deviennent des sous-titres animés mot à mot. Sous-titres automatiques et styles : onglet Auto.</p>`;
     h+=`<div class="grp">Polices (${FONTS.length})</div><p class="note">${c&&c.kind==='text'?'Touchez une police pour l\'appliquer au texte sélectionné.':'Touchez une police pour créer un texte avec.'}</p><div class="grid2">${FONTS.map(([f])=>`<button class="font-btn${c&&c.kind==='text'&&c.font===f?' act':''}" data-font="${esc(f)}" style="font-family:'${f}',sans-serif">${esc(f)}</button>`).join('')}</div>`;
   }
@@ -59,6 +60,8 @@ function renderPanel(){
   }
   else if(S.tab==='auto'){
     h+=`<div class="hero-card"><b>Assistant vidéo</b><span class="note" style="margin:0">Choisissez un objectif (annonce, Reel, YouTube, visite, avant/après, face caméra) : montage, textes, voix off, sous-titres, musique et formats sont générés pour vous.</span><button class="btn pri" data-auto="wizard">${ic('wand')}Lancer l'assistant</button></div>`;
+    h+=`<div class="grp">Modèles tendance</div><div class="stack">${TRENDS.map(t=>`<button class="fxi" data-trend="${t.id}"><span class="ico">${ic('star')}</span><div><b>${t.name}</b><span>${t.d}</span></div></button>`).join('')}</div>`;
+    h+=`<div class="grp">Contrôle</div><div class="stack"><button class="fxi" data-auto="tips"><span class="ico">${ic('star')}</span><div><b>Astuces et pièges à éviter</b><span>Rythme, formats, droits musicaux, obligations des annonces, IA, droit à l'image</span></div></button><button class="fxi" data-auto="check"><span class="ico">${ic('check')}</span><div><b>Vérifier ma vidéo</b><span>Accroche, sous-titres, zones masquées, droits musicaux, DPE, appel à l'action… avec corrections en un clic</span></div></button></div>`;
     h+=`<div class="grp">Montage automatique</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='edit').map(autoBtn).join('')}</div>`;
     h+=`<div class="grp">Son</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='audio').map(autoBtn).join('')}</div>`;
     h+=`<div class="grp">Sous-titres</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='cap').map(autoBtn).join('')}</div>
@@ -68,9 +71,10 @@ function renderPanel(){
   }
   else if(S.tab==='ai'){
     h+=`<p class="note">Tous les modèles ci-dessous sont open source. Ceux marqués <b>Navigateur</b> tournent sur votre appareil après un premier téléchargement mis en cache. Ceux marqués <b>Serveur</b> demandent le serveur IA fourni dans le dépôt (dossier <code>server/</code>, carte graphique conseillée).</p>`;
-    h+=`<div class="grp">Outils IA sur le clip sélectionné</div><div class="stack">${AI_TOOLS.map(t=>{const av=t.cap?SRV.has(t.cap):true;const srvOnly=t.where==='server';return `<button class="fxi${srvOnly&&!av?' dis':''}" data-ai="${t.id}"><span class="ico">${ic(t.ic)}</span><div><b>${t.name}</b><span>${t.d}</span></div><em class="where ${srvOnly?'srv':'nav'}">${srvOnly?'Serveur':'Navigateur'}</em></button>`}).join('')}</div>`;
+    h+=`<div class="grp">Outils IA</div><div class="stack">${AI_TOOLS.map(t=>{const srvOnly=t.where==='server';const n=t.task?ENGINES[t.task].filter(e=>e.avail()).length:0;const lab=srvOnly?(SRV.has(t.cap)?'Serveur ✓':'Serveur'):t.task?(n?n+' moteur'+(n>1?'s':''):'à configurer'):'Navigateur';return `<button class="fxi${srvOnly&&!SRV.has(t.cap)?' dis':''}" data-ai="${t.id}"><span class="ico">${ic(t.ic)}</span><div><b>${t.name}</b><span>${t.d}</span></div><em class="where ${srvOnly?'srv':'nav'}">${lab}</em></button>`}).join('')}</div>`;
+    h+=enginesPanelHTML();
     h+=`<div class="grp">Serveur IA (optionnel)</div><div class="row r2"><label for="srvUrl">Adresse</label><input type="text" id="srvUrl" placeholder="http://localhost:8000" value="${esc(SRV.url)}"></div><div class="row r2"><label for="srvTok">Jeton</label><input type="text" id="srvTok" placeholder="facultatif" value="${esc(SRV.token)}"></div><button class="btn wide" data-ai="srv-test">${ic('server')}Connecter et tester</button><p class="note" id="srvStatus">${SRV.url?(Object.keys(SRV.caps).filter(k=>SRV.caps[k]).length?'Connecté · '+Object.keys(SRV.caps).filter(k=>SRV.caps[k]).join(', '):'Non vérifié'):'Non configuré'}</p>`;
-    h+=`<div class="grp">Catalogue des modèles</div><div class="stack">${MODELS.map(mo=>`<a class="model" href="${mo.url}" target="_blank" rel="noopener"><div><b>${mo.name}</b><span>${mo.task}</span><small>${esc(mo.repo)} · ${mo.size} · ${mo.license}${mo.ok==='cond'?' (conditions)':''}</small></div><em class="where ${mo.where==='server'?'srv':'nav'}">${mo.where==='server'?(SRV.has(mo.cap)?'Serveur ✓':'Serveur'):(AI.state[mo.repo]||'Navigateur')}</em></a>`).join('')}</div>`;
+    h+=`<div class="grp">Catalogue des modèles</div><div class="stack">${MODELS.map(mo=>`<a class="model" href="${mo.url}" target="_blank" rel="noopener"><div><b>${mo.name}</b><span>${mo.task}</span><small>${esc(mo.repo)} · ${mo.size} · ${mo.license}${mo.ok==='cond'?' (conditions)':mo.ok===false?' · non utilisable en France':''}</small></div><em class="where ${mo.where==='server'?'srv':mo.where==='cloud'?'auto':'nav'}">${mo.where==='server'?(SRV.has(mo.cap)?'Serveur ✓':'Serveur'):mo.where==='cloud'?'En ligne':(AI.state[mo.repo]||'Navigateur')}</em></a>`).join('')}</div>`;
   }
   b.innerHTML=h;
   if(S.tab==='trans')$$('canvas[data-tp]',b).forEach(cn=>transPreviews.push(cn));
@@ -79,6 +83,8 @@ function shapeIcon(k){const m={rect:'M4 6h16v12H4z',round:'M7 6h10a3 3 0 0 1 3 3
 $('#panelBody').addEventListener('click',async e=>{
   const t=e.target;const rm=t.closest('[data-rm]');
   if(rm){e.stopPropagation();const id=rm.dataset.rm;const used=P.clips.some(c=>c.mediaId===id);if(used&&!await confirmBox('Retirer ce média ?','Les clips qui l\'utilisent seront aussi supprimés de la timeline.','Retirer'))return;P.clips=P.clips.filter(c=>c.mediaId!==id);URL.revokeObjectURL(media[id].url);delete media[id];IDB.del(id);if(S.sel&&!clipById(S.sel))S.sel=null;commit();refreshAll();return}
+  const tr0=t.closest('[data-trend]');if(tr0){runTrend(tr0.dataset.trend);return}
+  const em=t.closest('[data-emoji]');if(em){addEmoji(em.dataset.emoji);return}
   const au=t.closest('[data-auto],[data-ai]');if(au){runTool(au.dataset.auto||au.dataset.ai,au);return}
   const el=t.closest('[data-act],[data-media],[data-scene],[data-color],[data-tpl],[data-font],[data-shape],[data-fx],[data-trans],[data-filter],[data-immo],[data-demomusic]');if(!el)return;const d=el.dataset;
   if(d.act==='import')$('#fileIn').click();

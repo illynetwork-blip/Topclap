@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Top Clap">
+  <defs>
+    <linearGradient id="tc-g" gradientUnits="userSpaceOnUse" x1="12" y1="18" x2="116" y2="118">
+      <stop offset="0" stop-color="#FF6EC7"/>
+      <stop offset=".5" stop-color="#7C5CFF"/>
+      <stop offset="1" stop-color="#00D1FF"/>
+    </linearGradient>
+    <clipPath id="tc-k"><rect x="12" y="20" width="104" height="23" rx="7"/></clipPath>
+  </defs>
+  <rect x="12" y="49" width="104" height="69" rx="18" fill="url(#tc-g)"/>
+  <g transform="rotate(-13 12 44)">
+    <rect x="12" y="20" width="104" height="23" rx="7" fill="url(#tc-g)"/>
+    <g clip-path="url(#tc-k)" fill="#FFFFFF">
+      <path d="M29 20h15L31 43H16z"/><path d="M58 20h15L60 43H45z"/><path d="M87 20h15L89 43H74z"/>
+    </g>
+  </g>
+  <path d="M55 68L55 98L81 83Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="11" stroke-linejoin="round"/>
+</svg>

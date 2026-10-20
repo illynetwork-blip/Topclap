@@ -1,5 +1,5 @@
 /* ---------- project state ---------- */
-const DEF_ADJ=()=>({bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,vig:0,grain:0,fade:0});
+const DEF_ADJ=()=>({sharp:0,bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,vig:0,grain:0,fade:0});
 const DEF_IMMO=()=>({tw:0,twAnim:'none',horizon:.62,sky:0,glow:0,hdr:0,gold:0,winter:0,compare:'off',splitPos:.5,parallax:0,parDir:'push'});
 const DEF_GRADE=()=>({lift:[0,0,0],gamma:[0,0,0],gain:[0,0,0],wheels:{lift:[0,0,0],gamma:[0,0,0],gain:[0,0,0]},lut:null,lutAmt:1});
 const DEF_KEY=()=>({on:false,color:'#00B140',tol:.16,soft:.1,spill:.6});
@@ -10,7 +10,7 @@ const KF_PROPS=['x','y','scale','rot','opacity'];
 function newClip(kind,o={}){
   const c={id:uid(),kind,trackId:null,start:0,dur:4,in:0,speed:1,name:'',x:.5,y:.5,scale:1,rot:0,opacity:1,blend:'source-over',fadeOut:0,fit:'cover',autofit:true,
     filter:'none',filterAmt:1,adj:DEF_ADJ(),immo:DEF_IMMO(),grade:DEF_GRADE(),key:DEF_KEY(),mask:DEF_MASK(),kf:{},fx:[],trans:{type:'none',dur:.6},
-    volume:1,fadeIn:0,fadeOutA:0,role:'',duck:0,voiceFx:false};
+    volume:1,fadeIn:0,fadeOutA:0,role:'',duck:0,voiceFx:false,bgRemove:false,blurFaces:false};
   if(kind==='text')Object.assign(c,DEF_TEXT());
   if(kind==='caption')Object.assign(c,DEF_CAPTION());
   if(kind==='shape')Object.assign(c,{shape:'round',w:520,h:180,fill:'#6C5CE7',stroke:'#FFFFFF',sw:0,label:'',labelColor:'#FFFFFF',font:'Montserrat'});
@@ -46,7 +46,7 @@ function mediaMax(c){const m=media[c.mediaId]; if((c.kind==='video'||c.kind==='a
 function kv(c,prop,lt){
   const ks=c.kf&&c.kf[prop];if(!ks||!ks.length)return c[prop];
   if(lt<=ks[0].t)return ks[0].v;const last=ks[ks.length-1];if(lt>=last.t)return last.v;
-  for(let i=0;i<ks.length-1;i++){const a=ks[i],b=ks[i+1];if(lt>=a.t&&lt<=b.t){if(a.e==='hold')return a.v;let p=(lt-a.t)/Math.max(1e-6,b.t-a.t);if(a.e!=='linear')p=ease.inOut(p);return a.v+(b.v-a.v)*p}}
+  for(let i=0;i<ks.length-1;i++){const a=ks[i],b=ks[i+1];if(lt>=a.t&&lt<=b.t){if(a.e==='hold')return a.v;let p=(lt-a.t)/Math.max(1e-6,b.t-a.t);p=a.e==='linear'?p:a.e==='out'?ease.out(p):a.e==='in'?ease.in(p):a.e==='back'?ease.back(p):a.e==='bounce'?bounceE(p):ease.inOut(p);return a.v+(b.v-a.v)*p}}
   return c[prop];
 }
 const hasKf=(c,prop)=>!!(c.kf&&c.kf[prop]&&c.kf[prop].length);
@@ -54,3 +54,4 @@ function kfAt(c,prop,lt){const ks=c.kf&&c.kf[prop];return ks?ks.findIndex(k=>Mat
 function setKf(c,prop,lt,v){c.kf=c.kf||{};const ks=c.kf[prop]||(c.kf[prop]=[]);const i=kfAt(c,prop,lt);if(i>=0)ks[i].v=v;else{ks.push({t:+lt.toFixed(3),v,e:'ease'});ks.sort((a,b)=>a.t-b.t)}}
 function kfTimes(c){const s=new Set();for(const p in (c.kf||{}))(c.kf[p]||[]).forEach(k=>s.add(+k.t.toFixed(3)));return [...s].sort((a,b)=>a-b)}
 function setProp(c,prop,v){if(hasKf(c,prop))setKf(c,prop,clamp(S.t-c.start,0,c.dur),v);else c[prop]=v}
+function bounceE(p){const n=7.5625,d=2.75;if(p<1/d)return n*p*p;if(p<2/d)return n*(p-=1.5/d)*p+.75;if(p<2.5/d)return n*(p-=2.25/d)*p+.9375;return n*(p-=2.625/d)*p+.984375}

@@ -42,6 +42,20 @@ await check('sous-titres depuis un texte', async () => { const n = await ev(() =
 await check('détection du tempo', async () => { await ev(() => beatMarkers()); await page.waitForTimeout(1500); const bpm = await ev(() => Object.values(media).find(m => m.demo)?.bpm); assert(bpm > 60 && bpm < 180, 'bpm ' + bpm); return bpm + ' BPM'; });
 await check('assistant vidéo (Reel)', async () => { await ev(() => generateVideo({ ...A_OPTS, goal: 'reel', formats: ['9:16'], dur: 15, style: 'dynamique', voice: 'none', captions: true, beat: false })); const r = await ev(() => ({ a: P.aspect, n: P.clips.length, d: projDur() })); assert(r.a === '9:16' && r.n > 5, JSON.stringify(r)); return JSON.stringify(r); });
 await check('textes réseaux + miniature', async () => { const t = await ev(() => socialTexts().youtube.title); assert(t.length > 10, t); await ev(() => renderThumb('yt', 'Villa\nAix', 'sub', 'prix')); });
+await check('moteurs IA : panneau, ordre, repli sans réseau', async () => {
+  const r = await ev(async () => { KEYS.cloudOK = false; setTab('ai'); const html = document.querySelector('#panelBody').innerHTML; const tasks = Object.keys(ENGINES);
+    const res = await runEngine('image', 'test', 'x', 64, 64); const w = await aiWrite('test', 'repli'); return { panel: /Moteurs IA/.test(html) && /IA chinoise/.test(html), tasks: tasks.length, res, w }; });
+  assert(r.panel && r.tasks >= 8 && r.res === null && r.w === 'repli', JSON.stringify(r)); return r.tasks + ' tâches';
+});
+await check('astuces, émoji, enregistreur, vérification', async () => {
+  const r = await ev(async () => { openTips(); const t = document.querySelectorAll('.tip').length; document.querySelector('.modal-bg').remove();
+    addEmoji('🏡'); const e = P.clips.some(c => c.text === '🏡');
+    openRecorder(); const rec = !!document.querySelector('#recV'); document.querySelector('.modal-bg').remove();
+    P.info.dpe = 'G'; const ck = videoChecks().some(x => /excessive/.test(x.title)); return { t, e, rec, ck }; });
+  assert(r.t > 0 && r.e && r.rec && r.ck, JSON.stringify(r));
+});
+await check('vision IA sans réseau : pas de plantage', async () => { await ev(() => { const c = P.clips.find(c => c.kind === 'scene'); c.blurFaces = true; c.bgRemove = true; setTime(c.start + .5); }); await page.waitForTimeout(1500); await ev(() => renderFrame(S.t)); });
+await check('écran Démarrer et bibliothèque de projets', async () => { const r = await ev(() => { openStart(); const ok = !document.querySelector('#start').hidden && !!document.querySelector('.st-go'); saveNow(); const n = listProjects().length; closeStart(); return { ok, n }; }); assert(r.ok && r.n >= 1, JSON.stringify(r)); });
 if (media.length) await check('import vidéo + photo', async () => { await page.setInputFiles('#fileIn', media); await page.waitForTimeout(3500); const n = await ev(() => Object.values(media).filter(m => m.type === 'video' || m.type === 'image').length); assert(n === 2, 'médias ' + n); });
 await check('export vidéo', async () => {
   await ev(() => { P.clips = P.clips.filter(c => c.start < 1.5); P.clips.forEach(c => { if (c.start + c.dur > 1.5) c.dur = 1.5 - c.start; }); refreshAll(); });

@@ -39,6 +39,45 @@ Sans aucun modèle, l'appli calcule elle-même (WebGL / Web Audio) : Jour → Nu
 
 Changer de modèle : variables d'environnement `WHISPER_MODEL`, `EDIT_MODEL`, `GEN_MODEL`, `I2V_MODEL`, `OLLAMA_MODEL`, `ACESTEP_CMD` (voir `server/README.md`).
 
+### Modèles chinois open source utilisables sur le serveur
+
+| Modèle | Éditeur | Usage | Licence |
+|---|---|---|---|
+| Qwen3, Qwen-Image, Qwen-Image-Edit-2511 | Alibaba | Rédaction, images, retouche | Apache-2.0 |
+| Wan 2.2 (TI2V-5B, I2V-A14B) | Alibaba | Photo → vidéo, texte → vidéo | Apache-2.0 |
+| Z-Image Turbo | Alibaba (Tongyi) | Images | Apache-2.0 |
+| CosyVoice 2 | Alibaba | Voix off, clonage | Apache-2.0 |
+| MAGI-1 | Sand AI | Vidéo longue | Apache-2.0 |
+| Step-Video-T2V, ACE-Step 1.5 | StepFun | Vidéo, musique | MIT, Apache-2.0 |
+| HiDream-I1 | HiDream.ai | Images | MIT |
+| CogVideoX-2B | Zhipu | Texte → vidéo | Apache-2.0 |
+| GLM-4.5 | Zhipu | Rédaction | MIT |
+| DeepSeek R1 / V3 | DeepSeek | Rédaction, raisonnement | MIT |
+| Kimi K2 | Moonshot | Rédaction (aussi via Groq) | MIT modifiée |
+| SkyReels V2 | Skywork | Vidéo longue | à vérifier sur la fiche du modèle |
+
+Pour l'image et la vidéo, renseignez l'identifiant Hugging Face du modèle dans `GEN_MODEL`, `EDIT_MODEL` ou `I2V_MODEL` ; le serveur le charge avec `diffusers` quand le modèle y est intégré. Les modèles de rédaction se téléchargent avec Ollama (`ollama pull qwen3`, `deepseek-r1`, `glm4`…).
+
+## Services gratuits en ligne (choix automatique dans l'appli)
+
+Onglet **Modèles IA › Moteurs** : pour chaque tâche, mode **Automatique** (le meilleur moteur disponible, avec repli sur le suivant en cas d'échec ou de quota épuisé) ou choix manuel. Les clés restent dans votre navigateur. Vérifié en octobre 2026 ; les offres gratuites changent souvent.
+
+| Service | Pays | Compte | Ce que Top Clap utilise | Limites constatées |
+|---|---|---|---|---|
+| [Groq](https://console.groq.com) | USA | Gratuit | Whisper large-v3-turbo (sous-titres mot à mot), Qwen3 32B, Kimi K2, Llama | ≈ 2 000 transcriptions et 1 000 à 14 400 requêtes texte par jour selon le modèle |
+| [Zhipu GLM](https://open.bigmodel.cn) (BigModel / Z.ai) | Chine | Gratuit | GLM-4.7-Flash, CogView-3-Flash (images), CogVideoX-Flash (texte → vidéo et photo → vidéo) | Modèles « Flash » gratuits, débit limité ; inscription BigModel avec numéro chinois, Z.ai par e-mail |
+| [SiliconFlow](https://cloud.siliconflow.cn) | Chine | Gratuit, vérification téléphone | Qwen 2.5, Kolors (images), SenseVoice (transcription) | Modèles gratuits à quotas ; liste à vérifier sur `/v1/models` |
+| [Google Gemini](https://aistudio.google.com) | USA | Gratuit | Texte, voix off (modèle choisi automatiquement) | Quotas par modèle ; images et vidéo Veo payantes ; Google peut utiliser les données de l'offre gratuite |
+| [OpenRouter](https://openrouter.ai) | USA | Gratuit | Meilleur modèle « :free » disponible (DeepSeek, Qwen, GLM…) choisi automatiquement | 50 requêtes/jour, 1 000 après un achat de 10 crédits |
+| [Pollinations](https://github.com/pollinations/pollinations) | International | Gratuit (clé) | Images (FLUX, Seedream, Qwen-Image…), vidéo (Wan, Seedance…), voix (dont voix françaises), Whisper, musique | Fonctionne avec des crédits « pollen » : une clé est désormais nécessaire |
+| [Hugging Face Spaces](https://huggingface.co/spaces) | USA | Aucun (token facultatif) | FLUX.1 schnell, Qwen-Image-Edit, Wan 2.2 I2V et T2V, Chatterbox multilingue, ACE-Step | ZeroGPU : ≈ 2 min de GPU/jour sans compte, 5 min avec un compte gratuit ; files d'attente possibles |
+
+N'importe quel Space Gradio peut remplacer ceux par défaut : Top Clap lit son API et remplit automatiquement l'image, le texte, la langue et la durée.
+
+**Studios vidéo IA gratuits (web, sans API gratuite)** : Kling, Hailuo (MiniMax), Vidu, Dreamina / Jimeng (ByteDance), Wan, Qwen Chat, Google Flow / Veo, Luma, Pika. Crédits quotidiens ou mensuels, filigrane et usage commercial souvent interdit en version gratuite. L'appli copie votre prompt et ouvre le site ; importez ensuite le plan généré.
+
+**Ce qui n'est pas intégré** : les API payantes présentées comme gratuites, les clés partagées, les contournements de quotas ou de filigranes et les modèles « fuités » : illégaux, instables et risqués pour vos comptes.
+
 ## Volontairement non intégrés
 
 | Modèle | Raison |

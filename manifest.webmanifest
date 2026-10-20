@@ -1,0 +1,28 @@
+{
+  "name": "Top Clap · Éditeur vidéo",
+  "short_name": "Top Clap",
+  "description": "Créez, montez et partagez vos vidéos : assistant automatique, timeline pro, IA open source, export YouTube, Reels, TikTok et Facebook.",
+  "lang": "fr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "any",
+  "background_color": "#0A0F1E",
+  "theme_color": "#0A0F1E",
+  "categories": ["photo", "productivity", "business"],
+  "icons": [
+    { "src": "icons/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/logo-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "file_handlers": [
+    { "action": "./", "accept": { "video/*": [".mp4", ".webm", ".mov"], "image/*": [".jpg", ".jpeg", ".png", ".webp"], "audio/*": [".mp3", ".wav", ".m4a"] } }
+  ],
+  "shortcuts": [
+    { "name": "Assistant vidéo", "short_name": "Assistant", "url": "./#assistant", "icons": [{ "src": "icons/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Nouveau projet", "short_name": "Nouveau", "url": "./#nouveau", "icons": [{ "src": "icons/icone-192.png", "sizes": "192x192" }] }
+  ]
+}

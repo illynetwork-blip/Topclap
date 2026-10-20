@@ -1,0 +1,46 @@
+[
+  {"id":"hook","title":"Accroche et rythme","tips":[
+    ["Gagnez les 2 premières secondes","Commencez par l'image la plus forte (piscine, vue, façade de nuit) et un texte court : lieu, prix ou question. C'est là que la plupart des spectateurs décident de rester."],
+    ["Changez de plan toutes les 1,5 à 3 s en vertical","Sur Reels, Shorts et TikTok, un plan fixe de plus de 5 s fait décrocher. Utilisez « Caler les coupes sur le rythme »."],
+    ["Bouclez la fin sur le début","Une fin qui enchaîne naturellement avec la première image fait revoir la vidéo, ce qui compte pour les algorithmes."],
+    ["Une idée par vidéo","Une visite complète en 16:9 pour YouTube, des extraits de 15–30 s pour les réseaux. Ne compressez pas tout dans un seul format."]
+  ]},
+  {"id":"format","title":"Formats et zones masquées","tips":[
+    ["9:16 en 1080 × 1920 pour Reels, Shorts, TikTok","Exportez chaque format séparément (Exporter › plusieurs formats) plutôt que de recadrer après coup."],
+    ["Gardez textes et visages hors des bords","En vertical, le haut (≈ 12 %) et le bas (≈ 20 %) sont couverts par l'interface. Activez les repères « Zones sûres »."],
+    ["Pas de vidéo avec le logo d'une autre plateforme","Une vidéo TikTok re-publiée avec son filigrane sur Instagram ou YouTube est moins diffusée. Exportez toujours depuis Top Clap."],
+    ["Gardez l'onglet visible pendant l'export","L'export se fait en temps réel : un onglet en arrière-plan donne une vidéo saccadée."]
+  ]},
+  {"id":"sound","title":"Son, musique et sous-titres","tips":[
+    ["Sous-titrez tout ce qui est dit","Une grande partie des vidéos est regardée sans le son. Sous-titres mot à mot : onglet Auto."],
+    ["N'utilisez pas une musique du commerce","YouTube, Instagram et TikTok détectent les musiques protégées : son coupé, vidéo bloquée ou revenus reversés aux ayants droit. Utilisez les musiques intégrées, la musique IA ou une bibliothèque libre de droits dont vous gardez la licence."],
+    ["Activez le ducking","La musique doit baisser sous la voix. « Ducking automatique » le fait pour vous."],
+    ["Visez un volume homogène","−14 LUFS est le niveau de référence des plateformes : le serveur IA peut le régler à l'export (finalisation MP4)."]
+  ]},
+  {"id":"legal","title":"Annonces immobilières : obligations (France)","tips":[
+    ["Affichez la classe énergie (DPE)","Le DPE est obligatoire dans les annonces de vente et de location. Pour un logement classé F ou G, ajoutez « Logement à consommation énergétique excessive », en caractères au moins aussi grands que le texte de l'annonce."],
+    ["Prix et honoraires","Honoraires à la charge du vendeur : prix affiché sans mention des honoraires. À la charge de l'acquéreur : prix honoraires inclus (plus visible), prix hors honoraires et taux en %. Les honoraires affichés sont un maximum, et le barème doit être accessible."],
+    ["Copropriété","Indiquez le statut de copropriété, le nombre de lots, la quote-part annuelle moyenne des charges et toute procédure en cours."],
+    ["Identification de l'agence","Nom du titulaire de la carte professionnelle, et statut d'agent commercial le cas échéant. Gardez vos coordonnées réelles dans « Marque »."],
+    ["Faites vérifier","Ces points résument les règles générales ; votre réseau, votre syndicat professionnel ou un juriste confirment les mentions exactes pour vos supports."]
+  ]},
+  {"id":"ai","title":"IA, retouches et honnêteté","tips":[
+    ["Ne modifiez pas l'état réel du bien","Nuit, ciel bleu, mise en scène virtuelle : oui, si l'acheteur ne peut pas être trompé. Effacer une fissure, agrandir une pièce ou ajouter une vue inexistante peut constituer une pratique commerciale trompeuse."],
+    ["Mentionnez les images retouchées","Ajoutez « Mise en scène virtuelle » ou « Image retouchée par IA · non contractuelle ». « Vérifier ma vidéo » le propose automatiquement."],
+    ["Cochez « contenu IA » sur les plateformes","YouTube demande de déclarer un contenu réaliste modifié ou généré ; TikTok et Instagram ont un label IA. Les retouches de couleur ou les sous-titres n'en ont pas besoin."],
+    ["Règlement européen sur l'IA","À partir du 2 août 2026, les images manipulées réalistes (hypertrucages) doivent être signalées de façon visible. Préférez toujours la transparence."],
+    ["Lisez les conditions des outils gratuits","Les studios vidéo IA gratuits (Kling, Hailuo, Vidu…) ajoutent souvent un filigrane et interdisent parfois l'usage commercial en version gratuite. Vérifiez avant de publier une annonce."]
+  ]},
+  {"id":"privacy","title":"Droit à l'image et sécurité","tips":[
+    ["Floutez visages et plaques","Occupants, voisins, passants : utilisez « Flouter tous les visages ». Floutez aussi les plaques d'immatriculation et les documents visibles (masque + flou)."],
+    ["Ne montrez pas ce qui aide un cambrioleur","Évitez l'alarme, les clés, l'adresse exacte avec les horaires d'absence, les objets de valeur."],
+    ["Drone : vérifiez la réglementation","Le vol de drone est encadré par la DGAC (catégories, zones interdites, survol des personnes et des agglomérations). Faites appel à un télépilote déclaré si besoin, ou utilisez l'effet « Drone cinématique »."],
+    ["Musique et images d'autrui","N'intégrez que des médias dont vous avez les droits : vos photos, celles du vendeur avec accord, ou des médias libres de droits."]
+  ]},
+  {"id":"publish","title":"Publication","tips":[
+    ["Titre, description, hashtags","« Textes réseaux sociaux » génère un titre YouTube, une description avec chapitres et des hashtags par plateforme : relisez-les avant de publier."],
+    ["Miniature lisible sur téléphone","3 à 5 mots, gros caractères, un visuel fort. « Miniature / couverture » la prépare."],
+    ["Un appel à l'action clair","Terminez par le contact, « visite sur rendez-vous » ou « lien en bio »."],
+    ["Lancez « Vérifier ma vidéo » avant chaque publication","Il contrôle accroche, sous-titres, zones masquées, droits musicaux, DPE, mentions IA et appel à l'action, avec correction en un clic."]
+  ]}
+]

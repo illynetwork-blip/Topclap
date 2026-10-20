@@ -27,6 +27,8 @@ A("logo-principal", 1024, 1024, f'<div class="stack">{ico(nid())}{wordmark()}</d
 A("logo-horizontal", 1200, 420, f'<div class="row">{ico(nid())}{wordmark()}</div>', transparent=True)
 A("logo-horizontal-clair", 1200, 420, f'<div class="row">{ico(nid())}{wordmark(True)}</div>', bg="white")
 A("icone-app-1024", 1024, 1024, f'<div class="tile">{ico(nid())}</div>', transparent=True)
+A("icone-192", 192, 192, f'<div class="tile">{ico(nid())}</div>', transparent=True)
+A("maskable-512", 512, 512, f'<div class="mask">{ico(nid())}</div>')
 A("icone-512", 512, 512, f'<div class="tile">{ico(nid())}</div>', transparent=True)
 A("icone-claire-512", 512, 512, f'<div class="tile light">{ico(nid())}</div>', transparent=True)
 A("icone-transparente-512", 512, 512, f'<div class="bare">{ico(nid())}</div>', transparent=True)
@@ -51,6 +53,7 @@ css = FONTS + """
 .stack{display:flex;flex-direction:column;align-items:center;gap:.25em;font-size:150px}.stack svg{width:2.6em;height:2.6em}.stack .wmk{align-items:center}
 .stack.tall{font-size:140px;gap:.3em}
 .row{display:flex;align-items:center;gap:.25em;font-size:150px}.row svg{width:1.55em;height:1.55em}
+.mask{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#151D44,#0A0F1E)}.mask svg{width:56%;height:56%}
 .tile{width:100%;height:100%;border-radius:22%;background:linear-gradient(160deg,#151D44,#0A0F1E);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
 .tile svg{width:76%;height:76%}.tile.light{background:#fff;box-shadow:inset 0 0 0 2px #E3E7F3}.tile.fav{border-radius:20%}.tile.fav svg{width:86%;height:86%}
 .bare svg{width:100%;height:100%}.bare{width:100%;height:100%}

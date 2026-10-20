@@ -7,83 +7,73 @@
 
 <p align="center"><b>Créez · Montez · Partagez</b> — donnez vie à vos idées.</p>
 
-# Top Clap
+<p align="center">
+  👉 <a href="https://illynetwork-blip.github.io/Topclap/"><b>Ouvrir l'application</b></a>
+</p>
 
-Éditeur vidéo **open source** dans le navigateur, inspiré de CapCut, DaVinci Resolve, Premiere Pro et After Effects, pensé pour créer automatiquement des vidéos **immobilières** pour YouTube, Instagram Reels, Facebook et TikTok.
+---
 
-- Fonctionne sur **téléphone, tablette et ordinateur**, sans installation ni compte.
-- Vos photos et vidéos **ne quittent pas votre appareil**.
-- Modèles d'IA **open source** dans le navigateur, et serveur IA optionnel pour les plus lourds (voir [MODELS.md](MODELS.md)).
+**Top Clap** est un éditeur vidéo **open source** qui s'ouvre dans le navigateur, sur **ordinateur, tablette et téléphone**, et s'installe comme une vraie appli. Inspiré de CapCut, Edits, DaVinci Resolve, Premiere Pro et After Effects, il crée automatiquement des vidéos **YouTube, Reels, TikTok et Facebook**, avec un mode spécial **immobilier**.
+
+- Aucun compte. Vos projets et médias restent **sur votre appareil**.
+- Toutes les **IA gratuites** sélectionnables, en **mode automatique** : votre serveur, les services gratuits en ligne, les modèles du navigateur (dont les modèles chinois Qwen, Wan, Kimi, DeepSeek, GLM).
 - Licence **MIT**.
 
-## Démarrer
+## Installer sur l'appareil
 
-```bash
-git clone https://github.com/illynetwork-blip/Topclap.git
-cd Topclap
-python3 -m http.server 8080        # puis http://localhost:8080
-```
+Ouvrez le lien ci-dessus, puis :
+- **Ordinateur** (Chrome, Edge) : bouton **Installer l'appli** sur l'écran d'accueil de Top Clap, ou icône d'installation dans la barre d'adresse. Top Clap apparaît dans le menu **Démarrer** / le Dock.
+- **Android** : menu **Installer l'application**.
+- **iPhone / iPad** : **Partager** puis **Sur l'écran d'accueil**.
 
-Ou en ligne gratuitement : *Settings › Pages › Source : GitHub Actions* (dépôt public, ou plan GitHub payant pour un dépôt privé). Le workflow publie l'appli à chaque push sur `main`.
+Une fois installé, Top Clap s'ouvre même hors ligne (les fonctions IA en ligne demandent une connexion).
 
-## Tout automatiser
+## Ce que fait Top Clap
 
-**Assistant vidéo** (bouton en haut) : choisissez un objectif, renseignez le bien une fois, et l'appli génère tout.
+- **Écran Démarrer** : reprendre un projet, assistant vidéo, nouveau projet, import, **bibliothèque de projets** (ouvrir, dupliquer, supprimer).
+- **Assistant vidéo** : annonce immobilière, Reel / Short / TikTok, visite guidée, YouTube, avant / après, face caméra. Montage, textes, voix off, sous-titres, musique et formats générés.
+- **Modèles tendance** en un clic : room tour express, « devinez le prix », top 5 des atouts, avant / après, visite cinématique, teaser 15 s, visite YouTube complète.
+- **Vérifier ma vidéo** : accroche, sous-titres, zones masquées par TikTok / Reels, plans trop longs, trous noirs, appel à l'action, droits de la musique, photos floues, lisibilité des textes, **DPE et honoraires** pour les annonces, avec corrections en un clic.
+- **Montage** : timeline multipiste magnétique, marqueurs, J / K / L, couper, rogner, aimantation, écran partagé 2 / 4 vues, arrêt sur image, calque de réglage.
+- **Animation** : images clés (position, échelle, rotation, opacité) avec 7 courbes (douce, décélération, accélération, linéaire, dépassement, rebond, maintien), 13 animations de texte, sous-titres mot à mot (karaoké, encadré, pop, classique, élégant).
+- **Étalonnage** : roues ombres / tons moyens / hautes lumières, **courbes RVB**, LUT `.cube`, 14 filtres, netteté, scopes, masques, fond vert.
+- **Immobilier** : jour → nuit, ciel bleu, fenêtres allumées, golden hour, HDR, hiver, photo 3D, avant / après, drone cinématique.
+- **Audio** : musiques libres intégrées, voix off (micro ou IA), ducking, voix claire, normalisation, détection du tempo.
+- **Vision IA sur l'appareil** : retrait de l'arrière-plan d'une personne, floutage automatique des visages, recadrage automatique sur le sujet (MediaPipe).
+- **Enregistrer** : caméra ou écran avec prompteur défilant, directement dans la timeline. Émojis et stickers.
+- **Export** : MP4 / WebM jusqu'en 4K, tous les formats à la suite (16:9, 9:16, 4:5, 1:1), miniature YouTube, textes réseaux sociaux, sous-titres `.srt`.
 
-| Objectif | Ce qui est généré |
+## IA gratuites (choix automatique)
+
+Pour chaque tâche, Top Clap choisit le meilleur moteur gratuit disponible et passe au suivant en cas d'échec ou de quota épuisé. Vous pouvez aussi imposer un moteur (onglet **Modèles IA › Moteurs**). IA chinoises comprises (Qwen, Wan, GLM, CogVideoX, Kolors, SenseVoice, Kimi, DeepSeek, ACE-Step).
+
+| Tâche | Moteurs (ordre automatique) |
 |---|---|
-| Annonce immobilière | Plans classés (extérieur d'accroche → intérieurs → extérieur de nuit), mouvements caméra, transitions, prix animé, atouts, écran de fin |
-| Reel / Short / TikTok | 9:16, accroche en 1 s, plans démultipliés, coupes sur le rythme, sous-titres animés |
-| Visite guidée | Plans longs, effet drone, voix off descriptive |
-| Vidéo YouTube | 16:9, chapitres (marqueurs), écran de fin |
-| Avant / Après | Volets animés : photo d'origine vs nuit / HDR / ciel |
-| Face caméra | Silences coupés, sous-titres Whisper, musique avec ducking |
+| Rédaction | Votre serveur (Ollama) → Groq (Qwen3, Kimi) → Zhipu GLM-4.7-Flash → Gemini → OpenRouter (meilleur modèle gratuit) → SiliconFlow Qwen → Pollinations → Qwen3 dans le navigateur |
+| Sous-titres | Votre serveur (faster-whisper) → Groq Whisper turbo → SiliconFlow SenseVoice → Pollinations Whisper → Whisper dans le navigateur |
+| Voix off | Votre serveur (Chatterbox) → Space Chatterbox multilingue → Gemini TTS → Pollinations → Piper dans le navigateur |
+| Images | Votre serveur (Z-Image, Qwen-Image, FLUX.2 klein) → Pollinations (FLUX, Seedream, Qwen-Image) → Space FLUX.1 schnell → Zhipu CogView-3-Flash → SiliconFlow Kolors |
+| Retouche par consigne (nuit, home staging…) | Votre serveur (Qwen-Image-Edit-2511) → Space Qwen-Image-Edit |
+| Texte → vidéo | Zhipu CogVideoX-Flash → Pollinations (Wan, Seedance…) → Space Wan 2.2 T2V |
+| Photo → vidéo | Votre serveur (Wan 2.2) → Space Wan 2.2 I2V → Zhipu CogVideoX-Flash |
+| Musique | Votre serveur (ACE-Step 1.5) → Space ACE-Step → Pollinations |
+| Détourage, photo 3D, agrandissement, visages | Dans le navigateur (BiRefNet, Depth Anything, Swin2SR, MediaPipe) ou serveur |
 
-Ensuite : **export multi-format** en une fois (16:9, 9:16, 4:5, 1:1), **textes pour les réseaux** (titre, description avec chapitres, hashtags par plateforme), **miniature YouTube / couverture Reels**.
+Les services en ligne ne sont utilisés qu'après votre accord et ne reçoivent que le texte, l'image ou l'audio traité. Les clés gratuites restent dans votre navigateur. Studios web gratuits (Kling, Hailuo, Vidu, Dreamina, Wan, Qwen Chat, Flow, Luma, Pika) accessibles depuis l'appli. Détails, quotas et licences : [MODELS.md](MODELS.md). Serveur : [server/README.md](server/README.md).
 
-Outils automatiques à l'unité (onglet **Auto**) : montage express, coupes sur le rythme (détection du tempo), découpage en plans, suppression des silences, arrêt sur image, calque de réglage, passage au 9:16, marqueurs sur les temps, ducking, normalisation, voix claire, sous-titres automatiques ou depuis un texte, import `.srt` / `.vtt`.
+## Astuces et pièges à éviter
 
-## Fonctions de montage
-
-**Timeline** : multipiste, piste principale magnétique, glisser entre pistes, rognage, aimantation, marqueurs (M), J / K / L, couper (S), annuler illimité, sauvegarde automatique.
-
-**Animation (After Effects)** : images clés position / échelle / rotation / opacité avec lissage, animation directe dans l'aperçu, 13 animations de texte (lettre par lettre, machine à écrire, compteur de prix…), sous-titres mot à mot (karaoké, encadré, un mot à la fois, classique, élégant), formes et pictos immobiliers, barre de progression.
-
-**Étalonnage (DaVinci)** : roues ombres / tons moyens / hautes lumières, 6 LUT intégrées + import `.cube`, 14 filtres, réglages fins, scopes (forme d'onde, parade RVB, histogramme, vecteurscope), masques (rectangle, ellipse, dégradé), incrustation fond vert, calque de réglage.
-
-**Immobilier** : Jour → Nuit (fixe ou animé), ciel bleu, fenêtres allumées, golden hour, heure bleue, HDR, hiver, Photo 3D (parallaxe), Avant / Après, drone cinématique.
-
-**24 transitions, 22 effets, 40 polices, 4 formats**, repères (zones sûres Reels / TikTok / Shorts, tiers).
-
-**Audio** : musiques libres générées, import, voix off (micro ou IA), ducking, voix claire (EQ + compresseur), normalisation, fondus, forme d'onde.
-
-**Export** : MP4 ou WebM jusqu'en 4K, plusieurs formats à la suite, PNG, projet `.json`, sous-titres `.srt`, finalisation MP4 −14 LUFS via le serveur.
-
-## IA open source
-
-| Dans le navigateur | Sur le serveur (`server/`) |
-|---|---|
-| Whisper (sous-titres), Depth Anything V2 (photo 3D), BiRefNet (détourage), Swin2SR (agrandissement), Piper (voix FR), Qwen3 0.6B (rédaction) | faster-whisper, Chatterbox (voix + clonage), Qwen-Image-Edit (nuit photoréaliste, home staging), Z-Image / FLUX.2 klein 4B, Wan 2.2 (photo → vidéo), ACE-Step (musique), Demucs, DeepFilterNet, Real-ESRGAN, rembg, Ollama, FFmpeg |
-
-Détails, licences et modèles exclus : [MODELS.md](MODELS.md). Installation du serveur : [server/README.md](server/README.md).
+Guide intégré (menu ⋯ › Astuces) et [ASTUCES.md](ASTUCES.md) : accroche et rythme, zones masquées, droits musicaux, obligations des annonces immobilières (DPE, honoraires), mentions IA, droit à l'image, drone, publication. « Vérifier ma vidéo » contrôle ces points automatiquement.
 
 ## Développement
 
-```
-src/head.html, src/styles.css, src/body.html   interface
-src/js/*.js                                     modules (ordre alphabétique)
-build.py                                        assemble index.html (à commiter)
-tests/smoke.mjs                                 tests navigateur
-server/                                         serveur IA optionnel
-```
-
 ```bash
-python3 build.py                     # régénère index.html
+python3 build.py                     # assemble index.html, manifest, service worker et icônes depuis src/
 npm i --no-save playwright && npx playwright install chromium && node tests/smoke.mjs
 ```
 
-Charte graphique et logos : [brand/](brand/README.md). Sécurité : [SECURITY.md](SECURITY.md). Audit et limites connues : [AUDIT.md](AUDIT.md).
+Charte graphique : [brand/](brand/README.md) · Sécurité : [SECURITY.md](SECURITY.md) · Audit : [AUDIT.md](AUDIT.md)
 
 ## Licence
 
-[MIT](LICENSE). Les modèles d'IA gardent leur propre licence (voir [MODELS.md](MODELS.md)).
+[MIT](LICENSE). Les modèles d'IA et services en ligne gardent leurs propres conditions (voir [MODELS.md](MODELS.md)).

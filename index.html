@@ -2,8 +2,9 @@
 <html lang="fr">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net blob:; worker-src 'self' blob: https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' data: blob: https: http://localhost:* http://127.0.0.1:*; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net blob:; worker-src 'self' blob: https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' data: blob: https: wss: http://localhost:* http://127.0.0.1:*; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
+<link rel="manifest" href="manifest.webmanifest">
 <!-- Top Clap — éditeur vidéo open source (MIT). Fichier généré par build.py depuis src/ -->
 <title>Top Clap</title>
 <meta name="description" content="Top Clap, éditeur vidéo open source : créez, montez et partagez des vidéos pour YouTube, Reels, TikTok et Facebook, avec automatisation et IA open source.">
@@ -312,7 +313,7 @@ textarea.ta{width:100%;min-height:72px;border:1px solid var(--line2);border-radi
 .model>div{min-width:0}
 .model b{display:block;font-size:12px}.model span{display:block;font-size:11px;color:var(--muted)}.model small{display:block;font:500 10px var(--f-mono);color:var(--dim);margin-top:3px;overflow-wrap:anywhere}
 .where{font:600 9.5px var(--f-mono);font-style:normal;text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border-radius:5px;white-space:nowrap;flex:none;margin-left:auto}
-.where.nav{background:rgba(79,185,161,.15);color:var(--teal)}.where.srv{background:rgba(157,141,244,.15);color:var(--violet)}
+.where.nav{background:rgba(0,227,160,.13);color:var(--teal)}.where.auto{background:rgba(255,110,199,.14);color:var(--pink)}.where.srv{background:rgba(157,141,244,.15);color:var(--violet)}
 .fxi .where{align-self:flex-start}
 .fxi.dis{opacity:.55}
 .ai-pill{position:fixed;left:50%;transform:translateX(-50%);top:calc(60px + env(safe-area-inset-top,0px));z-index:95;background:var(--violet);color:#14121F;font-weight:700;padding:7px 14px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -321,6 +322,54 @@ textarea.ta{width:100%;min-height:72px;border:1px solid var(--line2);border-radi
 .linkb{border:0;background:none;color:var(--dusk);padding:0;font:600 11px var(--f-mono)}
 code{font:500 11px var(--f-mono);background:var(--raise);padding:1px 5px;border-radius:4px}
 @media (max-width:759px){.wz-form{grid-template-columns:minmax(0,1fr)}#scopes{right:8px;top:8px}#scopes canvas{width:220px}.wheels{gap:2px}}
+
+/* ===== start screen ===== */
+#start{position:fixed;inset:0;z-index:85;overflow:auto;background:radial-gradient(70% 60% at 85% 0%,rgba(255,110,199,.28),transparent 60%),radial-gradient(60% 60% at 0% 100%,rgba(0,209,255,.18),transparent 60%),radial-gradient(90% 90% at 50% 40%,#161C4E,#0A0F1E 75%);padding:calc(28px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.st-in{max-width:980px;margin:0 auto;display:grid;gap:22px}
+.st-hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.st-logo{width:104px;height:104px;flex:none}.st-logo svg{width:100%;height:100%;filter:drop-shadow(0 10px 30px rgba(124,92,255,.45))}
+.st-wm{font:800 clamp(44px,8vw,72px)/.95 var(--f-disp);letter-spacing:-.035em;color:#fff}.st-wm i{font-style:normal;background:var(--grad-cool);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st-sub{font:600 13px var(--f-disp);letter-spacing:.5em;color:#C9D2F0;margin-top:8px}
+.st-tag{margin:10px 0 0;color:var(--muted);font-size:14px}
+.st-cta{display:flex;gap:10px;flex-wrap:wrap}
+.st-go{height:52px;padding:0 30px;font-size:16px;border-radius:14px}.st-go svg{width:18px;height:18px}
+.st-cta .btn:not(.st-go){height:52px;border-radius:14px}
+.st-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.st-card{display:grid;gap:6px;justify-items:start;text-align:left;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.08);background:rgba(15,22,41,.72);backdrop-filter:blur(6px)}
+.st-card:hover{border-color:rgba(139,124,255,.6);background:rgba(28,37,68,.85)}
+.st-card svg{width:24px;height:24px;color:var(--dusk-hi)}.st-card b{font:700 14px var(--f-disp)}.st-card span{font-size:12px;color:var(--muted);line-height:1.4}
+.st-h{font:700 16px var(--f-disp);display:flex;gap:8px;align-items:baseline}.st-h small{font:600 12px var(--f-ui);color:var(--muted)}
+.st-projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.st-p{position:relative;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(15,22,41,.72);overflow:hidden}
+.st-p.cur{border-color:var(--dusk)}
+.st-open{display:grid;gap:3px;width:100%;padding:0 0 10px;border:0;background:none;text-align:left}
+.st-open b{padding:8px 12px 0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.st-open>span:last-child{padding:0 12px;font-size:11px;color:var(--muted)}
+.st-th{display:block;aspect-ratio:16/9;background:#0B1020 center/cover no-repeat;max-width:100%}
+.st-act{position:absolute;top:6px;right:6px;display:flex;gap:4px}
+.st-show{color:var(--muted);font-size:12px}
+@media (max-width:759px){.st-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.st-grid .st-card:last-child{grid-column:1/-1}.st-logo{width:72px;height:72px}}
+@media (min-width:760px) and (max-width:1099px){.st-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.st-grid .st-card{grid-column:span 2}.st-grid .st-card:nth-child(n+4){grid-column:span 3}}
+/* ===== check ===== */
+.ck-score{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin:6px 0 10px}.ck-score b{font:800 40px var(--f-disp)}.ck-score span{color:var(--muted)}.ck-score .prog{flex-basis:100%;margin:4px 0 0}
+.ck-list{display:grid;gap:8px}
+.ck{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border-radius:10px;background:var(--panel2);border:1px solid var(--line)}
+.ck b{display:block;font-size:13px}.ck span{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.ck-i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center}.ck-i svg{width:15px;height:15px}
+.ck.ok .ck-i{background:rgba(0,227,160,.14);color:var(--teal)}.ck.warn .ck-i{background:rgba(255,184,77,.15);color:#FFB84D}.ck.err .ck-i{background:rgba(255,93,115,.15);color:var(--danger)}.ck.info .ck-i{background:rgba(139,124,255,.15);color:var(--dusk-hi)}
+.ck .btn{height:30px;font-size:12px}
+@media (max-width:759px){.ck{grid-template-columns:28px minmax(0,1fr)}.ck .btn{grid-column:2}}
+.emo{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.emo button{font-size:22px;height:42px;border:1px solid var(--line);background:var(--panel2);border-radius:9px;padding:0}
+.emo button:hover{background:var(--raise);border-color:var(--line2)}
+.tips-tabs .btn{height:30px;font-size:12px}
+.tips-body{display:grid;gap:10px;margin-top:8px}
+.tip{display:grid;gap:3px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel2)}
+.tip b{font-size:13px}.tip span{color:var(--muted);font-size:12.5px;line-height:1.5}
+.rec-wrap{position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9;max-width:100%;margin:8px 0}
+.rec-wrap video{width:100%;height:100%;object-fit:contain;display:block}
+.prompter{position:absolute;inset:0 8% auto;top:0;height:42%;overflow:hidden;background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.35));padding:12px;pointer-events:none}
+.prompter div{font:700 20px/1.45 var(--f-ui);color:#fff;text-align:center;white-space:pre-wrap;padding-top:60px}
+.rec-dot{position:absolute;left:10px;bottom:10px;background:#E5233B;color:#fff;font:700 12px var(--f-ui);padding:4px 9px;border-radius:999px}
 </style>
 
 <div id="app">
@@ -543,7 +592,7 @@ const TEXT_TPL=[
 
 /* ===== 03-project-state.js ===== */
 /* ---------- project state ---------- */
-const DEF_ADJ=()=>({bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,vig:0,grain:0,fade:0});
+const DEF_ADJ=()=>({sharp:0,bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,vig:0,grain:0,fade:0});
 const DEF_IMMO=()=>({tw:0,twAnim:'none',horizon:.62,sky:0,glow:0,hdr:0,gold:0,winter:0,compare:'off',splitPos:.5,parallax:0,parDir:'push'});
 const DEF_GRADE=()=>({lift:[0,0,0],gamma:[0,0,0],gain:[0,0,0],wheels:{lift:[0,0,0],gamma:[0,0,0],gain:[0,0,0]},lut:null,lutAmt:1});
 const DEF_KEY=()=>({on:false,color:'#00B140',tol:.16,soft:.1,spill:.6});
@@ -554,7 +603,7 @@ const KF_PROPS=['x','y','scale','rot','opacity'];
 function newClip(kind,o={}){
   const c={id:uid(),kind,trackId:null,start:0,dur:4,in:0,speed:1,name:'',x:.5,y:.5,scale:1,rot:0,opacity:1,blend:'source-over',fadeOut:0,fit:'cover',autofit:true,
     filter:'none',filterAmt:1,adj:DEF_ADJ(),immo:DEF_IMMO(),grade:DEF_GRADE(),key:DEF_KEY(),mask:DEF_MASK(),kf:{},fx:[],trans:{type:'none',dur:.6},
-    volume:1,fadeIn:0,fadeOutA:0,role:'',duck:0,voiceFx:false};
+    volume:1,fadeIn:0,fadeOutA:0,role:'',duck:0,voiceFx:false,bgRemove:false,blurFaces:false};
   if(kind==='text')Object.assign(c,DEF_TEXT());
   if(kind==='caption')Object.assign(c,DEF_CAPTION());
   if(kind==='shape')Object.assign(c,{shape:'round',w:520,h:180,fill:'#6C5CE7',stroke:'#FFFFFF',sw:0,label:'',labelColor:'#FFFFFF',font:'Montserrat'});
@@ -590,7 +639,7 @@ function mediaMax(c){const m=media[c.mediaId]; if((c.kind==='video'||c.kind==='a
 function kv(c,prop,lt){
   const ks=c.kf&&c.kf[prop];if(!ks||!ks.length)return c[prop];
   if(lt<=ks[0].t)return ks[0].v;const last=ks[ks.length-1];if(lt>=last.t)return last.v;
-  for(let i=0;i<ks.length-1;i++){const a=ks[i],b=ks[i+1];if(lt>=a.t&&lt<=b.t){if(a.e==='hold')return a.v;let p=(lt-a.t)/Math.max(1e-6,b.t-a.t);if(a.e!=='linear')p=ease.inOut(p);return a.v+(b.v-a.v)*p}}
+  for(let i=0;i<ks.length-1;i++){const a=ks[i],b=ks[i+1];if(lt>=a.t&&lt<=b.t){if(a.e==='hold')return a.v;let p=(lt-a.t)/Math.max(1e-6,b.t-a.t);p=a.e==='linear'?p:a.e==='out'?ease.out(p):a.e==='in'?ease.in(p):a.e==='back'?ease.back(p):a.e==='bounce'?bounceE(p):ease.inOut(p);return a.v+(b.v-a.v)*p}}
   return c[prop];
 }
 const hasKf=(c,prop)=>!!(c.kf&&c.kf[prop]&&c.kf[prop].length);
@@ -598,6 +647,7 @@ function kfAt(c,prop,lt){const ks=c.kf&&c.kf[prop];return ks?ks.findIndex(k=>Mat
 function setKf(c,prop,lt,v){c.kf=c.kf||{};const ks=c.kf[prop]||(c.kf[prop]=[]);const i=kfAt(c,prop,lt);if(i>=0)ks[i].v=v;else{ks.push({t:+lt.toFixed(3),v,e:'ease'});ks.sort((a,b)=>a.t-b.t)}}
 function kfTimes(c){const s=new Set();for(const p in (c.kf||{}))(c.kf[p]||[]).forEach(k=>s.add(+k.t.toFixed(3)));return [...s].sort((a,b)=>a-b)}
 function setProp(c,prop,v){if(hasKf(c,prop))setKf(c,prop,clamp(S.t-c.start,0,c.dur),v);else c[prop]=v}
+function bounceE(p){const n=7.5625,d=2.75;if(p<1/d)return n*p*p;if(p<2/d)return n*(p-=1.5/d)*p+.75;if(p<2.5/d)return n*(p-=2.25/d)*p+.9375;return n*(p-=2.625/d)*p+.984375}
 
 /* ===== 04-procedural-demo-scenes.js ===== */
 /* ---------- procedural demo scenes ---------- */
@@ -682,7 +732,7 @@ precision highp float;
 precision mediump float;
 #endif
 varying vec2 v;uniform sampler2D u_t,u_lutT,u_depT;uniform vec2 u_px;uniform float u_time;
-uniform float u_bright,u_contrast,u_sat,u_temp,u_tint,u_hue,u_fade,u_vig,u_grain,u_blur,u_rgb,u_scan,u_mirror,u_split;
+uniform float u_sharp,u_bright,u_contrast,u_sat,u_temp,u_tint,u_hue,u_fade,u_vig,u_grain,u_blur,u_rgb,u_scan,u_mirror,u_split;
 uniform float u_tw,u_sky,u_glow,u_hdr,u_gold,u_winter,u_horizon;uniform vec3 u_lift,u_gain,u_gamma;
 uniform float u_lutOn,u_lutN,u_lutAmt;uniform float u_keyOn,u_tol,u_soft,u_spill;uniform vec3 u_key;
 uniform float u_mType,u_mFeather,u_mInv;uniform vec4 u_mRect;uniform float u_dOn,u_dPush;uniform vec2 u_dOff;
@@ -705,6 +755,7 @@ void main(){vec2 uv=v;if(u_mirror>.5&&uv.x>.5)uv.x=1.-uv.x;
  vec3 c;
  if(u_blur>.01){vec3 a=vec3(0.);float r=u_blur*16.;for(int i=0;i<12;i++){float an=float(i)*.5236;a+=tx(uv+vec2(cos(an),sin(an))*u_px*r);a+=tx(uv+vec2(cos(an+.26),sin(an+.26))*u_px*r*.5);}c=a/24.;}else c=tx(uv);
  if(u_rgb>.001){vec2 o=vec2(u_rgb*u_px.x*14.,0.);c.r=tx(uv+o).r;c.b=tx(uv-o).b;}
+ if(u_sharp>.001){vec3 b4=(tx(uv+vec2(u_px.x,0.))+tx(uv-vec2(u_px.x,0.))+tx(uv+vec2(0.,u_px.y))+tx(uv-vec2(0.,u_px.y)))*.25;c=c+(c-b4)*u_sharp*2.2;}
  vec3 orig=c;float alpha=texture2D(u_t,uv).a;
  if(u_keyOn>.5){float kd=distance(cbcr(orig),cbcr(u_key));alpha*=smoothstep(u_tol,u_tol+u_soft,kd);float sp=(1.-smoothstep(u_tol,u_tol+u_soft*3.,kd))*u_spill;c=mix(c,vec3(lum(c)),sp);}
  if(u_hdr>.001){vec3 b=vec3(0.);for(int i=0;i<8;i++){float an=float(i)*.785;b+=tx(uv+vec2(cos(an),sin(an))*u_px*9.);}b/=8.;c=c+(c-b)*u_hdr*1.6;float L0=lum(c);c=mix(c,c*(1.+u_hdr*.35*(1.-L0)),.6);c=mix(vec3(lum(c)),c,1.+u_hdr*.25);}
@@ -744,10 +795,10 @@ const GLX=(()=>{
     const mkTex=()=>{const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);[[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE],[gl.TEXTURE_MIN_FILTER,gl.LINEAR],[gl.TEXTURE_MAG_FILTER,gl.LINEAR]].forEach(([k,v])=>gl.texParameteri(gl.TEXTURE_2D,k,v));return t};
     const tex=mkTex(),empty=mkTex();gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([128,128,128,255]));
     const lutTex={},depTex=new WeakMap();
-    const U={};['t','lutT','depT','px','time','bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','mirror','split','tw','sky','glow','hdr','gold','winter','horizon','lift','gain','gamma',
+    const U={};['t','lutT','depT','px','time','sharp','bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','mirror','split','tw','sky','glow','hdr','gold','winter','horizon','lift','gain','gamma',
       'lutOn','lutN','lutAmt','keyOn','tol','soft','spill','key','mType','mFeather','mInv','mRect','dOn','dPush','dOff'].forEach(n=>U[n]=gl.getUniformLocation(pr,'u_'+n));
     gl.uniform1i(U.t,0);gl.uniform1i(U.lutT,1);gl.uniform1i(U.depT,2);
-    const F1=['bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','mirror','split','tw','sky','glow','hdr','gold','winter','horizon','lutAmt','keyOn','tol','soft','spill','mType','mFeather','mInv','dPush'];
+    const F1=['sharp','bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','mirror','split','tw','sky','glow','hdr','gold','winter','horizon','lutAmt','keyOn','tol','soft','spill','mType','mFeather','mInv','dPush'];
     return {c,gl,run(src,w,h,p,time,ex={}){
       w=Math.max(2,Math.round(w));h=Math.max(2,Math.round(h));
       if(c.width!==w||c.height!==h){c.width=w;c.height=h}
@@ -769,8 +820,8 @@ const GLX=(()=>{
     }};
   }catch(e){console.warn('WebGL indisponible',e);return null}
 })();
-const PKEYS=['bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','tw','sky','glow','hdr','gold','winter'];
-function baseParams(){return {bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,fade:0,vig:0,grain:0,blur:0,rgb:0,scan:0,mirror:0,split:-1,tw:0,sky:0,glow:0,hdr:0,gold:0,winter:0,horizon:.62,
+const PKEYS=['sharp','bright','contrast','sat','temp','tint','hue','fade','vig','grain','blur','rgb','scan','tw','sky','glow','hdr','gold','winter'];
+function baseParams(){return {sharp:0,bright:0,contrast:0,sat:0,temp:0,tint:0,hue:0,fade:0,vig:0,grain:0,blur:0,rgb:0,scan:0,mirror:0,split:-1,tw:0,sky:0,glow:0,hdr:0,gold:0,winter:0,horizon:.62,
   lift:[0,0,0],gain:[1,1,1],gamma:[0,0,0],lutAmt:1,keyOn:0,tol:.16,soft:.1,spill:.6,key:[0,.69,.25],mType:0,mFeather:.08,mInv:0,mRect:[.5,.5,.6,.6],dOn:0,dPush:0,dOff:[0,0]}}
 function addPreset(p,key,k=1){const f=FILTERS[key];if(!f||key==='none')return;for(const n of PKEYS)if(f[n])p[n]+=f[n]*k;if(f.lift)p.lift=p.lift.map((v,i)=>v+f.lift[i]*k);if(f.gain)p.gain=p.gain.map((v,i)=>v*(1+(f.gain[i]-1)*k))}
 function glitchBurst(lt){return (Math.sin(lt*7.3)+Math.sin(lt*11.7+1))>1.35?1:0}
@@ -784,7 +835,7 @@ function clipParams(c,lt){
   if(im.compare==='static')p.split=im.splitPos;else if(im.compare==='slide')p.split=.06+.88*(.5-.5*Math.cos(prog*Math.PI*2));
   if(im.parallax>0){const a=im.parallax,e=ease.inOut(prog);p.dOn=1;
     if(im.parDir==='push'){p.dPush=1;p.dOff=[-.22*a*e,0]}else if(im.parDir==='left')p.dOff=[.07*a*(e*2-1),0];else if(im.parDir==='right')p.dOff=[-.07*a*(e*2-1),0];else p.dOff=[0,.06*a*(e*2-1)]}
-  const gr=c.grade;if(gr){for(let i=0;i<3;i++){p.lift[i]+=gr.lift[i];p.gain[i]*=1+gr.gain[i];p.gamma[i]+=gr.gamma[i]}if(gr.lut&&LUTS[gr.lut]){p.lutAmt=gr.lutAmt}}
+  const gr=c.grade;if(gr){for(let i=0;i<3;i++){p.lift[i]+=gr.lift[i];p.gain[i]*=1+gr.gain[i];p.gamma[i]+=gr.gamma[i]}if(gr.lut&&LUTS[gr.lut]){p.lutAmt=gr.lutAmt}if(curvesActive(gr))p.lutAmt=1}
   const ky=c.key;if(ky&&ky.on){p.keyOn=1;p.key=hexRGB(ky.color);p.tol=ky.tol;p.soft=ky.soft;p.spill=ky.spill}
   const mk=c.mask;if(mk&&mk.type!=='none'){p.mType={rect:1,ellipse:2,linear:3}[mk.type]||0;p.mRect=[mk.x,mk.y,mk.w,mk.h];p.mFeather=mk.feather;p.mInv=mk.invert?1:0}
   for(const f of c.fx){const v=f.v;switch(f.id){
@@ -792,7 +843,7 @@ function clipParams(c,lt){
     case'vhs':p.scan+=v;p.rgb+=v*.35;p.grain+=v*.45;p.sat-=.15*v;p.fade+=.1*v;break;case'glitch':p.rgb+=v*glitchBurst(lt)*1.4;break;}}
   return p;
 }
-function glExtras(c){const ex={};const gr=c.grade;if(gr&&gr.lut&&LUTS[gr.lut])ex.lut=LUTS[gr.lut];if(c.immo&&c.immo.parallax>0){const m=media[c.mediaId];const d=c.kind==='scene'?SCN_DEPTH[c.scene]:m&&m.depth;if(d)ex.depth=d}return ex}
+function glExtras(c){const ex={};const gr=c.grade;if(gr&&curvesActive(gr))ex.lut=curveLUT(gr);else if(gr&&gr.lut&&LUTS[gr.lut])ex.lut=LUTS[gr.lut];if(c.immo&&c.immo.parallax>0){const m=media[c.mediaId];const d=c.kind==='scene'?SCN_DEPTH[c.scene]:m&&m.depth;if(d)ex.depth=d}return ex}
 function needsGL(p,ex={}){if(p.split>-.5||p.mirror||p.keyOn||p.mType||p.dOn||ex.lut)return true;for(const k of PKEYS)if(Math.abs(p[k])>.001)return true;return p.lift.some(v=>v!==0)||p.gain.some(v=>v!==1)||p.gamma.some(v=>v!==0)}
 const LUTS={};   // id -> {id,name,n,data:Uint8Array}
 const SCN_DEPTH={};
@@ -1004,7 +1055,7 @@ function renderClip(c,t,L){
       if(c.fit==='blurfill'){const [bw2,bh2]=fitWH(sw,sh,W,H,'cover');g.save();if(hasFilter)g.filter=`blur(${Math.round(28*u)}px) brightness(.7)`;g.drawImage(src,-bw2/2*1.08,-bh2/2*1.08,bw2*1.08,bh2*1.08);g.restore()}
       const p=clipParams(c,lt),ex=glExtras(c);let img=src;
       if(GLX&&needsGL(p,ex)){const cap=S.exporting?2400:1400;const k=clamp(Math.min(cap/Math.max(sw,sh),Math.max(dw*sc,64)/sw*1.15),.25,1);try{img=GLX.run(src,sw*k,sh*k,p,t,ex)}catch(e){img=src}}
-      g.drawImage(img,-dw/2,-dh/2,dw,dh);wh=[dw,dh];
+      img=visionPass(c,src,img);g.drawImage(img,-dw/2,-dh/2,dw,dh);wh=[dw,dh];
       if(p.split>-.5)drawSplit(g,p.split,dw,dh,H,u);
     }
   }else if(c.kind==='text')wh=drawText(g,c,lt,u);
@@ -1173,7 +1224,17 @@ function undo(){if(hist.i>0){hist.i--;restore(hist.stack[hist.i]);updUndo()}}
 function redo(){if(hist.i<hist.stack.length-1){hist.i++;restore(hist.stack[hist.i]);updUndo()}}
 function updUndo(){$('#undoBtn').disabled=hist.i<=0;$('#redoBtn').disabled=hist.i>=hist.stack.length-1}
 const LS_KEY='topclap-v1';let saveT=0;
-function saveSoon(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(LS_KEY,JSON.stringify({P,S:{pps:S.pps,magnet:S.magnet,snap:S.snap},media:Object.values(media).map(m=>({id:m.id,type:m.type,name:m.name,demo:m.demo||null}))}))}catch(e){}},500)}
+/* Project library: several projects in this browser (media files are shared in IndexedDB). */
+const PROJ_LS='topclap-projects';let curProj=null;
+function projStore(){try{return JSON.parse(localStorage.getItem(PROJ_LS)||'{}')}catch(e){return {}}}
+function projThumb(){try{const c=document.createElement('canvas');c.width=192;c.height=Math.round(192*cv.height/cv.width);c.getContext('2d').drawImage(cv,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.6)}catch(e){return ''}}
+function saveSoon(){clearTimeout(saveT);saveT=setTimeout(saveNow,600)}
+function saveNow(){
+  try{const st=projStore();st.list=st.list||{};if(!curProj)curProj=uid();st.current=curProj;
+    st.list[curProj]={name:P.name||'Sans titre',updated:Date.now(),aspect:P.aspect,dur:projDur(),thumb:projThumb(),P};
+    st.media=Object.values(media).map(m=>({id:m.id,type:m.type,name:m.name,demo:m.demo||null}));st.S={pps:S.pps,magnet:S.magnet,snap:S.snap};
+    localStorage.setItem(PROJ_LS,JSON.stringify(st))}catch(e){console.warn('Sauvegarde impossible',e)}
+}
 const IDB={db:null,
   open(){return new Promise(res=>{try{const r=indexedDB.open('topclap-media',1);r.onupgradeneeded=()=>r.result.createObjectStore('files');r.onsuccess=()=>{this.db=r.result;res(this.db)};r.onerror=()=>res(null)}catch(e){res(null)}})},
   async put(id,blob){try{const db=this.db||await this.open();if(!db)return;db.transaction('files','readwrite').objectStore('files').put(blob,id)}catch(e){}},
@@ -1450,6 +1511,7 @@ function renderPanel(){
   else if(S.tab==='text'){
     h+=`<button class="btn pri wide" data-act="addtext">${ic('plus')}Ajouter un texte</button>`;
     h+=`<div class="grp">Modèles immobilier</div><div class="grid2">${TEXT_TPL.map((t,i)=>{const p={...DEF_TEXT(),...t.p};const fs=Math.max(11,Math.min(22,p.size/5));return `<button class="tpl" data-tpl="${i}"><div class="pv"><span style="font-family:'${p.font}',sans-serif;font-weight:${p.weight};font-style:${p.italic?'italic':'normal'};color:${p.color};font-size:${fs}px;letter-spacing:${p.ls/4}px;${p.bgA?`background:${p.bg};padding:4px 8px;border-radius:${p.radius/3}px`:''};${p.shadowBlur?`text-shadow:0 0 ${p.shadowBlur/3}px ${p.shadowColor}`:''}">${esc(p.text.split('\n')[0])}</span></div><div class="tl">${t.name}</div></button>`}).join('')}</div>`;
+    h+=`<div class="grp">Émojis & stickers</div><div class="emo">${EMOJIS.map(e=>`<button data-emoji="${e}" aria-label="Ajouter ${e}">${e}</button>`).join('')}</div>`;
     h+=`<div class="grp">Sous-titres</div><button class="btn wide" data-act="srt">${ic('subs')}Importer un fichier .srt / .vtt</button><p class="note">Les répliques deviennent des sous-titres animés mot à mot. Sous-titres automatiques et styles : onglet Auto.</p>`;
     h+=`<div class="grp">Polices (${FONTS.length})</div><p class="note">${c&&c.kind==='text'?'Touchez une police pour l\'appliquer au texte sélectionné.':'Touchez une police pour créer un texte avec.'}</p><div class="grid2">${FONTS.map(([f])=>`<button class="font-btn${c&&c.kind==='text'&&c.font===f?' act':''}" data-font="${esc(f)}" style="font-family:'${f}',sans-serif">${esc(f)}</button>`).join('')}</div>`;
   }
@@ -1485,6 +1547,8 @@ function renderPanel(){
   }
   else if(S.tab==='auto'){
     h+=`<div class="hero-card"><b>Assistant vidéo</b><span class="note" style="margin:0">Choisissez un objectif (annonce, Reel, YouTube, visite, avant/après, face caméra) : montage, textes, voix off, sous-titres, musique et formats sont générés pour vous.</span><button class="btn pri" data-auto="wizard">${ic('wand')}Lancer l'assistant</button></div>`;
+    h+=`<div class="grp">Modèles tendance</div><div class="stack">${TRENDS.map(t=>`<button class="fxi" data-trend="${t.id}"><span class="ico">${ic('star')}</span><div><b>${t.name}</b><span>${t.d}</span></div></button>`).join('')}</div>`;
+    h+=`<div class="grp">Contrôle</div><div class="stack"><button class="fxi" data-auto="tips"><span class="ico">${ic('star')}</span><div><b>Astuces et pièges à éviter</b><span>Rythme, formats, droits musicaux, obligations des annonces, IA, droit à l'image</span></div></button><button class="fxi" data-auto="check"><span class="ico">${ic('check')}</span><div><b>Vérifier ma vidéo</b><span>Accroche, sous-titres, zones masquées, droits musicaux, DPE, appel à l'action… avec corrections en un clic</span></div></button></div>`;
     h+=`<div class="grp">Montage automatique</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='edit').map(autoBtn).join('')}</div>`;
     h+=`<div class="grp">Son</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='audio').map(autoBtn).join('')}</div>`;
     h+=`<div class="grp">Sous-titres</div><div class="stack">${AUTO_TOOLS.filter(x=>x.g==='cap').map(autoBtn).join('')}</div>
@@ -1494,9 +1558,10 @@ function renderPanel(){
   }
   else if(S.tab==='ai'){
     h+=`<p class="note">Tous les modèles ci-dessous sont open source. Ceux marqués <b>Navigateur</b> tournent sur votre appareil après un premier téléchargement mis en cache. Ceux marqués <b>Serveur</b> demandent le serveur IA fourni dans le dépôt (dossier <code>server/</code>, carte graphique conseillée).</p>`;
-    h+=`<div class="grp">Outils IA sur le clip sélectionné</div><div class="stack">${AI_TOOLS.map(t=>{const av=t.cap?SRV.has(t.cap):true;const srvOnly=t.where==='server';return `<button class="fxi${srvOnly&&!av?' dis':''}" data-ai="${t.id}"><span class="ico">${ic(t.ic)}</span><div><b>${t.name}</b><span>${t.d}</span></div><em class="where ${srvOnly?'srv':'nav'}">${srvOnly?'Serveur':'Navigateur'}</em></button>`}).join('')}</div>`;
+    h+=`<div class="grp">Outils IA</div><div class="stack">${AI_TOOLS.map(t=>{const srvOnly=t.where==='server';const n=t.task?ENGINES[t.task].filter(e=>e.avail()).length:0;const lab=srvOnly?(SRV.has(t.cap)?'Serveur ✓':'Serveur'):t.task?(n?n+' moteur'+(n>1?'s':''):'à configurer'):'Navigateur';return `<button class="fxi${srvOnly&&!SRV.has(t.cap)?' dis':''}" data-ai="${t.id}"><span class="ico">${ic(t.ic)}</span><div><b>${t.name}</b><span>${t.d}</span></div><em class="where ${srvOnly?'srv':'nav'}">${lab}</em></button>`}).join('')}</div>`;
+    h+=enginesPanelHTML();
     h+=`<div class="grp">Serveur IA (optionnel)</div><div class="row r2"><label for="srvUrl">Adresse</label><input type="text" id="srvUrl" placeholder="http://localhost:8000" value="${esc(SRV.url)}"></div><div class="row r2"><label for="srvTok">Jeton</label><input type="text" id="srvTok" placeholder="facultatif" value="${esc(SRV.token)}"></div><button class="btn wide" data-ai="srv-test">${ic('server')}Connecter et tester</button><p class="note" id="srvStatus">${SRV.url?(Object.keys(SRV.caps).filter(k=>SRV.caps[k]).length?'Connecté · '+Object.keys(SRV.caps).filter(k=>SRV.caps[k]).join(', '):'Non vérifié'):'Non configuré'}</p>`;
-    h+=`<div class="grp">Catalogue des modèles</div><div class="stack">${MODELS.map(mo=>`<a class="model" href="${mo.url}" target="_blank" rel="noopener"><div><b>${mo.name}</b><span>${mo.task}</span><small>${esc(mo.repo)} · ${mo.size} · ${mo.license}${mo.ok==='cond'?' (conditions)':''}</small></div><em class="where ${mo.where==='server'?'srv':'nav'}">${mo.where==='server'?(SRV.has(mo.cap)?'Serveur ✓':'Serveur'):(AI.state[mo.repo]||'Navigateur')}</em></a>`).join('')}</div>`;
+    h+=`<div class="grp">Catalogue des modèles</div><div class="stack">${MODELS.map(mo=>`<a class="model" href="${mo.url}" target="_blank" rel="noopener"><div><b>${mo.name}</b><span>${mo.task}</span><small>${esc(mo.repo)} · ${mo.size} · ${mo.license}${mo.ok==='cond'?' (conditions)':mo.ok===false?' · non utilisable en France':''}</small></div><em class="where ${mo.where==='server'?'srv':mo.where==='cloud'?'auto':'nav'}">${mo.where==='server'?(SRV.has(mo.cap)?'Serveur ✓':'Serveur'):mo.where==='cloud'?'En ligne':(AI.state[mo.repo]||'Navigateur')}</em></a>`).join('')}</div>`;
   }
   b.innerHTML=h;
   if(S.tab==='trans')$$('canvas[data-tp]',b).forEach(cn=>transPreviews.push(cn));
@@ -1505,6 +1570,8 @@ function shapeIcon(k){const m={rect:'M4 6h16v12H4z',round:'M7 6h10a3 3 0 0 1 3 3
 $('#panelBody').addEventListener('click',async e=>{
   const t=e.target;const rm=t.closest('[data-rm]');
   if(rm){e.stopPropagation();const id=rm.dataset.rm;const used=P.clips.some(c=>c.mediaId===id);if(used&&!await confirmBox('Retirer ce média ?','Les clips qui l\'utilisent seront aussi supprimés de la timeline.','Retirer'))return;P.clips=P.clips.filter(c=>c.mediaId!==id);URL.revokeObjectURL(media[id].url);delete media[id];IDB.del(id);if(S.sel&&!clipById(S.sel))S.sel=null;commit();refreshAll();return}
+  const tr0=t.closest('[data-trend]');if(tr0){runTrend(tr0.dataset.trend);return}
+  const em=t.closest('[data-emoji]');if(em){addEmoji(em.dataset.emoji);return}
   const au=t.closest('[data-auto],[data-ai]');if(au){runTool(au.dataset.auto||au.dataset.ai,au);return}
   const el=t.closest('[data-act],[data-media],[data-scene],[data-color],[data-tpl],[data-font],[data-shape],[data-fx],[data-trans],[data-filter],[data-immo],[data-demomusic]');if(!el)return;const d=el.dataset;
   if(d.act==='import')$('#fileIn').click();
@@ -1610,7 +1677,7 @@ function renderInspector(){
   if(c.kind==='color')h+=sec('Fond',`${COL('k_c1','Couleur 1',c.c1)}${COL('k_c2','Couleur 2',c.c2)}${R('k_angle','Angle',c.angle,0,360,1,'°')}`);
   if(isVisual(c)&&c.kind!=='adjust'){
     let tf=`${R('k_x','Position X',kv(c,'x',lt),-.5,1.5,.001,'%',KB('x'))}${R('k_y','Position Y',kv(c,'y',lt),-.5,1.5,.001,'%',KB('y'))}${R('k_scale','Échelle',kv(c,'scale',lt),.05,4,.01,'%',KB('scale'))}${R('k_rot','Rotation',kv(c,'rot',lt),-180,180,1,'°',KB('rot'))}${R('k_opacity','Opacité',kv(c,'opacity',lt),0,1,.01,'%',KB('opacity'))}`;
-    const nk=kfTimes(c).length;tf+=`<div class="chip-row kf-nav"><button class="btn" data-ia="kfprev" aria-label="Image clé précédente">${ic('stepB')}</button><span class="note" style="margin:0">${nk?nk+' image(s) clé':'◆ pour animer'}</span><button class="btn" data-ia="kfnext" aria-label="Image clé suivante">${ic('stepF')}</button>${nk?`<button class="btn" data-ia="kfclear">Effacer</button>`:''}</div>`;
+    const nk=kfTimes(c).length;tf+=`<div class="chip-row kf-nav"><button class="btn" data-ia="kfprev" aria-label="Image clé précédente">${ic('stepB')}</button><span class="note" style="margin:0">${nk?nk+' image(s) clé':'◆ pour animer'}</span><button class="btn" data-ia="kfnext" aria-label="Image clé suivante">${ic('stepF')}</button>${nk?`<button class="btn" data-ia="kfclear">Effacer</button>`:''}</div>${nk?`<div class="row r2"><label for="kf_ease">Courbe d'animation</label><select id="kf_ease"><option value="">Choisir…</option><option value="ease">Douce (entrée et sortie)</option><option value="out">Décélération</option><option value="in">Accélération</option><option value="linear">Linéaire</option><option value="back">Dépassement</option><option value="bounce">Rebond</option><option value="hold">Maintien (saut)</option></select></div>`:''}`;
     tf+=`${R('k_fadeOut','Fondu sortie',c.fadeOut,0,3,.05,'s')}${SEL('k_blend','Fusion',c.blend,BLENDS)}`;
     if(isMedia(c))tf+=SEL('k_fit','Cadrage',c.fit,[['cover','Remplir le cadre'],['contain','Adapter'],['blurfill','Adapter + fond flou']]);
     if(isGraphic(c))tf+=TG('k_autofit','Garder dans le cadre (tous formats)',c.autofit!==false);
@@ -1619,16 +1686,17 @@ function renderInspector(){
   }
   if(isMedia(c)||c.kind==='adjust'){
     h+=sec('Filtre & couleur',`${SEL('k_filter','Filtre',c.filter,Object.entries(FILTERS).map(([k,f])=>[k,f.name]))}${R('k_filterAmt','Intensité',c.filterAmt,0,1,.01,'%')}
-      ${R('a_bright','Luminosité',c.adj.bright,-1,1,.01,'±')}${R('a_contrast','Contraste',c.adj.contrast,-1,1,.01,'±')}${R('a_sat','Saturation',c.adj.sat,-1,1,.01,'±')}${R('a_temp','Température',c.adj.temp,-1,1,.01,'±')}${R('a_tint','Teinte',c.adj.tint,-1,1,.01,'±')}${R('a_hue','Couleur',c.adj.hue,-1,1,.01,'±')}${R('a_vig','Vignette',c.adj.vig,0,1,.01,'%')}${R('a_grain','Grain',c.adj.grain,0,1,.01,'%')}${R('a_fade','Fondu mat',c.adj.fade,0,1,.01,'%')}
+      ${R('a_sharp','Netteté',c.adj.sharp||0,0,1,.01,'%')}${R('a_bright','Luminosité',c.adj.bright,-1,1,.01,'±')}${R('a_contrast','Contraste',c.adj.contrast,-1,1,.01,'±')}${R('a_sat','Saturation',c.adj.sat,-1,1,.01,'±')}${R('a_temp','Température',c.adj.temp,-1,1,.01,'±')}${R('a_tint','Teinte',c.adj.tint,-1,1,.01,'±')}${R('a_hue','Couleur',c.adj.hue,-1,1,.01,'±')}${R('a_vig','Vignette',c.adj.vig,0,1,.01,'%')}${R('a_grain','Grain',c.adj.grain,0,1,.01,'%')}${R('a_fade','Fondu mat',c.adj.fade,0,1,.01,'%')}
       <button class="btn wide" data-ia="resetcol">Réinitialiser la couleur</button>`,c.kind==='adjust');
     const W3=n=>`<div class="wheel"><canvas data-wheel="${n}" width="104" height="104" aria-label="Roue ${n}"></canvas><span>${{lift:'Ombres',gamma:'Tons moyens',gain:'Hautes lumières'}[n]}</span><input type="range" id="w_${n}" min="-1" max="1" step="0.01" value="${c.grade.wheels[n][2]}" aria-label="Niveau ${n}"></div>`;
     h+=sec('Étalonnage pro',`<div class="wheels">${W3('lift')}${W3('gamma')}${W3('gain')}</div><p class="note">Faites glisser le point pour teinter, le curseur pour le niveau. Double-clic pour remettre à zéro.</p>
-      ${SEL('g_lut','LUT 3D',c.grade.lut||'',[['','Aucune'],...Object.values(LUTS).map(l=>[l.id,l.name+(l.builtin?'':' (importée)')])])}${R('g_lutAmt','Intensité LUT',c.grade.lutAmt,0,1,.01,'%')}<button class="btn wide" data-ia="lutimp">${ic('upload')}Importer une LUT .cube</button>`,false);
+      <div class="grp" style="margin-top:10px">Courbes</div><div class="chip-row">${[['m','Maître'],['r','Rouge'],['g','Vert'],['b','Bleu']].map(([k,n])=>`<button class="btn${curveCh===k?' on':''}" data-cch="${k}" style="height:28px">${n}</button>`).join('')}</div><canvas id="curveCv" width="260" height="170" style="width:100%;border-radius:8px;touch-action:none;cursor:crosshair" aria-label="Courbes de couleur"></canvas><div class="chip-row"><select id="curvePreset" class="sel" aria-label="Préréglage de courbe"><option value="">Préréglages…</option><option value="contrast">Contraste en S</option><option value="soft">Doux</option><option value="fade">Noirs délavés</option><option value="bright">Éclaircir les tons moyens</option><option value="dark">Assombrir les tons moyens</option></select><button class="btn" id="curveReset" style="height:30px">Réinitialiser</button></div><p class="note">Cliquez pour ajouter un point, glissez pour le déplacer, double-cliquez pour le retirer.</p>${SEL('g_lut','LUT 3D',c.grade.lut||'',[['','Aucune'],...Object.values(LUTS).map(l=>[l.id,l.name+(l.builtin?'':' (importée)')])])}${R('g_lutAmt','Intensité LUT',c.grade.lutAmt,0,1,.01,'%')}<button class="btn wide" data-ia="lutimp">${ic('upload')}Importer une LUT .cube</button>`,false);
   }
   if(isMedia(c)){
     h+=sec('Immo IA',`${R('m_tw','Jour → Nuit',c.immo.tw,0,1,.01,'%')}${SEL('m_twAnim','Animation',c.immo.twAnim,[['none','Fixe'],['in','Jour vers nuit'],['out','Nuit vers jour']])}${R('m_horizon','Ligne d\'horizon',c.immo.horizon,.15,1,.01,'%')}${R('m_sky','Ciel bleu',c.immo.sky,0,1,.01,'%')}${R('m_glow','Fenêtres allumées',c.immo.glow,0,1.5,.01,'%')}${R('m_hdr','HDR',c.immo.hdr,0,1,.01,'%')}${R('m_gold','Golden hour',c.immo.gold,0,1,.01,'%')}${R('m_winter','Hiver',c.immo.winter,0,1,.01,'%')}
       ${R('m_parallax','Photo 3D',c.immo.parallax,0,1.5,.01,'%')}${SEL('m_parDir','Mouvement 3D',c.immo.parDir,[['push','Avancer'],['left','Vers la gauche'],['right','Vers la droite'],['up','Vertical']])}
       ${SEL('m_compare','Avant / Après',c.immo.compare,[['off','Désactivé'],['static','Volet fixe'],['slide','Volet animé']])}${c.immo.compare==='static'?R('m_splitPos','Position volet',c.immo.splitPos,0,1,.01,'%'):''}<p class="note">Baissez la ligne d'horizon si une façade claire est prise pour du ciel.${c.immo.parallax>0&&!(media[c.mediaId]&&media[c.mediaId].depth)?' Profondeur estimée ; « Photo 3D (profondeur) » dans Modèles IA calcule la vraie.':''}</p>`,c.immo.tw>0||c.immo.sky>0||c.immo.compare!=='off'||c.immo.parallax>0);
+    h+=sec('Vision IA (sur l\'appareil)',`${TG('v_bgRemove','Retirer l\'arrière-plan (personne)',c.bgRemove)}${TG('v_blurFaces','Flouter les visages automatiquement',c.blurFaces)}${c.kind==='video'?`<button class="btn wide" data-ia="reframe">${ic('max')}Recadrer automatiquement sur la personne</button>`:''}<p class="note">MediaPipe (Google, open source) : calculé sur votre appareil, rien n'est envoyé. Utile pour le droit à l'image des passants et des occupants.</p>`,!!(c.bgRemove||c.blurFaces));
     h+=sec('Incrustation (fond vert)',`${TG('y_on','Activer le chroma key',c.key.on)}${COL('y_color','Couleur à retirer',c.key.color)}${R('y_tol','Tolérance',c.key.tol,0,.5,.005,'')}${R('y_soft','Douceur',c.key.soft,0,.4,.005,'')}${R('y_spill','Anti-débordement',c.key.spill,0,1,.01,'%')}`,c.key.on);
     h+=sec('Masque',`${SEL('q_type','Forme',c.mask.type,[['none','Aucun'],['rect','Rectangle'],['ellipse','Ellipse'],['linear','Dégradé']])}${c.mask.type!=='none'?`${R('q_x','Centre X',c.mask.x,0,1,.005,'%')}${R('q_y','Centre Y',c.mask.y,0,1,.005,'%')}${c.mask.type!=='linear'?R('q_w','Largeur',c.mask.w,.02,2,.005,'%')+R('q_h','Hauteur',c.mask.h,.02,2,.005,'%'):''}${R('q_feather','Contour doux',c.mask.feather,0,.4,.005,'')}${TG('q_invert','Inverser',c.mask.invert)}`:''}`,c.mask.type!=='none');
   }
@@ -1640,7 +1708,7 @@ function renderInspector(){
     ${SEL('k_role','Rôle',c.role,[['','Normal'],['voice','Voix (déclenche le ducking)'],['music','Musique']])}${c.role!=='voice'?R('k_duck','Ducking sous la voix',c.duck,0,1,.01,'%'):''}${TG('k_voiceFx','Voix claire (EQ + compresseur)',c.voiceFx)}
     <div class="chip-row"><button class="btn" data-ia="normalize">${ic('wave')}Normaliser</button><button class="btn" data-ia="silences">${ic('scissors')}Couper les silences</button><button class="btn" data-ia="transcribe">${ic('subs')}Sous-titrer</button></div>`);
   inspBody.innerHTML=h;
-  bindWheels(inspBody,c);
+  bindWheels(inspBody,c);bindCurves(inspBody,c);
 }
 const fmtV=(v,f)=>{v=+v;if(f==='%')return Math.round(v*100)+'%';if(f==='x')return v.toFixed(2)+'×';if(f==='s')return v.toFixed(2)+'s';if(f==='°')return Math.round(v)+'°';if(f==='±')return (v>0?'+':'')+Math.round(v*100);return Math.round(v*10)/10};
 function toHex(c){if(/^#[0-9a-f]{6}$/i.test(c))return c;if(/^#[0-9a-f]{3}$/i.test(c))return '#'+[...c.slice(1)].map(x=>x+x).join('');const m=String(c).match(/rgba?\(([^)]+)\)/);if(m){const [r,g,b]=m[1].split(',').map(x=>parseFloat(x));return '#'+[r,g,b].map(x=>clamp(Math.round(x),0,255).toString(16).padStart(2,'0')).join('')}return '#000000'}
@@ -1663,13 +1731,15 @@ inspBody.addEventListener('input',e=>{
     if(['start','dur','speed','text','role','duck'].includes(key))renderTimeline();
     if(key==='font'||key==='weight')ensureFont(c.font,c.weight);
   }else if(pre==='a')c.adj[key]=v;else if(pre==='m')c.immo[key]=v;else if(pre==='t'){c.trans[key]=v;if(key==='type')renderTimeline()}
-  else if(pre==='y')c.key[key]=v;else if(pre==='q')c.mask[key]=v;
+  else if(pre==='y')c.key[key]=v;else if(pre==='v'){c[key]=v;if(v)VIS.load()}else if(pre==='q')c.mask[key]=v;
   else if(pre==='g'){if(key==='lut')c.grade.lut=v||null;else c.grade[key]=v}
   else if(pre==='w'){const w=c.grade.wheels[key];w[2]=v;c.grade[key]=wheelVec(key,w)}
   req();
 });
 function captionSpans(c){const sp=[];c.words.forEach(w=>{const l=sp[sp.length-1];if(l&&w.s-l.e<.25)l.e=w.e;else sp.push({s:w.s,e:w.e})});return sp}
 inspBody.addEventListener('change',e=>{const t=e.target;const c=selClip();
+  if(c&&t.id==='kf_ease'&&t.value){for(const p in c.kf)c.kf[p].forEach(k=>k.e=t.value);commit();toast('Courbe appliquée à toutes les images clés');req();return}
+  if(t.id==='curvePreset')return;
   if(!c){if(t.id==='pAspect')setAspect(t.value);else if(t.id==='pPq'){S.pq=+t.value;setRes(S.pq)}else commit();return}
   if(t.id==='k_start'||t.id==='k_dur'){packTrack(trackOf(c));refreshAll()}
   if(['m_compare','k_filter','k_shape','t_type','q_type','k_role','g_lut','m_parallax'].includes(t.id)){renderInspector();renderTimeline()}
@@ -1691,7 +1761,7 @@ inspBody.addEventListener('click',async e=>{
   else if(a==='lutimp')$('#lutIn').click();
   else if(a==='kfprev'||a==='kfnext'){const ts=kfTimes(c).map(x=>c.start+x);const n=a==='kfnext'?ts.find(x=>x>S.t+.01):[...ts].reverse().find(x=>x<S.t-.01);if(n!=null){pause();setTime(n);renderInspector()}}
   else if(a==='kfclear'){c.kf={};commit();renderInspector();renderTimeline();req()}
-  else if(a==='normalize')normalizeClip(c);else if(a==='silences')removeSilences(c);else if(a==='transcribe')aiTranscribe(c,'french');
+  else if(a==='reframe')autoReframe(c);else if(a==='normalize')normalizeClip(c);else if(a==='silences')removeSilences(c);else if(a==='transcribe')aiTranscribe(c,'french');
   else if(a==='capsrt')download(new Blob([captionsToSRT(c)],{type:'text/plain'}),slug()+'-sous-titres.srt');
 });
 function setAspect(a){P.aspect=a;$('#aspectSel').value=a;setRes(S.pq);commit();renderInspector();renderGuides();toast('Format '+a)}
@@ -1786,7 +1856,7 @@ function toast(msg){const t=document.createElement('div');t.className='toast';t.
 
 /* ===== 27-top-bar.js ===== */
 /* ---------- top bar ---------- */
-$('#logoMark').innerHTML=LOGO('tl');$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
+$('#logoMark').innerHTML=LOGO('tl');$('.logo').style.cursor='pointer';$('.logo').onclick=()=>openStart();$('#undoBtn').innerHTML=ic('undo');$('#redoBtn').innerHTML=ic('redo');$('#menuBtn').innerHTML=ic('dots');
 $('#exportBtn').innerHTML=ic('download')+'<span class="hide-m">Exporter</span>';$('#autoBtn').innerHTML=ic('wand')+'Assistant vidéo';$('#guideBtn').innerHTML=ic('grid');$('#scopeBtn').innerHTML=ic('scope');
 $('#toStart').innerHTML=ic('skipB');$('#toEnd').innerHTML=ic('skipF');$('#stepB').innerHTML=ic('stepB');$('#stepF').innerHTML=ic('stepF');$('#loopBtn').innerHTML=ic('loop');$('#fsBtn').innerHTML=ic('max');
 $('#undoBtn').onclick=undo;$('#redoBtn').onclick=redo;$('#exportBtn').onclick=()=>openExport();$('#autoBtn').onclick=()=>openAssistant();
@@ -1800,10 +1870,10 @@ $('#projName').oninput=e=>{P.name=e.target.value};$('#projName').onchange=()=>co
 $('#menuBtn').onclick=e=>{
   const old=$('.menu');if(old){old.remove();return}
   const r=e.currentTarget.getBoundingClientRect();const m=document.createElement('div');m.className='menu';
-  m.innerHTML=`<button data-m="wizard">${ic('wand')}Assistant vidéo</button><button data-m="auto">${ic('film')}Montage express</button><button data-m="demo">${ic('house')}Charger le projet exemple</button><button data-m="new">${ic('plus')}Nouveau projet vide</button><hr><button data-m="open">${ic('upload')}Ouvrir un projet .json</button><button data-m="save">${ic('download')}Enregistrer le projet .json</button><hr><button data-m="import">${ic('film')}Importer des médias</button><button data-m="srt">${ic('subs')}Importer des sous-titres .srt</button>`;
+  m.innerHTML=`<button data-m="home">${ic('house')}Accueil et mes projets</button><button data-m="check">${ic('check')}Vérifier ma vidéo</button><button data-m="tips">${ic('star')}Astuces et pièges à éviter</button><button data-m="rec">${ic('mic')}Enregistrer caméra / écran</button><hr><button data-m="wizard">${ic('wand')}Assistant vidéo</button><button data-m="auto">${ic('film')}Montage express</button><button data-m="demo">${ic('house')}Charger le projet exemple</button><button data-m="new">${ic('plus')}Nouveau projet vide</button><hr><button data-m="open">${ic('upload')}Ouvrir un projet .json</button><button data-m="save">${ic('download')}Enregistrer le projet .json</button><hr><button data-m="import">${ic('film')}Importer des médias</button><button data-m="srt">${ic('subs')}Importer des sous-titres .srt</button>`;
   document.body.appendChild(m);m.style.top=(r.bottom+6)+'px';m.style.right=Math.max(8,innerWidth-r.right)+'px';
   m.onclick=async ev=>{const b=ev.target.closest('[data-m]');if(!b)return;m.remove();const a=b.dataset.m;
-    if(a==='auto')autoMontage();else if(a==='wizard')openAssistant();else if(a==='import')$('#fileIn').click();else if(a==='srt')$('#srtIn').click();else if(a==='open')$('#projIn').click();
+    if(a==='auto')autoMontage();else if(a==='wizard')openAssistant();else if(a==='home')openStart();else if(a==='check')openCheck();else if(a==='tips')openTips();else if(a==='rec')openRecorder();else if(a==='import')$('#fileIn').click();else if(a==='srt')$('#srtIn').click();else if(a==='open')$('#projIn').click();
     else if(a==='save')download(new Blob([projectJSON()],{type:'application/json'}),slug()+'.topclap.json');
     else if(a==='demo'){if(await confirmBox('Charger le projet exemple ?','La timeline actuelle sera remplacée. Vous pouvez annuler avec Ctrl+Z.','Charger')){buildDemo();commit();refreshAll()}}
     else if(a==='new'){if(await confirmBox('Nouveau projet ?','La timeline sera vidée. Vos médias importés restent disponibles.','Vider la timeline')){P.tracks=defaultTracks();P.clips=[];P.name='Nouveau projet';$('#projName').value=P.name;S.sel=null;S.t=0;commit();refreshAll()}}};
@@ -1838,7 +1908,7 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='ArrowLeft'){e.preventDefault();pause();setTime(S.t-(e.shiftKey?1:1/30))}
   else if(e.key==='ArrowRight'){e.preventDefault();pause();setTime(S.t+(e.shiftKey?1:1/30))}
   else if(e.key==='Home'){pause();setTime(0)}else if(e.key==='End'){pause();setTime(projDur())}
-  else if(e.key==='Escape'){select(null);closeSheet('panel');closeSheet('insp')}
+  else if(e.key==='Escape'){if(!startEl.hidden){closeStart();return}select(null);closeSheet('panel');closeSheet('insp')}
 });
 
 /* ===== 28-demo-project.js ===== */
@@ -2264,6 +2334,23 @@ const MODELS=[
   {id:'s-esrgan',where:'server',cap:'upscale',name:'Real-ESRGAN ×4',task:'Agrandissement ×4 photos et vidéos',repo:'xinntao/Real-ESRGAN',size:'≈ 70 Mo',license:'BSD-3-Clause',ok:true,url:'https://github.com/xinntao/Real-ESRGAN'},
   {id:'s-rembg',where:'server',cap:'remove_bg',name:'rembg + BiRefNet',task:'Détourage haute résolution',repo:'danielgatis/rembg',size:'≈ 900 Mo',license:'MIT',ok:true,url:'https://github.com/danielgatis/rembg'},
   {id:'s-llm',where:'server',cap:'llm',name:'Qwen3 / Mistral Small via Ollama',task:'Scripts, titres, descriptions, traductions',repo:'ollama/ollama',size:'5 à 20 Go',license:'Apache-2.0 (modèles) · MIT (Ollama)',ok:true,url:'https://github.com/ollama/ollama'},
+  {id:'c-qwen-edit',where:'server',cap:'image_edit',name:'Qwen-Image (Alibaba)',task:'Génération d\'images haute qualité, texte dans l\'image',repo:'Qwen/Qwen-Image-2512',size:'GPU 24 Go+',license:'Apache-2.0',ok:true,url:'https://github.com/QwenLM/Qwen-Image'},
+  {id:'c-hidream',where:'server',cap:'image_gen',name:'HiDream-I1 (HiDream.ai)',task:'Génération d\'images photoréalistes',repo:'HiDream-ai/HiDream-I1-Full',size:'GPU 24 Go+',license:'MIT',ok:true,url:'https://github.com/HiDream-ai/HiDream-I1'},
+  {id:'c-magi',where:'server',cap:'img2video',name:'MAGI-1 (Sand AI)',task:'Vidéo longue autorégressive, photo → vidéo',repo:'sand-ai/MAGI-1',size:'GPU 24–80 Go',license:'Apache-2.0',ok:true,url:'https://github.com/SandAI-org/MAGI-1'},
+  {id:'c-skyreels',where:'server',cap:'img2video',name:'SkyReels V2 (Skywork)',task:'Vidéo de durée illimitée, style cinéma',repo:'Skywork/SkyReels-V2',size:'GPU 24 Go+',license:'à vérifier sur la fiche',ok:'cond',url:'https://github.com/SkyworkAI/SkyReels-V2'},
+  {id:'c-stepvideo',where:'server',cap:'img2video',name:'Step-Video (StepFun)',task:'Texte → vidéo 30B',repo:'stepfun-ai/stepvideo-t2v',size:'GPU 80 Go',license:'MIT',ok:true,url:'https://github.com/stepfun-ai/Step-Video-T2V'},
+  {id:'c-hunyuan',where:'server',cap:'img2video',name:'HunyuanVideo 1.5 (Tencent)',task:'Vidéo 720p de haute qualité',repo:'tencent/HunyuanVideo-1.5',size:'GPU 14 Go+ (offload)',license:'Tencent Community : exclut l\'UE, le Royaume-Uni et la Corée du Sud',ok:false,url:'https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5'},
+  {id:'c-cosy',where:'server',cap:'tts',name:'CosyVoice 2 (Alibaba)',task:'Voix off multilingue, clonage en 3 s',repo:'FunAudioLLM/CosyVoice2-0.5B',size:'GPU 4 Go',license:'Apache-2.0',ok:true,url:'https://github.com/FunAudioLLM/CosyVoice'},
+  {id:'c-deepseek',where:'server',cap:'llm',name:'DeepSeek R1 / V3 (via Ollama)',task:'Rédaction et raisonnement',repo:'deepseek-ai',size:'5 à 400 Go selon la taille',license:'MIT',ok:true,url:'https://github.com/deepseek-ai'},
+  {id:'c-glm',where:'server',cap:'llm',name:'GLM-4.5 (Zhipu, via Ollama)',task:'Rédaction, traduction',repo:'zai-org/GLM-4.5',size:'GPU 24 Go+ (Air)',license:'MIT',ok:true,url:'https://github.com/zai-org/GLM-4.5'},
+  {id:'c-kimi',where:'cloud',name:'Kimi K2 (Moonshot) via Groq',task:'Rédaction (gratuit avec clé Groq)',repo:'moonshotai/kimi-k2-instruct',size:'—',license:'MIT modifiée',ok:true,url:'https://github.com/MoonshotAI/Kimi-K2'},
+  {id:'g-groq',where:'cloud',name:'Groq (gratuit avec clé)',task:'Whisper turbo, Qwen3 32B, Kimi K2, Llama',repo:'api.groq.com',size:'—',license:'Service gratuit à quotas',ok:true,url:'https://console.groq.com'},
+  {id:'g-poll',where:'cloud',name:'Pollinations (compte gratuit)',task:'Images FLUX / Seedream / Qwen-Image, vidéo Wan / Seedance, voix, Whisper',repo:'gen.pollinations.ai',size:'—',license:'Service à crédits (code MIT)',ok:true,url:'https://github.com/pollinations/pollinations'},
+  {id:'g-zhipu',where:'cloud',name:'Zhipu GLM · BigModel / Z.ai (Chine, gratuit)',task:'GLM-4.7-Flash, CogView-3-Flash, CogVideoX-Flash',repo:'open.bigmodel.cn',size:'—',license:'Modèles « Flash » gratuits',ok:true,url:'https://open.bigmodel.cn'},
+  {id:'g-sf',where:'cloud',name:'SiliconFlow (Chine, modèles gratuits)',task:'Qwen, GLM, Kolors, SenseVoice',repo:'api.siliconflow.cn',size:'—',license:'Modèles open source gratuits à quotas',ok:true,url:'https://cloud.siliconflow.cn'},
+  {id:'g-hf',where:'cloud',name:'Hugging Face Spaces (ZeroGPU gratuit)',task:'FLUX.1 schnell, Qwen-Image-Edit, Wan 2.2 I2V/T2V, Chatterbox, ACE-Step',repo:'huggingface.co/spaces',size:'2 à 5 min GPU/jour',license:'Licence de chaque modèle',ok:true,url:'https://huggingface.co/spaces'},
+  {id:'g-gemini',where:'cloud',name:'Google Gemini (gratuit avec clé)',task:'Texte et voix off',repo:'aistudio.google.com',size:'—',license:'Service gratuit à quotas',ok:true,url:'https://aistudio.google.com'},
+  {id:'g-or',where:'cloud',name:'OpenRouter (modèles gratuits)',task:'Routeur vers des LLM gratuits',repo:'openrouter.ai',size:'—',license:'Service gratuit à quotas',ok:true,url:'https://openrouter.ai'},
   {id:'s-ffmpeg',where:'server',cap:'stabilize',name:'FFmpeg (vidstab, minterpolate, loudnorm)',task:'Stabilisation, ralenti fluide, volume normalisé, MP4 final',repo:'FFmpeg',size:'—',license:'LGPL / GPL',ok:true,url:'https://ffmpeg.org'},
 ];
 const PIPER_VOICES=[['fr_FR-siwis-medium','Siwis (femme)'],['fr_FR-tom-medium','Tom (homme)'],['fr_FR-upmc-medium','UPMC (femme/homme)'],['fr_FR-gilles-low','Gilles (homme)'],['fr_FR-mls-medium','MLS (multi)']];
@@ -2294,14 +2381,10 @@ const canvasBlob=(cn,type='image/png',q)=>new Promise(r=>cn.toBlob(r,type,q));
 
 async function aiTranscribe(c,lang='french'){
   const m=media[c.mediaId];if(!m||(c.kind!=='video'&&c.kind!=='audio')){toast('Sélectionnez une vidéo ou un audio avec de la voix');return}
-  if(SRV.has('transcribe'))return srvTranscribe(c,lang);
-  try{aiBusy('Préparation de l\'audio…');const d=await decodeMono(m,16000);const a=Math.floor(c.in*16000),b=Math.min(d.length,Math.floor((c.in+c.dur*c.speed)*16000));const slice=d.slice(a,b);
-    const asr=await AI.pipe('automatic-speech-recognition','onnx-community/whisper-base_timestamped',{wasm:true});aiBusy('Transcription en cours…');
-    const out=await asr(slice,{return_timestamps:'word',chunk_length_s:30,stride_length_s:5,...(lang==='auto'?{}:{language:lang}),task:'transcribe'});
-    const words=(out.chunks||[]).map(k=>({w:String(k.text).trim(),s:c.start+k.timestamp[0]/c.speed,e:c.start+(k.timestamp[1]??k.timestamp[0]+.3)/c.speed})).filter(w=>w.w);
-    aiBusy('');if(!words.length){toast('Aucune parole détectée');return}
-    addCaptionClip(words,'Sous-titres auto');if(c.kind==='video'||c.kind==='audio')c.role='voice';commit();refreshAll();toast(`${words.length} mots transcrits`);
-  }catch(e){aiBusy('');toast(e.message||String(e))}
+  const ws=await runEngine('asr','Transcription',c,lang);if(!ws)return;
+  const words=ws.map(w=>({w:w.w,s:c.start+w.s/c.speed,e:c.start+w.e/c.speed})).filter(w=>w.w&&w.s>=c.start-.1&&w.s<=c.start+c.dur);
+  if(!words.length){toast('Aucune parole détectée');return}
+  addCaptionClip(words,'Sous-titres auto');c.role='voice';commit();refreshAll();toast(`${words.length} mots transcrits (${ENG_LAST.asr||''})`);
 }
 async function aiDepth(c){
   if(!isMedia(c)){toast('Sélectionnez une photo du bien');return}
@@ -2327,25 +2410,13 @@ async function aiUpscale(c){
 }
 async function aiTTS(text,voice='fr_FR-siwis-medium',at=S.t){
   text=(text||'').trim();if(!text){toast('Écrivez le texte de la voix off');return null}
-  let blob;
-  try{
-    if(SRV.has('tts')){aiBusy('Synthèse vocale (serveur)…');blob=await SRV.call('/audio/tts',{text,lang:'fr'})}
-    else{aiBusy('Chargement de la voix…');const tts=await withTimeout(import(AI_CFG.piper),20000).catch(()=>{throw new Error(AI_BLOCKED)});blob=await tts.predict({text,voiceId:voice},p=>{if(p&&p.total)aiBusy(`Voix ${Math.round(p.loaded/p.total*100)} %`)})}
-  }catch(e){aiBusy('');toast(e.message||String(e));return null}
+  const blob=await runEngine('tts','Voix off',text,voice);if(!blob)return null;
   aiBusy('');const id=uid();const m=await registerMedia(id,blob,{type:'audio',name:'Voix off IA'});IDB.put(id,blob);
   const tr=P.tracks.find(t=>t.kind==='audio'&&/^Voix/.test(t.name))||(()=>{const t={id:uid(),kind:'audio',name:'Voix off'};P.tracks.push(t);return t})();
   const c=newClip('audio',{mediaId:id,name:'Voix off IA',dur:m.dur||3,role:'voice',voiceFx:true,_script:text});placeOnTrack(c,tr,at);
   P.clips.filter(o=>o.kind==='audio'&&o.role!=='voice').forEach(o=>{if(!o.duck)o.duck=.7});return c;
 }
-async function aiWrite(prompt,fallback){
-  try{
-    if(SRV.has('llm')){const r=await SRV.call('/llm',{prompt},true);return (r.text||'').trim()||fallback}
-    if(navigator.gpu){const gen=await AI.pipe('text-generation','onnx-community/Qwen3-0.6B-ONNX',{dtype:'q4f16',device:'webgpu'});aiBusy('Rédaction…');
-      const out=await gen([{role:'system',content:'Tu es un rédacteur immobilier français. Réponds en français, sans préambule.'},{role:'user',content:prompt+' /no_think'}],{max_new_tokens:320,do_sample:false});
-      aiBusy('');const t=String(out[0].generated_text.at(-1).content||'').replace(/<think>[\s\S]*?<\/think>/g,'').trim();return t||fallback}
-  }catch(e){aiBusy('');console.warn(e)}
-  return fallback;
-}
+async function aiWrite(prompt,fallback){const r=await runEngine('write','Rédaction',prompt);return (r&&String(r).trim())||fallback}
 async function addOverlayFromBlob(blob,name,ref){
   const id=uid();await registerMedia(id,blob,{type:'image',name});IDB.put(id,blob);const tr=firstTrack('overlay')||addTrack('overlay');
   const c=newClip('image',{mediaId:id,name,start:ref?ref.start:S.t,dur:ref?ref.dur:4,fit:'contain'});c.trackId=tr.id;P.clips.push(c);S.sel=c.id;commit();refreshAll();toast(name+' ajouté en incrustation');return c;
@@ -2405,7 +2476,12 @@ const AUTO_TOOLS=[
   {id:'beatcut',g:'edit',ic:'music',name:'Caler les coupes sur le rythme',d:'Détecte le tempo de la musique et ajuste chaque plan'},
   {id:'scenes',g:'edit',ic:'scissors',name:'Découper en plans',d:'Détecte les changements de plan dans la vidéo sélectionnée'},
   {id:'silences',g:'edit',ic:'wave',name:'Couper les silences',d:'Retire les blancs d\'une vidéo parlée (jump cuts)'},
+  {id:'record',g:'edit',ic:'mic',name:'Enregistrer caméra / écran',d:'Avec prompteur défilant, ajouté directement à la timeline'},
+  {id:'reframe-subject',g:'edit',ic:'max',name:'Recadrage auto sur la personne',d:'Suit le visage pour passer une vidéo 16:9 en vertical'},
+  {id:'blurfaces',g:'edit',ic:'mask',name:'Flouter tous les visages',d:'Droit à l\'image : floute automatiquement les visages des vidéos et photos'},
   {id:'freeze',g:'edit',ic:'freeze',name:'Arrêt sur image',d:'Insère 2 s figées à la tête de lecture'},
+  {id:'split2',g:'edit',ic:'layers',name:'Écran partagé 2 vues',d:'Deux plans côte à côte (ou l\'un sous l\'autre en vertical)'},
+  {id:'split4',g:'edit',ic:'grid',name:'Écran partagé 4 vues',d:'Mosaïque de 4 plans'},
   {id:'adjust',g:'edit',ic:'layers',name:'Calque de réglage',d:'Étalonne et applique des effets à tout ce qui est dessous'},
   {id:'reframe',g:'edit',ic:'max',name:'Adapter au 9:16',d:'Passe en vertical : balayage auto des photos, fond flou des vidéos'},
   {id:'markers',g:'audio',ic:'flag',name:'Marqueurs sur les temps',d:'Place un repère sur chaque temps fort de la musique'},
@@ -2419,35 +2495,47 @@ const AUTO_TOOLS=[
   {id:'multi',g:'pub',ic:'download',name:'Exporter tous les formats',d:'16:9, 9:16, 1:1 et 4:5 à la suite'},
 ];
 const AI_TOOLS=[
-  {id:'ai-transcribe',ic:'subs',name:'Sous-titres (Whisper)',d:'Vidéo ou voix sélectionnée → sous-titres mot à mot'},
-  {id:'ai-tts',ic:'mic',name:'Voix off IA',d:'Texte → voix française (Piper, ou Chatterbox sur serveur)'},
+  {id:'ai-transcribe',where:'auto',task:'asr',ic:'subs',name:'Sous-titres automatiques',d:'Whisper, SenseVoice… → sous-titres mot à mot'},
+  {id:'ai-tts',where:'auto',task:'tts',ic:'mic',name:'Voix off IA',d:'Texte → voix française (Chatterbox, Gemini, Piper…)'},
+  {id:'s-gen',where:'auto',task:'image',ic:'image',name:'Générer une image',d:'FLUX, Qwen-Image, CogView, Kolors… : fond, ambiance, illustration'},
+  {id:'s-t2v',where:'auto',task:'t2v',ic:'clap',name:'Texte → vidéo',d:'Wan 2.2, CogVideoX, Seedance… : plan vidéo à partir d\'une description'},
+  {id:'s-i2v',where:'auto',task:'i2v',ic:'film',name:'Photo → vidéo',d:'Wan 2.2, CogVideoX : vrai mouvement de caméra sur une photo'},
+  {id:'s-night',where:'auto',task:'edit',ic:'moon',name:'Nuit photoréaliste',d:'Qwen-Image-Edit : vraie photo crépusculaire'},
+  {id:'s-staging',where:'auto',task:'edit',ic:'house',name:'Home staging virtuel',d:'Meuble une pièce vide (moderne ou scandinave)'},
+  {id:'s-declutter',where:'auto',task:'edit',ic:'sparkles',name:'Désencombrer la pièce',d:'Retire objets et désordre'},
+  {id:'s-editfree',where:'auto',task:'edit',ic:'wand',name:'Retouche par consigne',d:'« Remplace le ciel », « ajoute des fleurs »…'},
+  {id:'s-music',where:'auto',task:'music',ic:'music',name:'Musique sur mesure',d:'ACE-Step, Stable Audio : morceau au style choisi'},
   {id:'ai-depth',ic:'layers',name:'Photo 3D (profondeur)',d:'Depth Anything : parallaxe réaliste sur une photo'},
-  {id:'ai-bg',ic:'mask',name:'Détourer',d:'BiRefNet : sujet sans fond, en incrustation'},
+  {id:'ai-bg',ic:'mask',name:'Détourer une photo',d:'BiRefNet : sujet sans fond, en incrustation'},
   {id:'ai-up',ic:'zin',name:'Agrandir la photo',d:'Swin2SR ×2 (ou Real-ESRGAN ×4 sur serveur)'},
-  {id:'s-night',ic:'moon',where:'server',cap:'image_edit',name:'Nuit photoréaliste',d:'Qwen-Image-Edit : vraie photo crépusculaire'},
-  {id:'s-staging',ic:'house',where:'server',cap:'image_edit',name:'Home staging virtuel',d:'Meuble une pièce vide (moderne ou scandinave)'},
-  {id:'s-declutter',ic:'sparkles',where:'server',cap:'image_edit',name:'Désencombrer la pièce',d:'Retire objets et désordre'},
-  {id:'s-i2v',ic:'film',where:'server',cap:'img2video',name:'Photo → vidéo',d:'Wan 2.2 : mouvement de caméra réel à partir d\'une photo'},
-  {id:'s-music',ic:'music',where:'server',cap:'music',name:'Musique sur mesure',d:'ACE-Step : morceau libre de droits au style choisi'},
   {id:'s-denoise',ic:'wave',where:'server',cap:'denoise',name:'Débruiter la voix',d:'DeepFilterNet sur la vidéo ou l\'audio sélectionné'},
   {id:'s-stems',ic:'layers',where:'server',cap:'stems',name:'Séparer voix et musique',d:'Demucs : isole la voix'},
   {id:'s-stab',ic:'max',where:'server',cap:'stabilize',name:'Stabiliser la vidéo',d:'FFmpeg vidstab'},
   {id:'s-slowmo',ic:'freeze',where:'server',cap:'stabilize',name:'Ralenti fluide 60 i/s',d:'Interpolation d\'images FFmpeg'},
-  {id:'s-gen',ic:'image',where:'server',cap:'image_gen',name:'Générer une image',d:'Z-Image / FLUX.2 klein : fond, ambiance, illustration'},
 ];
 const autoBtn=t=>`<button class="fxi" data-auto="${t.id}"><span class="ico">${ic(t.ic)}</span><div><b>${t.name}</b><span>${t.d}</span></div></button>`;
 async function askText(title,label,def='',opts){return new Promise(res=>{const m=modal(`<h3>${esc(title)}</h3><p class="note">${esc(label)}</p>${opts?`<select class="ta" style="min-height:0;height:36px" id="askSel">${opts.map(([k,n])=>`<option value="${k}">${esc(n)}</option>`).join('')}</select>`:''}<textarea class="ta" id="askT" rows="4">${esc(def)}</textarea><div class="mrow"><button class="btn" data-c="0">Annuler</button><button class="btn pri" data-c="1">Valider</button></div>`);
   m.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(!b)return;const v=$('#askT',m).value,s=opts?$('#askSel',m).value:null;m.parentElement.remove();res(b.dataset.c==='1'?{text:v,opt:s}:null)})})}
+const isPhoto=x=>x.kind==='image'||x.kind==='scene';
+async function aiEdit(c,prompt,suffix){lastPrompt=prompt;const blob=await runEngine('edit','Retouche IA',await mediaBlobOf(c),prompt);if(!blob)return;await swapMedia(c,blob,'image',(c.name||'Photo')+' · '+suffix);c.aiGen=true;commit();toast('Photo retouchée par IA : signalez-la comme telle dans l\'annonce')}
 async function runTool(id,btn){
   const c=selClip();const need=(pred,msg)=>{if(!c||!pred(c)){toast(msg);return false}return true};
   const srvNeed=cap=>{if(!SRV.has(cap)){toast('Cet outil demande le serveur IA open source (dossier server/ du dépôt). Renseignez son adresse dans l\'onglet Modèles IA.');setTab('ai',true);return false}return true};
   switch(id){
     case'wizard':return openAssistant();
+    case'check':return openCheck();
+    case'split2':return splitScreen(2);
+    case'split3':return splitScreen(3);
+    case'split4':return splitScreen(4);
     case'montage':return autoMontage();
     case'beatcut':return cutToBeat();
     case'scenes':return need(x=>x.kind==='video','Sélectionnez une vidéo')&&splitScenes(c);
     case'silences':return need(x=>x.kind==='video'||x.kind==='audio','Sélectionnez une vidéo ou un audio parlé')&&removeSilences(c);
     case'freeze':return freezeFrame();
+    case'record':return openRecorder();
+    case'reframe-subject':return need(x=>x.kind==='video','Sélectionnez une vidéo avec une personne')&&autoReframe(c);
+    case'blurfaces':{const list=P.clips.filter(isMedia);if(!list.length)return toast('Aucune photo ou vidéo');list.forEach(x=>x.blurFaces=true);commit();refreshAll();VIS.load();return toast('Floutage automatique des visages activé sur '+list.length+' plan(s)')}
+    case'tips':return openTips();
     case'adjust':{const tr={id:uid(),kind:'overlay',name:'Réglages'};P.tracks.unshift(tr);const a=newClip('adjust',{start:0,dur:projDur(),trackId:tr.id,filter:'cinema',filterAmt:.6});P.clips.push(a);S.sel=a.id;commit();refreshAll();openInspector();return toast('Calque de réglage ajouté sur toute la vidéo')}
     case'reframe':{setAspect('9:16');P.clips.filter(isMedia).forEach(x=>{if(x.kind==='video'){x.fit='blurfill'}else{x.fit='cover';x.fx=x.fx.filter(f=>!['kb-in','kb-out','pan-l','pan-r'].includes(f.id));x.fx.push({id:Math.random()<.5?'pan-l':'pan-r',v:.9})}});commit();refreshAll();return toast('Projet passé en 9:16 avec balayage automatique')}
     case'markers':return beatMarkers();
@@ -2466,18 +2554,591 @@ async function runTool(id,btn){
     case'ai-depth':return need(isMedia,'Sélectionnez une photo')&&aiDepth(c);
     case'ai-bg':return need(x=>x.kind==='image'||x.kind==='scene','Sélectionnez une photo')&&aiRemoveBg(c);
     case'ai-up':return need(x=>x.kind==='image','Sélectionnez une photo importée')&&aiUpscale(c);
-    case's-night':return srvNeed('image_edit')&&need(x=>x.kind==='image'||x.kind==='scene','Sélectionnez une photo')&&serverImageTool(c,'/image/edit',{prompt:IMG_PROMPTS.night},'nuit');
-    case's-staging':{if(!srvNeed('image_edit')||!need(x=>x.kind==='image'||x.kind==='scene','Sélectionnez la photo d\'une pièce'))return;const r=await askText('Home staging virtuel','Précisez le style ou laissez le texte proposé.',IMG_PROMPTS.staging_modern,[['m','Moderne'],['s','Scandinave']]);if(!r)return;return serverImageTool(c,'/image/edit',{prompt:r.opt==='s'&&r.text===IMG_PROMPTS.staging_modern?IMG_PROMPTS.staging_scandi:r.text},'meublé')}
-    case's-declutter':return srvNeed('image_edit')&&need(x=>x.kind==='image'||x.kind==='scene','Sélectionnez une photo')&&serverImageTool(c,'/image/edit',{prompt:IMG_PROMPTS.declutter},'rangé');
-    case's-i2v':{if(!srvNeed('img2video')||!need(x=>x.kind==='image'||x.kind==='scene','Sélectionnez une photo'))return;const r=await askText('Photo → vidéo','Décrivez le mouvement (en anglais de préférence).','Slow cinematic drone push-in towards the house, gentle parallax, natural light, real estate video');if(!r)return;return serverImageTool(c,'/video/image-to-video',{prompt:r.text,seconds:5},'animée')}
-    case's-music':{if(!srvNeed('music'))return;const r=await askText('Musique sur mesure','Style, ambiance, tempo (en anglais de préférence).','warm acoustic lounge, piano and soft guitar, 100 bpm, uplifting, real estate');if(!r)return;try{aiBusy('Composition…');const blob=await SRV.call('/audio/music',{prompt:r.text,seconds:Math.ceil(projDur())});aiBusy('');const idm=uid();const m=await registerMedia(idm,blob,{type:'audio',name:'Musique IA'});IDB.put(idm,blob);addMediaToTimeline(m)}catch(e){aiBusy('');toast(e.message)}return}
+    case's-night':return need(isPhoto,'Sélectionnez une photo')&&aiEdit(c,IMG_PROMPTS.night,'nuit');
+    case's-staging':{if(!need(isPhoto,'Sélectionnez la photo d\'une pièce'))return;const r=await askText('Home staging virtuel','Précisez le style ou gardez le texte proposé. Pensez à indiquer « mise en scène virtuelle » dans l\'annonce.',IMG_PROMPTS.staging_modern,[['m','Moderne'],['s','Scandinave']]);if(!r)return;return aiEdit(c,r.opt==='s'&&r.text===IMG_PROMPTS.staging_modern?IMG_PROMPTS.staging_scandi:r.text,'meublé')}
+    case's-declutter':return need(isPhoto,'Sélectionnez une photo')&&aiEdit(c,IMG_PROMPTS.declutter,'rangé');
+    case's-editfree':{if(!need(isPhoto,'Sélectionnez une photo'))return;const r=await askText('Retouche par consigne','Décrivez la modification (en anglais de préférence pour de meilleurs résultats).','Replace the grey sky with a clear blue sky. Keep everything else identical.');if(!r)return;return aiEdit(c,r.text,'retouchée')}
+    case's-i2v':{if(!need(isPhoto,'Sélectionnez une photo'))return;const r=await askText('Photo → vidéo','Décrivez le mouvement (en anglais de préférence).','Slow cinematic drone push-in towards the house, gentle parallax, natural light, real estate video');if(!r)return;lastPrompt=r.text;
+      const blob=await runEngine('i2v','Photo → vidéo',await mediaBlobOf(c),r.text);if(blob){await swapMedia(c,blob,'video',(c.name||'Photo')+' animée');c.aiGen=true}return}
+    case's-t2v':{const r=await askText('Texte → vidéo','Décrivez le plan (en anglais de préférence). Les vidéos IA réalistes doivent être signalées comme telles sur les réseaux.','Aerial drone shot of a modern villa with a pool at golden hour, Provence, olive trees, cinematic, 4k');if(!r)return;lastPrompt=r.text;
+      const blob=await runEngine('t2v','Texte → vidéo',r.text,P.aspect==='9:16'?'9:16':'16:9');if(blob){const idm=uid();const m=await registerMedia(idm,blob,{type:'video',name:'Vidéo IA'});IDB.put(idm,blob);addMediaToTimeline(m);const nc=selClip();if(nc)nc.aiGen=true;toast('Plan vidéo IA ajouté')}return}
+    case's-music':{const r=await askText('Musique sur mesure','Style, ambiance, tempo (en anglais de préférence).','warm acoustic lounge, piano and soft guitar, 100 bpm, uplifting, real estate');if(!r)return;
+      const blob=await runEngine('music','Musique',r.text,Math.ceil(projDur()));if(blob){const idm=uid();const m=await registerMedia(idm,blob,{type:'audio',name:'Musique IA'});IDB.put(idm,blob);addMediaToTimeline(m)}return}
+    case's-gen':{const r=await askText('Générer une image','Décrivez l\'image (en anglais de préférence).','Luxury Provençal villa at golden hour, olive trees, pool, architectural photography');if(!r)return;lastPrompt=r.text;const [w,h]=baseWH();const k=1344/Math.max(w,h);
+      const blob=await runEngine('image','Image',r.text,Math.round(w*k/16)*16,Math.round(h*k/16)*16);if(blob){const idm=uid();const m=await registerMedia(idm,blob,{type:'image',name:'Image IA'});IDB.put(idm,blob);addMediaToTimeline(m);const nc=selClip();if(nc)nc.aiGen=true}return}
     case's-denoise':return srvNeed('denoise')&&need(x=>x.kind==='video'||x.kind==='audio','Sélectionnez un clip avec de la voix')&&serverAudioTool(c,'/audio/denoise',{},'Voix débruitée');
     case's-stems':return srvNeed('stems')&&need(x=>x.kind==='video'||x.kind==='audio','Sélectionnez un clip audio ou vidéo')&&serverAudioTool(c,'/audio/stems',{stem:'vocals'},'Voix isolée');
     case's-stab':return srvNeed('stabilize')&&need(x=>x.kind==='video','Sélectionnez une vidéo')&&serverImageTool(c,'/video/stabilize',{},'stabilisée');
     case's-slowmo':return srvNeed('stabilize')&&need(x=>x.kind==='video','Sélectionnez une vidéo')&&serverImageTool(c,'/video/interpolate',{fps:60},'60 i/s');
-    case's-gen':{if(!srvNeed('image_gen'))return;const r=await askText('Générer une image','Décrivez l\'image (en anglais de préférence).','Luxury Provençal villa at golden hour, olive trees, pool, architectural photography');if(!r)return;try{aiBusy('Génération…');const [w,h]=baseWH();const blob=await SRV.call('/image/generate',{prompt:r.text,width:w>h?1344:768,height:w>h?768:1344});aiBusy('');const idm=uid();const m=await registerMedia(idm,blob,{type:'image',name:'Image IA'});IDB.put(idm,blob);addMediaToTimeline(m)}catch(e){aiBusy('');toast(e.message)}return}
     case'srv-test':{SRV.url=($('#srvUrl')||{}).value.trim();SRV.token=($('#srvTok')||{}).value.trim();SRV.save();const st=$('#srvStatus');if(st)st.textContent='Connexion…';try{const j=await SRV.health();toast(j?'Serveur IA connecté':'Adresse vide');}catch(e){toast(e.message)}renderPanel();return}
   }
+}
+
+/* ===== 28e-engines.js ===== */
+/* ---------- AI engines: every free AI, chosen automatically (or by hand) for each task ----------
+   Auto order per task = best quality first among what is available:
+   your own server (open models, private) → free cloud APIs (keys stored only in this browser) → free Hugging Face Spaces (ZeroGPU)
+   → in-browser models → built-in fallback. If an engine fails (quota, network…), the next one is tried.
+   Cloud engines run only after explicit consent, and only receive the text / image / audio of the current request. */
+const KEYS_LS='topclap-keys',ENG_LS='topclap-engines';
+const KEYS=(()=>{try{return JSON.parse(localStorage.getItem(KEYS_LS)||'{}')}catch(e){return {}}})();
+const ENGP=(()=>{try{return JSON.parse(localStorage.getItem(ENG_LS)||'{}')}catch(e){return {}}})();
+const saveKeys=()=>{try{localStorage.setItem(KEYS_LS,JSON.stringify(KEYS))}catch(e){}};
+const saveEng=()=>{try{localStorage.setItem(ENG_LS,JSON.stringify(ENGP))}catch(e){}};
+const hasKey=k=>!!(KEYS[k]&&String(KEYS[k]).trim());
+const GRADIO_URL='https://cdn.jsdelivr.net/npm/@gradio/client@2.7.1/dist/browser.js';
+
+/* free accounts that unlock engines: [key, name, where to get it, what it unlocks, country] */
+const KEY_INFO=[
+  ['groq','Groq','https://console.groq.com/keys','Whisper turbo (sous-titres), Qwen3 32B, Kimi K2, Llama. Gratuit avec quotas journaliers.','USA'],
+  ['gemini','Google Gemini','https://aistudio.google.com/apikey','Texte et voix off. Offre gratuite à quotas ; Google peut utiliser les données de l\'offre gratuite.','USA'],
+  ['openrouter','OpenRouter','https://openrouter.ai/keys','Accès aux modèles « :free » (DeepSeek, Qwen, GLM, Llama…). 50 requêtes/jour sans achat.','USA'],
+  ['zhipu','Zhipu GLM (Z.ai / BigModel)','https://open.bigmodel.cn','IA chinoise gratuite : GLM-4.7-Flash (texte), CogView-3-Flash (images), CogVideoX-Flash (vidéo).','Chine'],
+  ['siliconflow','SiliconFlow','https://cloud.siliconflow.cn','IA chinoise : modèles open source gratuits (Qwen, GLM, Kolors, SenseVoice). Vérification par téléphone.','Chine'],
+  ['pollinations','Pollinations','https://enter.pollinations.ai','Images (FLUX, Seedream, Qwen-Image…), vidéo (Wan, Seedance…), voix, transcription. Crédits « pollen » limités.','International'],
+  ['hf','Hugging Face','https://huggingface.co/settings/tokens','Facultatif : plus de temps GPU gratuit sur les Spaces (5 min/jour au lieu de 2).','USA'],
+];
+const TASKS={write:'Rédaction (scripts, titres, textes réseaux)',asr:'Sous-titres / transcription',tts:'Voix off',image:'Génération d\'images',edit:'Retouche photo par consigne',t2v:'Texte → vidéo',i2v:'Photo → vidéo',music:'Musique'};
+/* default free Hugging Face Spaces (ZeroGPU), editable in the panel */
+const SPACES={image:'black-forest-labs/FLUX.1-schnell',edit:'Qwen/Qwen-Image-Edit',i2v:'zerogpu-aoti/wan2-2-fp8da-aoti-faster',t2v:'zerogpu-aoti/wan2-2-fp8da-aoti',tts:'ResembleAI/Chatterbox-Multilingual-TTS',music:'ACE-Step/ACE-Step'};
+const spaceOf=t=>(KEYS['space_'+t]||SPACES[t]||'').trim();
+const WEB_STUDIOS=[
+  ['Kling (Kuaishou)','https://klingai.com','Chine','Crédits quotidiens gratuits, 720p, clips 5–10 s'],
+  ['Hailuo (MiniMax)','https://hailuoai.video','Chine','Crédits offerts à l\'inscription'],
+  ['Vidu (Shengshu)','https://www.vidu.com','Chine','Crédits quotidiens'],
+  ['Dreamina / Jimeng (ByteDance)','https://dreamina.capcut.com','Chine','Images et vidéo Seedance, crédits quotidiens'],
+  ['Wan (Alibaba)','https://wan.video','Chine','Crédits quotidiens ; modèle aussi open source'],
+  ['Qwen Chat (Alibaba)','https://chat.qwen.ai','Chine','Images et vidéos dans le chat, gratuit'],
+  ['Google Flow / Veo','https://labs.google/flow','USA','Crédits mensuels selon le compte Google'],
+  ['Luma Dream Machine','https://lumalabs.ai/dream-machine','USA','Rendus gratuits mensuels limités'],
+  ['Pika','https://pika.art','USA','Crédits mensuels, filigrane'],
+];
+
+async function cloudConsent(name){
+  if(KEYS.cloudOK===true)return true;if(KEYS.cloudOK===false)return false;
+  const ok=await confirmBox('Utiliser les IA gratuites en ligne ?',`Pour ce traitement, Top Clap peut envoyer le texte, l'image ou l'audio concerné à un service gratuit en ligne (${name}…). Rien d'autre n'est envoyé. Vous pourrez changer ce choix dans Modèles IA › Moteurs.`,'Autoriser');
+  KEYS.cloudOK=ok;saveKeys();return ok;
+}
+const stripThink=t=>String(t||'').replace(/<think>[\s\S]*?<\/think>/g,'').trim();
+const SYS_FR='Tu es un rédacteur vidéo et immobilier français. Réponds en français, sans préambule.';
+async function postJSON(url,body,headers={}){const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)});if(!r.ok){let m=r.status+'';try{m=r.status+' '+(await r.text()).slice(0,160)}catch(e){}throw new Error(m)}return r.json()}
+async function getJSON(url,headers={}){const r=await fetch(url,{headers});if(!r.ok)throw new Error(r.status+'');return r.json()}
+async function fetchBlob(url,headers={}){const r=await fetch(url,{headers});if(!r.ok)throw new Error('Téléchargement '+r.status);return r.blob()}
+const blobToDataURL=b=>new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.onerror=rej;fr.readAsDataURL(b)});
+function pcmToWav(b64,rate=24000){const bin=atob(b64);const n=bin.length;const buf=new ArrayBuffer(44+n),dv=new DataView(buf);const ws=(o,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i))};
+  ws(0,'RIFF');dv.setUint32(4,36+n,true);ws(8,'WAVE');ws(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,rate,true);dv.setUint32(28,rate*2,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);ws(36,'data');dv.setUint32(40,n,true);
+  for(let i=0;i<n;i++)dv.setUint8(44+i,bin.charCodeAt(i));return new Blob([buf],{type:'audio/wav'})}
+function floatToWav(d,sr){const n=d.length,buf=new ArrayBuffer(44+n*2),dv=new DataView(buf);const ws=(o,s)=>{for(let i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i))};
+  ws(0,'RIFF');dv.setUint32(4,36+n*2,true);ws(8,'WAVE');ws(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);dv.setUint32(24,sr,true);dv.setUint32(28,sr*2,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);ws(36,'data');dv.setUint32(40,n*2,true);
+  for(let i=0;i<n;i++)dv.setInt16(44+i*2,clamp(d[i],-1,1)*32767,true);return new Blob([buf],{type:'audio/wav'})}
+/* the audio of a clip, cut to its in/out, as a 16 kHz WAV (for transcription APIs) */
+async function clipWav(c){const m=media[c.mediaId];const d=await decodeMono(m,16000);const a=Math.floor(c.in*16000),b=Math.min(d.length,Math.floor((c.in+c.dur*c.speed)*16000));return {wav:floatToWav(d.slice(a,b),16000),dur:(b-a)/16000,m}}
+/* APIs that return only text: spread the words over the detected speech */
+async function textToWords(text,c,dur){let segs=null;try{segs=(await speechSegments(media[c.mediaId],{thr:-40,minSil:.25,pad:.05})).map(s=>({s:s.s-c.in,e:s.e-c.in})).filter(s=>s.e>0&&s.s<dur)}catch(e){}return wordsFromText(text,0,dur,segs)}
+const chat=(base,key,model,p,extra={})=>postJSON(base+'/chat/completions',{model,messages:[{role:'system',content:SYS_FR},{role:'user',content:p}],...extra},{Authorization:'Bearer '+key}).then(j=>stripThink(j.choices[0].message.content));
+const aspectOf=(w,h)=>w>h*1.2?'16:9':h>w*1.2?'9:16':'1:1';
+
+/* ---- provider helpers ---- */
+const ZBASE=()=>(KEYS.zhipuBase||'https://open.bigmodel.cn/api/paas/v4').replace(/\/$/,'');
+const SFBASE=()=>(KEYS.siliconflowBase||'https://api.siliconflow.cn/v1').replace(/\/$/,'');
+const PBASE='https://gen.pollinations.ai';
+const pAuth=()=>({Authorization:'Bearer '+KEYS.pollinations});
+async function zhipuVideo(prompt,imageBlob){
+  const body={model:KEYS.zhipuVideo||'cogvideox-flash',prompt};if(imageBlob)body.image_url=await blobToDataURL(imageBlob);
+  const j=await postJSON(ZBASE()+'/videos/generations',body,{Authorization:'Bearer '+KEYS.zhipu});const id=j.id||j.task_id;if(!id)throw new Error('Zhipu : pas d\'identifiant de tâche');
+  for(let i=0;i<120;i++){await new Promise(r=>setTimeout(r,5000));aiBusy(`Vidéo Zhipu CogVideoX… ${i*5} s`);
+    const s=await getJSON(ZBASE()+'/async-result/'+id,{Authorization:'Bearer '+KEYS.zhipu});
+    if(s.task_status==='SUCCESS'){const u=(s.video_result||[])[0];if(!u||!u.url)throw new Error('Zhipu : vidéo absente');return fetchBlob(u.url)}
+    if(s.task_status==='FAIL')throw new Error('Zhipu : génération refusée')}
+  throw new Error('Zhipu : délai dépassé');
+}
+let gemModels=null;
+async function geminiModel(kind){
+  const pref=kind==='tts'?KEYS.geminiTts:KEYS.geminiModel;if(pref)return pref;
+  if(!gemModels){try{const j=await getJSON('https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(KEYS.gemini));gemModels=(j.models||[]).map(m=>m.name.replace('models/',''))}catch(e){gemModels=[]}}
+  if(kind==='tts')return gemModels.find(n=>/flash.*tts/.test(n))||gemModels.find(n=>/tts/.test(n))||'gemini-2.5-flash-preview-tts';
+  return gemModels.includes('gemini-flash-latest')?'gemini-flash-latest':(gemModels.find(n=>/^gemini-[\d.]+-flash$/.test(n))||'gemini-flash-latest');
+}
+let orFree=null;
+async function openrouterModel(){
+  if(KEYS.openrouterModel)return KEYS.openrouterModel;if(orFree)return orFree;
+  const j=await getJSON('https://openrouter.ai/api/v1/models');const free=(j.data||[]).map(m=>m.id).filter(id=>/:free$/.test(id));
+  const rank=id=>{const o=['deepseek','qwen','glm','z-ai','kimi','moonshot','llama','gemma','mistral'];const i=o.findIndex(k=>id.includes(k));return i<0?99:i};
+  orFree=free.sort((a,b)=>rank(a)-rank(b))[0];if(!orFree)throw new Error('OpenRouter : aucun modèle gratuit listé');return orFree;
+}
+
+/* ---- generic adapter for any Gradio Space: finds the right endpoint and fills its inputs by type ---- */
+async function gradioRun(space,{image,prompt,seconds,lang}){
+  if(!space)throw new Error('Aucun Space configuré');
+  const g=await withTimeout(import(GRADIO_URL),20000).catch(()=>{throw new Error(AI_BLOCKED)});
+  const cl=await withTimeout(g.Client.connect(space,hasKey('hf')?{token:KEYS.hf}:{}),90000);
+  const api=await cl.view_api();const named=api.named_endpoints||{};
+  const comp=p=>String(p.component||'').toLowerCase();const route=KEYS['route_'+space];
+  const score=([n,e])=>{const ps=e.parameters||[];let s=0;const hasImg=ps.some(p=>comp(p)==='image');const hasTxt=ps.some(p=>comp(p)==='textbox');
+    if(image)s+=hasImg?6:-20;else if(hasImg&&!ps.find(p=>comp(p)==='image').parameter_has_default)s-=6;if(prompt)s+=hasTxt?4:-10;
+    if(/gen|infer|predict|run|synth|edit|create|video|music|tts/i.test(n))s+=2;if(/lambda|example|clear|update|random|upload|change|load/i.test(n))s-=5;return s};
+  const ep=route&&named[route]?[route,named[route]]:Object.entries(named).sort((a,b)=>score(b)-score(a))[0];
+  if(!ep)throw new Error(space+' : aucune API utilisable');
+  const args={};let usedImg=false,usedTxt=false;
+  for(const p of ep[1].parameters||[]){const c=comp(p),name=p.parameter_name||p.label;const pt=JSON.stringify(p.python_type||p.type||'');
+    if(c==='image'&&image&&!usedImg){args[name]=g.handle_file(image);usedImg=true;continue}
+    if(c==='textbox'&&prompt&&!usedTxt){args[name]=prompt;usedTxt=true;continue}
+    if(c==='dropdown'&&lang&&/'fr'/.test(pt)){args[name]='fr';continue}
+    if(c==='dropdown'&&lang&&/French/.test(pt)){args[name]=(pt.match(/'(French[^']*)'/)||[0,'French'])[1];continue}
+    if((c==='slider'||c==='number')&&seconds&&/dur|second|length|durée/i.test(p.label||name)){args[name]=seconds;continue}
+    if(p.parameter_has_default)args[name]=p.parameter_default;else if(c!=='state')args[name]=null}
+  aiBusy(`${space.split('/').pop()} : file d'attente GPU gratuite…`);
+  const res=await withTimeout(cl.predict(ep[0],args),600000);
+  const find=v=>{if(!v)return null;if(typeof v==='string')return /^https?:\/\//.test(v)?v:null;if(v.url)return v.url;if(v.video)return find(v.video);if(Array.isArray(v)){for(const x of v){const u=find(x);if(u)return u}return null}
+    if(typeof v==='object')for(const k of Object.keys(v)){const u=find(v[k]);if(u)return u}return null};
+  const url=find(res&&res.data);if(!url)throw new Error(space+' : aucun fichier renvoyé');
+  return fetchBlob(url,hasKey('hf')?{Authorization:'Bearer '+KEYS.hf}:{});
+}
+
+/* ---- the engines ---- origin: local | cloud | space | browser ; cn: Chinese model or provider */
+const ENGINES={
+  write:[
+    {id:'srv',name:'Votre serveur · Ollama (Qwen3, DeepSeek, GLM, Kimi…)',origin:'local',cn:true,avail:()=>SRV.has('llm'),run:async p=>(await SRV.call('/llm',{prompt:p},true)).text},
+    {id:'groq',name:'Groq · Qwen3 32B (Alibaba)',origin:'cloud',cn:true,avail:()=>hasKey('groq'),run:p=>chat('https://api.groq.com/openai/v1',KEYS.groq,KEYS.groqModel||'qwen/qwen3-32b',p+' /no_think',{temperature:.6})},
+    {id:'zhipu',name:'Zhipu · GLM-4.7-Flash (gratuit)',origin:'cloud',cn:true,avail:()=>hasKey('zhipu'),run:async p=>{try{return await chat(ZBASE(),KEYS.zhipu,KEYS.zhipuModel||'glm-4.7-flash',p)}catch(e){return chat(ZBASE(),KEYS.zhipu,'glm-4-flash-250414',p)}}},
+    {id:'gemini',name:'Google Gemini Flash',origin:'cloud',avail:()=>hasKey('gemini'),run:async p=>{const m=await geminiModel('text');const j=await postJSON(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(KEYS.gemini)}`,{systemInstruction:{parts:[{text:SYS_FR}]},contents:[{role:'user',parts:[{text:p}]}]});return (j.candidates[0].content.parts||[]).map(x=>x.text||'').join('')}},
+    {id:'openrouter',name:'OpenRouter · meilleur modèle gratuit (DeepSeek, Qwen…)',origin:'cloud',cn:true,avail:()=>hasKey('openrouter'),run:async p=>{const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+KEYS.openrouter,'X-Title':'Top Clap'},body:JSON.stringify({model:await openrouterModel(),messages:[{role:'system',content:SYS_FR},{role:'user',content:p}]})});if(!r.ok)throw new Error('OpenRouter '+r.status);const j=await r.json();return stripThink(j.choices[0].message.content)}},
+    {id:'siliconflow',name:'SiliconFlow · Qwen (gratuit)',origin:'cloud',cn:true,avail:()=>hasKey('siliconflow'),run:p=>chat(SFBASE(),KEYS.siliconflow,KEYS.siliconflowModel||'Qwen/Qwen2.5-7B-Instruct',p)},
+    {id:'pollinations',name:'Pollinations · texte',origin:'cloud',avail:()=>hasKey('pollinations'),run:async p=>{const j=await postJSON(PBASE+'/v1/chat/completions',{...(KEYS.pollText?{model:KEYS.pollText}:{}),messages:[{role:'system',content:SYS_FR},{role:'user',content:p}]},pAuth());return stripThink(j.choices[0].message.content)}},
+    {id:'browser',name:'Navigateur · Qwen3 0.6B (Alibaba, WebGPU)',origin:'browser',cn:true,avail:()=>!!navigator.gpu,run:async p=>{const gen=await AI.pipe('text-generation','onnx-community/Qwen3-0.6B-ONNX',{dtype:'q4f16',device:'webgpu'});const out=await gen([{role:'system',content:SYS_FR},{role:'user',content:p+' /no_think'}],{max_new_tokens:320,do_sample:false});return stripThink(out[0].generated_text.at(-1).content)}},
+  ],
+  asr:[
+    {id:'srv',name:'Votre serveur · faster-whisper large-v3-turbo',origin:'local',avail:()=>SRV.has('transcribe'),run:async(c,lang)=>{const m=media[c.mediaId];const r=await SRV.call('/audio/transcribe',{file:m.blob,language:lang==='auto'?'':'fr',start:c.in,end:c.in+c.dur*c.speed},true);return (r.words||[]).map(w=>({w:w.word.trim(),s:w.start-c.in,e:w.end-c.in}))}},
+    {id:'groq',name:'Groq · Whisper large-v3-turbo',origin:'cloud',avail:()=>hasKey('groq'),run:async(c,lang)=>{const {wav}=await clipWav(c);const fd=new FormData();fd.append('file',wav,'audio.wav');fd.append('model','whisper-large-v3-turbo');fd.append('response_format','verbose_json');fd.append('timestamp_granularities[]','word');if(lang!=='auto')fd.append('language','fr');
+      const r=await fetch('https://api.groq.com/openai/v1/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+KEYS.groq},body:fd});if(!r.ok)throw new Error('Groq '+r.status);const j=await r.json();return (j.words||[]).map(w=>({w:String(w.word).trim(),s:w.start,e:w.end}))}},
+    {id:'siliconflow',name:'SiliconFlow · SenseVoice (Alibaba)',origin:'cloud',cn:true,avail:()=>hasKey('siliconflow'),run:async(c)=>{const {wav,dur}=await clipWav(c);const fd=new FormData();fd.append('file',wav,'audio.wav');fd.append('model',KEYS.siliconflowAsr||'FunAudioLLM/SenseVoiceSmall');
+      const r=await fetch(SFBASE()+'/audio/transcriptions',{method:'POST',headers:{Authorization:'Bearer '+KEYS.siliconflow},body:fd});if(!r.ok)throw new Error('SiliconFlow '+r.status);const j=await r.json();return textToWords(String(j.text||'').replace(/<\|[^|]*\|>/g,''),c,dur)}},
+    {id:'pollinations',name:'Pollinations · Whisper large-v3',origin:'cloud',avail:()=>hasKey('pollinations'),run:async(c,lang)=>{const {wav,dur}=await clipWav(c);const fd=new FormData();fd.append('file',wav,'audio.wav');fd.append('model','openai/whisper-large-v3');fd.append('response_format','verbose_json');fd.append('timestamp_granularities[]','word');if(lang!=='auto')fd.append('language','fr');
+      const r=await fetch(PBASE+'/v1/audio/transcriptions',{method:'POST',headers:pAuth(),body:fd});if(!r.ok)throw new Error('Pollinations '+r.status);const j=await r.json();if(j.words&&j.words.length)return j.words.map(w=>({w:String(w.word).trim(),s:w.start,e:w.end}));return textToWords(j.text||'',c,dur)}},
+    {id:'browser',name:'Navigateur · Whisper base (OpenAI, local)',origin:'browser',avail:()=>true,run:async(c,lang)=>{const m=media[c.mediaId];const d=await decodeMono(m,16000);const a=Math.floor(c.in*16000),b=Math.min(d.length,Math.floor((c.in+c.dur*c.speed)*16000));
+      const asr=await AI.pipe('automatic-speech-recognition','onnx-community/whisper-base_timestamped',{wasm:true});aiBusy('Transcription en cours…');const out=await asr(d.slice(a,b),{return_timestamps:'word',chunk_length_s:30,stride_length_s:5,...(lang==='auto'?{}:{language:lang}),task:'transcribe'});
+      return (out.chunks||[]).map(k=>({w:String(k.text).trim(),s:k.timestamp[0],e:k.timestamp[1]??k.timestamp[0]+.3}))}},
+  ],
+  tts:[
+    {id:'srv',name:'Votre serveur · Chatterbox (clonage de voix)',origin:'local',avail:()=>SRV.has('tts'),run:async(t)=>SRV.call('/audio/tts',{text:t,lang:'fr'})},
+    {id:'space',name:'Space Hugging Face · Chatterbox multilingue',origin:'space',avail:()=>!!spaceOf('tts'),run:async(t)=>{const parts=t.match(/[^.!?]{1,280}[.!?]?/g)||[t];const blobs=[];for(const s of parts)blobs.push(await gradioRun(spaceOf('tts'),{prompt:s.trim(),lang:'fr'}));return blobs.length===1?blobs[0]:concatAudio(blobs)}},
+    {id:'gemini',name:'Google Gemini TTS',origin:'cloud',avail:()=>hasKey('gemini'),run:async(t)=>{const m=await geminiModel('tts');const j=await postJSON(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(KEYS.gemini)}`,{contents:[{parts:[{text:'Lis ce texte en français, ton chaleureux et professionnel : '+t}]}],generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:KEYS.geminiVoice||'Kore'}}}}});
+      const part=j.candidates[0].content.parts.find(p=>p.inlineData);const rate=+(String(part.inlineData.mimeType).match(/rate=(\d+)/)||[0,24000])[1];return pcmToWav(part.inlineData.data,rate)}},
+    {id:'pollinations',name:'Pollinations · voix neuronales',origin:'cloud',avail:()=>hasKey('pollinations'),run:async(t)=>{const r=await fetch(PBASE+'/v1/audio/speech',{method:'POST',headers:{'Content-Type':'application/json',...pAuth()},body:JSON.stringify({input:t,voice:KEYS.pollVoice||'ff_siwis',response_format:'mp3'})});if(!r.ok)throw new Error('Pollinations '+r.status);return r.blob()}},
+    {id:'browser',name:'Navigateur · Piper (voix françaises locales)',origin:'browser',avail:()=>true,run:async(t,voice)=>{const tts=await withTimeout(import(AI_CFG.piper),20000).catch(()=>{throw new Error(AI_BLOCKED)});return tts.predict({text:t,voiceId:voice||'fr_FR-siwis-medium'},p=>{if(p&&p.total)aiBusy(`Voix ${Math.round(p.loaded/p.total*100)} %`)})}},
+  ],
+  image:[
+    {id:'srv',name:'Votre serveur · Z-Image / Qwen-Image / FLUX.2 klein',origin:'local',cn:true,avail:()=>SRV.has('image_gen'),run:async(p,w,h)=>SRV.call('/image/generate',{prompt:p,width:w,height:h})},
+    {id:'pollinations',name:'Pollinations · FLUX, Seedream, Qwen-Image…',origin:'cloud',avail:()=>hasKey('pollinations'),run:async(p,w,h)=>fetchBlob(`${PBASE}/image/${encodeURIComponent(p)}?width=${w}&height=${h}&seed=${Math.floor(Math.random()*1e6)}${KEYS.pollImg?'&model='+encodeURIComponent(KEYS.pollImg):''}`,pAuth())},
+    {id:'space',name:'Space Hugging Face · FLUX.1 schnell',origin:'space',avail:()=>!!spaceOf('image'),run:async(p)=>gradioRun(spaceOf('image'),{prompt:p})},
+    {id:'zhipu',name:'Zhipu · CogView-3-Flash (gratuit)',origin:'cloud',cn:true,avail:()=>hasKey('zhipu'),run:async(p,w,h)=>{const j=await postJSON(ZBASE()+'/images/generations',{model:KEYS.zhipuImg||'cogview-3-flash',prompt:p,size:w>h?'1440x720':h>w?'720x1440':'1024x1024'},{Authorization:'Bearer '+KEYS.zhipu});return fetchBlob(j.data[0].url)}},
+    {id:'siliconflow',name:'SiliconFlow · Kolors (Kuaishou)',origin:'cloud',cn:true,avail:()=>hasKey('siliconflow'),run:async(p,w,h)=>{const j=await postJSON(SFBASE()+'/images/generations',{model:KEYS.siliconflowImg||'Kwai-Kolors/Kolors',prompt:p,image_size:w>h?'1024x576':h>w?'576x1024':'1024x1024',batch_size:1},{Authorization:'Bearer '+KEYS.siliconflow});return fetchBlob((j.images||j.data)[0].url)}},
+  ],
+  edit:[
+    {id:'srv',name:'Votre serveur · Qwen-Image-Edit-2511',origin:'local',cn:true,avail:()=>SRV.has('image_edit'),run:async(img,p)=>SRV.call('/image/edit',{file:img,prompt:p})},
+    {id:'space',name:'Space Hugging Face · Qwen-Image-Edit (Alibaba)',origin:'space',cn:true,avail:()=>!!spaceOf('edit'),run:async(img,p)=>gradioRun(spaceOf('edit'),{image:img,prompt:p})},
+  ],
+  t2v:[
+    {id:'zhipu',name:'Zhipu · CogVideoX-Flash (gratuit)',origin:'cloud',cn:true,avail:()=>hasKey('zhipu'),run:async(p)=>zhipuVideo(p)},
+    {id:'pollinations',name:'Pollinations · Wan, Seedance, Veo…',origin:'cloud',cn:true,avail:()=>hasKey('pollinations'),run:async(p,asp)=>fetchBlob(`${PBASE}/video/${encodeURIComponent(p)}?model=${encodeURIComponent(KEYS.pollVideo||'wan')}&duration=5&aspectRatio=${encodeURIComponent(asp||'16:9')}`,pAuth())},
+    {id:'space',name:'Space Hugging Face · Wan 2.2 T2V (Alibaba)',origin:'space',cn:true,avail:()=>!!spaceOf('t2v'),run:async(p)=>gradioRun(spaceOf('t2v'),{prompt:p,seconds:5})},
+  ],
+  i2v:[
+    {id:'srv',name:'Votre serveur · Wan 2.2 (Alibaba) / CogVideoX / LTX',origin:'local',cn:true,avail:()=>SRV.has('img2video'),run:async(img,p)=>SRV.call('/video/image-to-video',{file:img,prompt:p,seconds:5})},
+    {id:'space',name:'Space Hugging Face · Wan 2.2 I2V rapide (Alibaba)',origin:'space',cn:true,avail:()=>!!spaceOf('i2v'),run:async(img,p)=>gradioRun(spaceOf('i2v'),{image:img,prompt:p,seconds:5})},
+    {id:'zhipu',name:'Zhipu · CogVideoX-Flash (gratuit)',origin:'cloud',cn:true,avail:()=>hasKey('zhipu'),run:async(img,p)=>zhipuVideo(p,img)},
+  ],
+  music:[
+    {id:'srv',name:'Votre serveur · ACE-Step 1.5',origin:'local',cn:true,avail:()=>SRV.has('music'),run:async(p,sec)=>SRV.call('/audio/music',{prompt:p,seconds:sec})},
+    {id:'space',name:'Space Hugging Face · ACE-Step',origin:'space',cn:true,avail:()=>!!spaceOf('music'),run:async(p,sec)=>gradioRun(spaceOf('music'),{prompt:p,seconds:Math.min(240,sec)})},
+    {id:'pollinations',name:'Pollinations · musique',origin:'cloud',avail:()=>hasKey('pollinations'),run:async(p,sec)=>{const r=await fetch(PBASE+'/v1/audio/speech',{method:'POST',headers:{'Content-Type':'application/json',...pAuth()},body:JSON.stringify({input:p,model:KEYS.pollMusic||'stability-ai/stable-audio-3-medium',instrumental:true,seconds:Math.min(180,Math.ceil(sec)),response_format:'mp3'})});if(!r.ok)throw new Error('Pollinations '+r.status);return r.blob()}},
+  ],
+};
+/* join several audio blobs (long text read sentence by sentence) */
+async function concatAudio(blobs){
+  const ctx=new (window.OfflineAudioContext||window.webkitOfflineAudioContext)(1,1,24000);const bufs=[];for(const b of blobs)bufs.push(await ctx.decodeAudioData(await b.arrayBuffer()));
+  const sr=bufs[0].sampleRate,gap=Math.round(sr*.12),n=bufs.reduce((a,b)=>a+b.length+gap,0);const out=new Float32Array(n);let o=0;for(const b of bufs){out.set(b.getChannelData(0),o);o+=b.length+gap}return floatToWav(out,sr);
+}
+const ORDER={origin:{local:0,cloud:1,space:2,browser:3}};
+function engineList(task){const list=ENGINES[task]||[];const pref=ENGP[task]||'auto';if(pref!=='auto'){const e=list.find(x=>x.id===pref);return e?[e,...list.filter(x=>x!==e&&x.origin==='browser')]:list}return list}
+async function runEngine(task,label,...args){
+  let lastErr=null,tried=0;
+  for(const e of engineList(task)){
+    if(!e.avail())continue;
+    if((e.origin==='cloud'||e.origin==='space')&&!(await cloudConsent(e.name.split(' ·')[0])))continue;
+    tried++;
+    try{aiBusy(`${label} · ${e.name.split(' (')[0]}`);const r=await e.run(...args);if(r&&(!(r instanceof Blob)||r.size>100)&&(!Array.isArray(r)||r.length)){aiBusy('');ENG_LAST[task]=e.name;return r}throw new Error('réponse vide')}
+    catch(err){lastErr=err;console.warn(task,e.id,err);toast(`${e.name.split(' ·')[0]} indisponible (${String(err.message||err).slice(0,60)}), moteur suivant…`)}
+  }
+  aiBusy('');
+  if(!tried)toast(`${TASKS[task]||label} : aucun moteur disponible. Ajoutez une clé gratuite ou autorisez les services en ligne dans Modèles IA › Moteurs.`);
+  else if(lastErr)toast(`${TASKS[task]||label} : tous les moteurs ont échoué (${String(lastErr.message||lastErr).slice(0,120)})`);
+  return null;
+}
+const ENG_LAST={};
+function enginesPanelHTML(){
+  const tag=e=>e.cn?' · IA chinoise':'';
+  const opt=t=>`<div class="row r2"><label for="eng_${t}">${TASKS[t]}</label><select id="eng_${t}"><option value="auto">Automatique (meilleur disponible)</option>${ENGINES[t].map(e=>`<option value="${e.id}" ${ENGP[t]===e.id?'selected':''}>${esc(e.name)}${tag(e)}${e.avail()?'':' — à configurer'}</option>`).join('')}</select></div>${ENG_LAST[t]?`<p class="note" style="margin:-2px 0 6px 104px">Dernier utilisé : ${esc(ENG_LAST[t])}</p>`:''}`;
+  return `<div class="grp">Moteurs IA (choix automatique)</div><p class="note">En automatique, Top Clap prend le meilleur moteur disponible : votre serveur, puis les services gratuits en ligne (avec vos clés), puis les Spaces Hugging Face gratuits, puis les modèles du navigateur. Si un moteur échoue ou dépasse son quota, il passe au suivant.</p>
+    ${Object.keys(TASKS).map(opt).join('')}
+    <label class="tg" style="margin:8px 0"><input type="checkbox" id="eng_cloud" ${KEYS.cloudOK?'checked':''}>Autoriser les services gratuits en ligne</label>
+    <div class="grp">Comptes gratuits (clés facultatives)</div><p class="note">Chaque clé débloque des moteurs gratuits plus puissants. Elles restent dans ce navigateur et ne partent que vers le service concerné.</p>
+    ${KEY_INFO.map(([k,n,url,d,co])=>`<div class="row r2"><label for="key_${k}">${n}</label><input type="password" id="key_${k}" autocomplete="off" placeholder="Coller la clé" value="${esc(KEYS[k]||'')}"></div><p class="note" style="margin:-4px 0 8px 104px">${esc(co)} · ${esc(d)} <a href="${url}" target="_blank" rel="noopener">Créer un compte</a></p>`).join('')}
+    <div class="row r2"><label for="key_zhipuBase">Zhipu</label><select id="key_zhipuBase"><option value="https://open.bigmodel.cn/api/paas/v4" ${!KEYS.zhipuBase||/bigmodel/.test(KEYS.zhipuBase)?'selected':''}>BigModel (Chine)</option><option value="https://api.z.ai/api/paas/v4" ${/z\.ai/.test(KEYS.zhipuBase||'')?'selected':''}>Z.ai (international)</option></select></div>
+    <div class="row r2"><label for="key_siliconflowBase">SiliconFlow</label><select id="key_siliconflowBase"><option value="https://api.siliconflow.cn/v1" ${!/\.com/.test(KEYS.siliconflowBase||'')?'selected':''}>siliconflow.cn (Chine)</option><option value="https://api.siliconflow.com/v1" ${/\.com/.test(KEYS.siliconflowBase||'')?'selected':''}>siliconflow.com (international)</option></select></div>
+    <div class="grp">Spaces Hugging Face gratuits (GPU partagé)</div><p class="note">Aucune clé nécessaire (environ 2 min de GPU/jour, 5 min avec un compte gratuit). Remplaçable par n'importe quel Space Gradio : Top Clap détecte ses entrées automatiquement.</p>
+    ${Object.keys(SPACES).map(t=>`<div class="row r2"><label for="key_space_${t}">${TASKS[t].split(' (')[0]}</label><input type="text" id="key_space_${t}" placeholder="${SPACES[t]}" value="${esc(KEYS['space_'+t]||'')}"></div>`).join('')}
+    <div class="grp">Studios vidéo IA gratuits (web)</div><p class="note">Crédits gratuits quotidiens, souvent avec filigrane et usage commercial limité en version gratuite. Le prompt est copié, collez-le sur le site puis importez la vidéo ici.</p>
+    <div class="stack">${WEB_STUDIOS.map(([n,u,co,d])=>`<a class="model" href="${u}" target="_blank" rel="noopener" data-studio="1"><div><b>${esc(n)}</b><span>${esc(d)}</span></div><em class="where ${co==='Chine'?'srv':'nav'}">${co}</em></a>`).join('')}</div>`;
+}
+$('#panelBody').addEventListener('change',e=>{const t=e.target;if(!t.id)return;
+  if(t.id.startsWith('eng_')&&t.id!=='eng_cloud'){ENGP[t.id.slice(4)]=t.value;saveEng();toast('Moteur enregistré')}
+  else if(t.id==='eng_cloud'){KEYS.cloudOK=t.checked;saveKeys()}
+  else if(t.id.startsWith('key_')){KEYS[t.id.slice(4)]=t.value.trim();if(t.id==='key_gemini')gemModels=null;if(t.id==='key_openrouter')orFree=null;saveKeys();renderPanel();toast('Enregistré dans ce navigateur')}});
+$('#panelBody').addEventListener('click',e=>{const a=e.target.closest('[data-studio]');if(!a)return;const p=lastPrompt||'';if(p&&navigator.clipboard)navigator.clipboard.writeText(p).then(()=>toast('Prompt copié : collez-le sur le site'),()=>{})});
+let lastPrompt='';
+
+/* ===== 28f-start.js ===== */
+/* ---------- start screen, project library, install as an app (PWA) ---------- */
+let installEvt=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$$('[data-install]').forEach(b=>b.hidden=false)});
+addEventListener('appinstalled',()=>{installEvt=null;$$('[data-install]').forEach(b=>b.hidden=true);toast('Top Clap est installé')});
+const isStandalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=()=>/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+async function installApp(){
+  if(installEvt){installEvt.prompt();const r=await installEvt.userChoice.catch(()=>null);installEvt=null;if(r&&r.outcome==='accepted')toast('Installation en cours…');return}
+  if(isIOS())return toast('Sur iPhone / iPad : touchez Partager puis « Sur l\'écran d\'accueil »');
+  toast('Utilisez le menu du navigateur › « Installer l\'application » (Chrome, Edge). L\'appli doit être ouverte depuis son adresse en ligne.');
+}
+if(document.querySelector('link[rel=manifest]')&&'serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost')){
+  addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+
+/* project library */
+function listProjects(){const st=projStore();return Object.entries(st.list||{}).map(([id,p])=>({id,...p})).sort((a,b)=>b.updated-a.updated)}
+async function openProjectId(id){
+  const st=projStore();const p=st.list&&st.list[id];if(!p)return toast('Projet introuvable');
+  saveNow();pause();curProj=id;Object.assign(P,{markers:[],info:DEF_INFO(),brand:DEF_BRAND()},JSON.parse(JSON.stringify(p.P)));normalizeProject();
+  P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);hist.stack=[];hist.i=-1;S.sel=null;S.t=0;
+  $('#aspectSel').value=P.aspect;$('#projName').value=P.name;setRes(S.pq);commit();refreshAll();closeStart();toast(`« ${P.name} » ouvert`);
+}
+function newProjectBlank(name='Nouveau projet'){saveNow();pause();curProj=uid();Object.assign(P,{name,aspect:P.aspect||'16:9',bg:'#000000',tracks:defaultTracks(),clips:[],markers:[],info:{...P.info},brand:{...P.brand}});
+  hist.stack=[];hist.i=-1;S.sel=null;S.t=0;$('#projName').value=P.name;commit();refreshAll();saveNow()}
+function newProjectDemo(){saveNow();pause();curProj=uid();buildDemo();hist.stack=[];hist.i=-1;commit();refreshAll();saveNow()}
+function duplicateProject(id){const st=projStore();const p=st.list&&st.list[id];if(!p)return;const nid=uid();st.list[nid]={...JSON.parse(JSON.stringify(p)),name:p.name+' (copie)',updated:Date.now()};st.list[nid].P.name=st.list[nid].name;try{localStorage.setItem(PROJ_LS,JSON.stringify(st))}catch(e){toast('Mémoire du navigateur pleine')}renderStart()}
+function deleteProject(id){const st=projStore();if(!st.list||!st.list[id])return;delete st.list[id];if(id===curProj){curProj=null}try{localStorage.setItem(PROJ_LS,JSON.stringify(st))}catch(e){}renderStart();if(!curProj)newProjectBlank()}
+
+/* start screen */
+const startEl=document.createElement('div');startEl.id='start';startEl.hidden=true;document.body.appendChild(startEl);
+let delArmed=null;
+function renderStart(){
+  const ps=listProjects();const fmtD=t=>new Date(t).toLocaleDateString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  startEl.innerHTML=`<div class="st-in">
+    <div class="st-hero"><div class="st-logo">${LOGO('st')}</div><div><div class="st-wm">Top <i>Clap</i></div><div class="st-sub">ÉDITEUR VIDÉO</div><p class="st-tag">Créez · Montez · Partagez — donnez vie à vos idées.</p></div></div>
+    <div class="st-cta"><button class="btn pri st-go" data-st="go">${ic('play','f')}Démarrer</button>
+      <button class="btn" data-install data-st="install" ${installEvt||isIOS()?'':'hidden'}>${ic('download')}Installer l'appli</button></div>
+    <div class="st-grid">
+      <button class="st-card" data-st="wizard">${ic('wand')}<b>Assistant vidéo</b><span>Annonce, Reel, YouTube… générés automatiquement</span></button>
+      <button class="st-card" data-st="new">${ic('plus')}<b>Nouveau projet</b><span>Timeline vide, vos médias</span></button>
+      <button class="st-card" data-st="import">${ic('upload')}<b>Importer</b><span>Vidéos, photos, musiques, .srt, .cube</span></button>
+      <button class="st-card" data-st="rec">${ic('mic')}<b>Enregistrer</b><span>Caméra ou écran avec prompteur</span></button>
+      <button class="st-card" data-st="demo">${ic('house')}<b>Projet exemple</b><span>Villa jour → nuit avec textes et musique</span></button>
+    </div>
+    <div class="st-h">Mes projets <small>${ps.length}</small></div>
+    <div class="st-projects">${ps.length?ps.map(p=>`<div class="st-p${p.id===curProj?' cur':''}"><button class="st-open" data-open="${p.id}"><span class="st-th" style="${p.thumb?`background-image:url(${p.thumb})`:''}"></span><b>${esc(p.name)}</b><span>${p.aspect||''} · ${fmtT(p.dur||0).slice(0,5)} · ${fmtD(p.updated)}</span></button>
+      <div class="st-act"><button class="mini" data-dup="${p.id}" title="Dupliquer" aria-label="Dupliquer">${ic('copy')}</button><button class="mini" data-del="${p.id}" title="Supprimer" aria-label="Supprimer">${ic('trash')}</button></div></div>`).join(''):'<p class="note">Vos projets apparaîtront ici. Ils sont enregistrés dans ce navigateur.</p>'}</div>
+    <label class="tg st-show"><input type="checkbox" id="stShow" ${startPref()?'checked':''}>Afficher cet écran au démarrage</label>
+  </div>`;
+}
+function startPref(){try{return localStorage.getItem('topclap-start')!=='0'}catch(e){return true}}
+function openStart(){renderStart();startEl.hidden=false;pause()}
+function closeStart(){startEl.hidden=true;fitViewport();req()}
+startEl.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-st],[data-open],[data-dup],[data-del]');if(!b)return;
+  if(b.dataset.open){if(b.dataset.open===curProj)return closeStart();return openProjectId(b.dataset.open)}
+  if(b.dataset.dup)return duplicateProject(b.dataset.dup);
+  if(b.dataset.del){if(delArmed===b.dataset.del){delArmed=null;return deleteProject(b.dataset.del)}delArmed=b.dataset.del;toast('Touchez à nouveau la corbeille pour supprimer ce projet');setTimeout(()=>{delArmed=null},3000);return}
+  const a=b.dataset.st;
+  if(a==='go')closeStart();
+  else if(a==='install')installApp();
+  else if(a==='wizard'){closeStart();openAssistant()}
+  else if(a==='new'){newProjectBlank();closeStart();toast('Nouveau projet : importez vos médias')}
+  else if(a==='import'){closeStart();$('#fileIn').click()}
+  else if(a==='demo'){newProjectDemo();closeStart()}
+  else if(a==='rec'){closeStart();openRecorder()}
+});
+startEl.addEventListener('change',e=>{if(e.target.id==='stShow'){try{localStorage.setItem('topclap-start',e.target.checked?'1':'0')}catch(err){}}});
+
+/* ===== 28g-check.js ===== */
+/* ---------- "Vérifier ma vidéo": automatic pre-publication audit with one-click fixes ---------- */
+function videoChecks(){
+  const out=[],add=(lvl,title,detail,fix,fixLabel='Corriger')=>out.push({lvl,title,detail,fix,fixLabel});
+  const d=projDur(),vert=P.aspect==='9:16',main=firstTrack('main');
+  const mains=P.clips.filter(c=>main&&c.trackId===main.id).sort((a,b)=>a.start-b.start);
+  const texts=P.clips.filter(c=>c.kind==='text'||c.kind==='caption'||(c.kind==='shape'&&c.label));
+  const voices=P.clips.filter(isVoice),musics=P.clips.filter(c=>c.kind==='audio'&&c.role!=='voice');
+  // 1. duration
+  if(vert){if(d>90)add('warn','Vidéo verticale longue',`${Math.round(d)} s. Pour les Reels, Shorts et TikTok, 15 à 45 s retiennent mieux l'attention.`,null);else add('ok','Durée adaptée au format vertical',`${Math.round(d)} s`)}
+  else if(P.aspect==='16:9'&&d<30)add('info','Vidéo YouTube courte','Moins de 30 s en 16:9 : pensez à une version 9:16 pour les Shorts.',()=>openExport(['16:9','9:16']),'Exporter les 2 formats');
+  // 2. hook
+  const hook=texts.some(c=>c.start<1.5);if(!hook)add('warn','Pas d\'accroche dans les 2 premières secondes','Un texte fort dès le début (lieu, prix, question) retient le spectateur.',()=>{const tr=firstTrack('text')||addTrack('text');const c=newClip('text',{text:`${P.info.type||'Bien'} à ${P.info.city||''}`.trim(),start:.1,dur:2.5,size:96,animIn:'pop',inDur:.35,shadowBlur:24,shadowColor:'rgba(0,0,0,.5)',y:vert?.3:.5,trackId:tr.id,name:'Accroche'});P.clips.push(c)});else add('ok','Accroche présente dès le début');
+  // 3. captions
+  const caps=P.clips.some(c=>c.kind==='caption');if(voices.length&&!caps)add('warn','Voix sans sous-titres','Beaucoup de vidéos sont regardées sans le son : sous-titrez la voix.',async()=>{for(const v of voices)await aiTranscribe(v,'french')},'Sous-titrer');
+  else if(!caps&&vert)add('info','Pas de texte animé','Sur mobile, un texte à l\'écran aide à comprendre sans le son.',null);
+  // 4. safe zones
+  if(vert){const bad=[];renderFrame(S.t);for(const c of texts){const W=cv.width,H=cv.height;const y=kv(c,'y',0)*H;if(y>H*.8||y<H*.1)bad.push(c)}
+    if(bad.length)add('warn',`${bad.length} texte(s) sous l'interface TikTok / Reels`,'Le bas (légende, boutons) et le haut de l\'écran sont masqués par l\'application.',()=>bad.forEach(c=>{const y=kv(c,'y',0);c.y=y>.8?.7:.2;if(c.kf)delete c.kf.y}),'Remonter les textes');else add('ok','Textes dans la zone visible')}
+  // 5. long static shots
+  const lim=vert?5:8,longS=mains.filter(c=>c.dur>lim&&!c.fx.some(f=>['kb-in','kb-out','pan-l','pan-r','tilt-up','drone','orbit','pulse'].includes(f.id))&&!(c.immo&&c.immo.parallax>0)&&c.kind!=='video');
+  if(longS.length)add('warn',`${longS.length} plan(s) fixe(s) de plus de ${lim} s`,'Ajoutez du mouvement ou coupez plus court pour garder le rythme.',()=>longS.forEach(c=>c.fx.push({id:'kb-in',v:.7})),'Ajouter un mouvement');
+  // 6. gaps
+  let gaps=0;for(let i=1;i<mains.length;i++)if(mains[i].start-(mains[i-1].start+mains[i-1].dur)>.05)gaps++;if(mains.length&&mains[0].start>.05)gaps++;
+  if(gaps)add('err',`${gaps} trou(s) noir(s) sur la piste principale`,'Écran noir entre deux plans.',()=>{const m=S.magnet;S.magnet=true;packTrack(main);S.magnet=m},'Combler');
+  // 7. call to action
+  const endTxt=texts.some(c=>c.start+c.dur>d-3.5&&/\d{2}[\s.]?\d{2}|contact|rendez|appel|lien|bio|visite/i.test(c.text||c.label||''));
+  if(!endTxt)add('warn','Pas d\'appel à l\'action à la fin','Terminez par le contact, un lien ou « visite sur rendez-vous ».',()=>{const tr=firstTrack('text')||addTrack('text');P.clips.push(newClip('text',{text:`${P.brand.agency||'Votre agence'}\n${P.brand.phone||''}`.trim(),start:Math.max(0,d-3),dur:3,size:72,weight:700,sub:.55,bg:'#0F172A',bgA:.75,pad:36,radius:18,animIn:'zoom',trackId:tr.id,name:'Contact'}))},'Ajouter le contact');
+  else add('ok','Appel à l\'action présent');
+  // 8. audio
+  if(!musics.length&&!voices.length&&!P.clips.some(c=>c.kind==='video'))add('warn','Vidéo sans son','Une musique augmente fortement la rétention.',()=>{const m=ensureDemoMusic(vert?'pulse':'ambient');const tr=firstTrack('audio')||addTrack('audio');P.clips.push(newClip('audio',{mediaId:m.id,name:m.name,trackId:tr.id,start:0,dur:Math.min(d,m.dur),fadeOutA:2}))},'Ajouter une musique');
+  if(voices.length&&musics.some(c=>!c.duck))add('warn','La musique couvre la voix','Activez le ducking pour baisser la musique pendant la voix.',()=>musics.forEach(c=>c.duck=.7),'Activer le ducking');
+  const imported=musics.filter(c=>{const m=media[c.mediaId];return m&&!m.demo&&!/IA/.test(m.name)});
+  if(imported.length)add('info','Droits de la musique importée','YouTube, Instagram et TikTok détectent les musiques protégées (coupure du son, démonétisation). Utilisez une musique dont vous avez les droits, les musiques intégrées ou la musique IA.',null);
+  // 9. low-res media
+  const short=Math.min(...baseWH());const low=P.clips.filter(c=>c.kind==='image'&&media[c.mediaId]&&Math.min(media[c.mediaId].w,media[c.mediaId].h)<short*.6);
+  if(low.length)add('warn',`${low.length} photo(s) en basse résolution`,'Elles paraîtront floues en 1080p.',()=>{S.sel=low[0].id;setTab('ai',true);toast('Utilisez « Agrandir la photo » sur chaque photo signalée')},'Ouvrir l\'agrandissement');
+  // 10. readability
+  const small=texts.filter(c=>c.kind==='text'&&c.size<36);if(small.length)add('warn',`${small.length} texte(s) trop petit(s) pour un mobile`,'Taille minimale conseillée : 40.',()=>small.forEach(c=>c.size=44),'Agrandir');
+  const fast=texts.filter(c=>c.kind==='text'&&c.dur<Math.max(1.2,(c.text||'').length/16));if(fast.length)add('warn',`${fast.length} texte(s) affiché(s) trop peu de temps`,'Comptez environ 1 s pour 15 caractères.',()=>fast.forEach(c=>c.dur=Math.max(1.5,(c.text||'').length/14)),'Allonger');
+  // 11. real estate obligations (France)
+  const re=P.info&&(P.info.price||P.info.type);
+  if(re){if(!P.info.dpe)add('err','Classe énergie (DPE) manquante','Les annonces de vente ou de location doivent indiquer la classe énergie du logement. Renseignez-la et affichez-la.',()=>{S.sel=null;renderInspector();openInspector();toast('Renseignez le DPE dans « Le bien »')},'Renseigner');
+    else if(!texts.some(c=>/DPE|classe/i.test(c.text||'')))add('warn','DPE non affiché dans la vidéo',`Classe ${P.info.dpe} renseignée mais absente de l'image.`,()=>{const tr=firstTrack('overlay')||addTrack('overlay');P.clips.push(newClip('text',{text:`DPE ${P.info.dpe}`,start:Math.max(0,d*.3),dur:Math.min(6,d*.4),size:40,weight:700,bg:'#0F172A',bgA:.7,pad:16,radius:10,x:.86,y:vert?.62:.12,animIn:'fade',trackId:tr.id,name:'DPE'}))},'Afficher le DPE');
+    if(texts.some(c=>/€/.test(c.text||''))&&!texts.some(c=>/honoraires|FAI|charge/i.test(c.text||'')))add('info','Prix affiché sans mention des honoraires','Indiquez si les honoraires sont inclus (« honoraires charge vendeur » ou montant TTC à la charge de l\'acquéreur).',null);
+    if(!P.brand.phone||/^04 00/.test(P.brand.phone))add('info','Coordonnées de l\'agence à compléter','Le téléphone affiché est un exemple.',()=>{S.sel=null;renderInspector();openInspector()},'Compléter')}
+  if(re&&/^[FG]$/i.test(P.info.dpe||'')&&!texts.some(c=>/consommation énergétique excessive/i.test(c.text||'')))add('err','Mention « Logement à consommation énergétique excessive » absente',`DPE ${P.info.dpe.toUpperCase()} : cette mention est obligatoire dans l'annonce, en caractères au moins aussi grands que le texte.`,()=>{const tr=firstTrack('overlay')||addTrack('overlay');P.clips.push(newClip('text',{text:'Logement à consommation énergétique excessive',start:Math.max(0,d*.3),dur:Math.min(6,d*.4),size:40,weight:700,bg:'#0F172A',bgA:.75,pad:16,radius:10,y:vert?.66:.9,animIn:'fade',trackId:tr.id,name:'Mention DPE'}))},'Ajouter la mention');
+  // 11b. AI-generated or AI-edited media must be disclosed
+  const ai=P.clips.filter(c=>c.aiGen||c.origMedia);
+  if(ai.length&&!texts.some(c=>/IA|intelligence artificielle|virtuel|retouch|non contractuel/i.test(c.text||'')))add('warn',`${ai.length} média(s) généré(s) ou retouché(s) par IA`,'Signalez-le : mention à l\'écran (« Mise en scène virtuelle », « Image retouchée par IA ») et case « contenu IA » sur YouTube, TikTok et Instagram. Un rendu qui change l\'état réel du bien peut être une pratique commerciale trompeuse.',()=>{const tr=firstTrack('overlay')||addTrack('overlay');ai.forEach(c=>P.clips.push(newClip('text',{text:'Image retouchée par IA · non contractuelle',start:c.start,dur:c.dur,size:28,weight:600,bg:'#0F172A',bgA:.6,pad:10,radius:8,x:.5,y:vert?.12:.94,animIn:'none',animOut:'none',trackId:tr.id,name:'Mention IA'})))},'Ajouter la mention');
+  // 12. delivery
+  add('info','Réglages de mise en ligne','Export 1080p 30 i/s. Le serveur IA peut finaliser en MP4 à −14 LUFS (volume recommandé par YouTube, Instagram et TikTok).',null);
+  return out;
+}
+function openCheck(){
+  pause();const list=videoChecks();const score=Math.max(0,100-list.filter(x=>x.lvl==='err').length*20-list.filter(x=>x.lvl==='warn').length*8);
+  const ico={ok:'check',warn:'flag',err:'x',info:'sparkles'};
+  const m=modal(`<h3>Vérifier ma vidéo</h3><p class="note">Contrôle automatique avant publication (${P.aspect}, ${fmtT(projDur())}).</p>
+    <div class="ck-score"><b>${score}</b><span>/100</span><div class="prog"><i style="width:${score}%"></i></div></div>
+    <div class="ck-list">${list.map((x,i)=>`<div class="ck ${x.lvl}"><span class="ck-i">${ic(ico[x.lvl])}</span><div><b>${esc(x.title)}</b>${x.detail?`<span>${esc(x.detail)}</span>`:''}</div>${x.fix?`<button class="btn" data-fix="${i}">${esc(x.fixLabel)}</button>`:''}</div>`).join('')}</div>
+    <div class="mrow"><button class="btn" data-x="close">Fermer</button>${list.some(x=>x.fix&&x.lvl!=='info'&&x.lvl!=='ok')?'<button class="btn pri" data-x="all">Tout corriger</button>':''}</div>`);
+  m.addEventListener('click',async e=>{const b=e.target.closest('[data-fix],[data-x]');if(!b)return;
+    if(b.dataset.x==='close'){m.parentElement.remove();return}
+    const run=async x=>{try{await x.fix()}catch(err){console.warn(err)}};
+    if(b.dataset.x==='all'){for(const x of list)if(x.fix&&(x.lvl==='warn'||x.lvl==='err')&&!/Sous-titrer|Renseigner|Compléter|agrandissement/i.test(x.fixLabel))await run(x)}
+    else await run(list[+b.dataset.fix]);
+    commit();refreshAll();m.parentElement.remove();openCheck();});
+}
+
+/* ===== 28h-pro2.js ===== */
+/* ---------- pro tools 2: RGB curves, split screen, trend templates ---------- */
+
+/* ===== curves (master + R, G, B), baked into a 3D LUT together with the selected LUT ===== */
+const CURVE_ID=[[0,0],[1,1]];
+const curvesActive=gr=>!!(gr&&gr.curves&&['m','r','g','b'].some(k=>{const p=gr.curves[k];return p&&(p.length!==2||p[0][0]!==0||p[0][1]!==0||p[1][0]!==1||p[1][1]!==1)}));
+function curveFn(pts){
+  const p=(pts&&pts.length>=2?pts:CURVE_ID).slice().sort((a,b)=>a[0]-b[0]);const n=p.length;
+  const dx=[],dy=[],m=[];for(let i=0;i<n-1;i++){dx.push(p[i+1][0]-p[i][0]||1e-6);dy.push(p[i+1][1]-p[i][1]);m.push(dy[i]/dx[i])}
+  const t=[m[0]];for(let i=1;i<n-1;i++)t.push(m[i-1]*m[i]<=0?0:(m[i-1]+m[i])/2);t.push(m[n-2]);
+  for(let i=0;i<n-1;i++){if(m[i]===0){t[i]=0;t[i+1]=0}else{const a=t[i]/m[i],b=t[i+1]/m[i],h=a*a+b*b;if(h>9){const k=3/Math.sqrt(h);t[i]=k*a*m[i];t[i+1]=k*b*m[i]}}}
+  return x=>{if(x<=p[0][0])return clamp(p[0][1]);if(x>=p[n-1][0])return clamp(p[n-1][1]);let i=0;while(i<n-2&&x>p[i+1][0])i++;const h=dx[i],s=(x-p[i][0])/h,s2=s*s,s3=s2*s;
+    return clamp((2*s3-3*s2+1)*p[i][1]+(s3-2*s2+s)*h*t[i]+(-2*s3+3*s2)*p[i+1][1]+(s3-s2)*h*t[i+1])};
+}
+function sampleLUT(l,r,g,b){const n=l.n,f=v=>clamp(v)*(n-1);const x=f(r),y=f(g),z=f(b);const x0=Math.floor(x),y0=Math.floor(y),z0=Math.floor(z),x1=Math.min(n-1,x0+1),y1=Math.min(n-1,y0+1),z1=Math.min(n-1,z0+1),fx=x-x0,fy=y-y0,fz=z-z0;
+  const at=(xx,yy,zz,k)=>l.data[(yy*(n*n)+zz*n+xx)*4+k]/255;const out=[0,0,0];
+  for(let k=0;k<3;k++){const c00=at(x0,y0,z0,k)*(1-fx)+at(x1,y0,z0,k)*fx,c10=at(x0,y1,z0,k)*(1-fx)+at(x1,y1,z0,k)*fx,c01=at(x0,y0,z1,k)*(1-fx)+at(x1,y0,z1,k)*fx,c11=at(x0,y1,z1,k)*(1-fx)+at(x1,y1,z1,k)*fx;out[k]=(c00*(1-fy)+c10*fy)*(1-fz)+(c01*(1-fy)+c11*fy)*fz}return out}
+const curveCache={};
+function curveLUT(gr){
+  const key=JSON.stringify([gr.curves,gr.lut,gr.lutAmt]);if(curveCache[key])return curveCache[key];
+  const fm=curveFn(gr.curves.m),fr=curveFn(gr.curves.r),fg=curveFn(gr.curves.g),fb=curveFn(gr.curves.b);const base=gr.lut&&LUTS[gr.lut],amt=gr.lutAmt;
+  const id='cv-'+Object.keys(curveCache).length;
+  const lut={id,n:17,data:cubeToData(17,(r,g,b)=>{let o=[fr(fm(r)),fg(fm(g)),fb(fm(b))];if(base){const q=sampleLUT(base,o[0],o[1],o[2]);o=o.map((v,i)=>v+(q[i]-v)*amt)}return o})};
+  curveCache[key]=lut;return lut;
+}
+let curveCh='m';
+function drawCurves(cn,gr){
+  const g=cn.getContext('2d'),W=cn.width,H=cn.height;g.clearRect(0,0,W,H);g.fillStyle='#0B1020';g.fillRect(0,0,W,H);
+  g.strokeStyle='rgba(255,255,255,.07)';g.lineWidth=1;for(let i=1;i<4;i++){g.beginPath();g.moveTo(W*i/4,0);g.lineTo(W*i/4,H);g.moveTo(0,H*i/4);g.lineTo(W,H*i/4);g.stroke()}
+  g.strokeStyle='rgba(255,255,255,.15)';g.beginPath();g.moveTo(0,H);g.lineTo(W,0);g.stroke();
+  const cols={m:'#EEF1FF',r:'#FF5D73',g:'#00E3A0',b:'#3FA2FF'};
+  for(const k of ['r','g','b','m']){const pts=gr.curves[k];if(k!==curveCh&&!(pts&&pts.length>2))continue;const f=curveFn(pts);g.strokeStyle=cols[k];g.globalAlpha=k===curveCh?1:.35;g.lineWidth=k===curveCh?2:1.2;g.beginPath();for(let x=0;x<=W;x+=2){const y=H-f(x/W)*H;x?g.lineTo(x,y):g.moveTo(x,y)}g.stroke()}
+  g.globalAlpha=1;(gr.curves[curveCh]||CURVE_ID).forEach(p=>{g.fillStyle='#fff';g.strokeStyle='#0B1020';g.lineWidth=2;g.beginPath();g.arc(p[0]*W,H-p[1]*H,5,0,7);g.fill();g.stroke()});
+}
+function bindCurves(root,c){
+  const cn=$('#curveCv',root);if(!cn)return;const gr=c.grade;gr.curves=gr.curves||{m:CURVE_ID.map(p=>[...p]),r:CURVE_ID.map(p=>[...p]),g:CURVE_ID.map(p=>[...p]),b:CURVE_ID.map(p=>[...p])};drawCurves(cn,gr);
+  $$('[data-cch]',root).forEach(b=>b.onclick=()=>{curveCh=b.dataset.cch;$$('[data-cch]',root).forEach(x=>x.classList.toggle('on',x===b));drawCurves(cn,gr)});
+  const pos=e=>{const r=cn.getBoundingClientRect();return [clamp((e.clientX-r.left)/r.width),clamp(1-(e.clientY-r.top)/r.height)]};
+  cn.addEventListener('pointerdown',e=>{cn.setPointerCapture(e.pointerId);const pts=gr.curves[curveCh];const [x,y]=pos(e);let i=pts.findIndex(p=>Math.hypot(p[0]-x,p[1]-y)<.06);
+    if(i<0){pts.push([x,y]);pts.sort((a,b)=>a[0]-b[0]);i=pts.findIndex(p=>p[0]===x&&p[1]===y)}
+    const mv=ev=>{const [nx,ny]=pos(ev);const lo=i>0?pts[i-1][0]+.01:0,hi=i<pts.length-1?pts[i+1][0]-.01:1;pts[i]=[i===0?0:i===pts.length-1?1:clamp(nx,lo,hi),ny];drawCurves(cn,gr);req()};
+    const up=()=>{cn.removeEventListener('pointermove',mv);cn.removeEventListener('pointerup',up);commit()};cn.addEventListener('pointermove',mv);cn.addEventListener('pointerup',up)});
+  cn.addEventListener('dblclick',e=>{const pts=gr.curves[curveCh];const [x,y]=pos(e);const i=pts.findIndex(p=>Math.hypot(p[0]-x,p[1]-y)<.06);if(i>0&&i<pts.length-1){pts.splice(i,1);drawCurves(cn,gr);commit();req()}});
+  const rs=$('#curveReset',root);if(rs)rs.onclick=()=>{gr.curves[curveCh]=CURVE_ID.map(p=>[...p]);drawCurves(cn,gr);commit();req()};
+  const pr=$('#curvePreset',root);if(pr)pr.onchange=()=>{const v=pr.value;const S_={contrast:[[0,0],[.25,.2],[.75,.82],[1,1]],soft:[[0,.04],[.5,.52],[1,.96]],fade:[[0,.12],[.5,.5],[1,.95]],bright:[[0,0],[.45,.56],[1,1]],dark:[[0,0],[.55,.45],[1,1]]}[v];if(S_){gr.curves.m=S_.map(p=>[...p]);curveCh='m';drawCurves(cn,gr);commit();req()}pr.value=''};
+}
+
+/* ===== split screen ===== */
+function splitLayout(n,dir){
+  if(n===2)return dir==='v'?[[.5,.25,1,.5],[.5,.75,1,.5]]:[[.25,.5,.5,1],[.75,.5,.5,1]];
+  if(n===3)return dir==='v'?[[.5,1/6,1,1/3],[.5,.5,1,1/3],[.5,5/6,1,1/3]]:[[.25,.5,.5,1],[.75,.25,.5,.5],[.75,.75,.5,.5]];
+  return [[.25,.25,.5,.5],[.75,.25,.5,.5],[.25,.75,.5,.5],[.75,.75,.5,.5]];
+}
+function splitScreen(n=2,dir){
+  dir=dir||(P.aspect==='9:16'?'v':'h');const pool=Object.values(media).filter(m=>m.type==='image'||m.type==='video');
+  const srcs=pool.length>=n?pool.slice(0,n).map(m=>({m})):[...pool.map(m=>({m})),...['villa','salon','facade','villa'].map(s=>({scene:s}))].slice(0,n);
+  const [W,H]=baseWH();const cells=splitLayout(n,dir);const dur=4;
+  srcs.forEach((s,i)=>{const [cx,cy,cw,ch]=cells[i];const sw=s.scene?1920:s.m.w||1920,sh=s.scene?1080:s.m.h||1080;const [dw,dh]=fitWH(sw,sh,W,H,'cover');
+    const tr={id:uid(),kind:'overlay',name:'Écran partagé '+(i+1)};P.tracks.unshift(tr);
+    const c=newClip(s.scene?'scene':s.m.type,{scene:s.scene,mediaId:s.m&&s.m.id,name:s.scene?SCENES[s.scene]:s.m.name,start:S.t,dur:s.m&&s.m.type==='video'?Math.min(dur,s.m.dur):dur,x:cx,y:cy,fit:'cover',filter:'clean',filterAmt:.6,trackId:tr.id,
+      mask:{type:'rect',x:.5,y:.5,w:Math.min(1,cw*W/dw)*.985,h:Math.min(1,ch*H/dh)*.985,feather:.002,invert:false},trans:{type:'zoom-in',dur:.4}});
+    c.fx=[{id:i%2?'kb-out':'kb-in',v:.5}];P.clips.push(c)});
+  commit();refreshAll();toast(`Écran partagé ${n} vues ajouté à la tête de lecture`);
+}
+
+/* ===== trend templates (one click, then everything stays editable) ===== */
+const TRENDS=[
+  {id:'roomtour',name:'Room tour express',d:'Reel 20 s, une pièce toutes les 1,5 s, coupes sur le rythme, sous-titres',o:{goal:'reel',formats:['9:16'],dur:20,style:'dynamique',beat:true,captions:true}},
+  {id:'price',name:'Devinez le prix',d:'Question en accroche, visite, prix révélé avec compteur à la fin',o:{goal:'annonce',formats:['9:16','16:9'],dur:30,style:'moderne',beat:true,captions:true},post:()=>{
+    const t=P.clips.filter(c=>c.kind==='text');const h=t.sort((a,b)=>a.start-b.start)[0];if(h){h.text='Devinez le prix ?';h.animIn='pop'}
+    const pc=t.find(c=>/€/.test(c.text));const d=projDur();if(pc){pc.start=Math.max(0,d-7);pc.dur=3.4;pc.animIn='count';pc.inDur=1.6;pc.x=.5;pc.y=.5;pc.size=96}}},
+  {id:'top5',name:'Top 5 des atouts',d:'Compte à rebours 5 → 1 sur les points forts du bien',o:{goal:'annonce',formats:['9:16'],dur:30,style:'dynamique',beat:true,captions:false},post:()=>{
+    const feats=[...(P.info.feats||[]),P.info.surface&&P.info.surface+' m²',P.info.bedrooms&&P.info.bedrooms+' chambres','Emplacement'].filter(Boolean).slice(0,5);const d=projDur()-4,step=Math.max(2,(d-3)/feats.length);
+    const tr={id:uid(),kind:'text',name:'Top 5'};P.tracks.unshift(tr);
+    feats.forEach((f,i)=>{P.clips.push(newClip('text',{text:`${feats.length-i}\n${f}`,start:2.5+i*step,dur:step-.2,font:'Bebas Neue',size:200,weight:400,sub:.32,animIn:'pop',inDur:.3,animOut:'fade',shadowBlur:30,shadowColor:'rgba(0,0,0,.55)',y:.42,trackId:tr.id,name:'Top '+(feats.length-i)}))})}},
+  {id:'beforeafter',name:'Avant / Après',d:'Chaque photo comparée à sa version nuit ou HDR, volet animé',o:{goal:'avantapres',formats:['9:16','16:9'],dur:30,style:'moderne',beat:false,captions:false}},
+  {id:'cine',name:'Visite cinématique',d:'60 s en 16:9, plans longs, bandes cinéma, voix off posée',o:{goal:'visite',formats:['16:9'],dur:60,style:'luxe',beat:false,captions:true},post:()=>{P.clips.filter(isMedia).forEach(c=>{if(!c.fx.some(f=>f.id==='letterbox'))c.fx.push({id:'letterbox',v:.7})})}},
+  {id:'teaser',name:'Teaser 15 s',d:'Ultra court pour les stories et publicités',o:{goal:'reel',formats:['9:16','4:5'],dur:15,style:'dynamique',beat:true,captions:true}},
+  {id:'youtube',name:'Visite YouTube complète',d:'90 s, chapitres, voix off, écran de fin',o:{goal:'youtube',formats:['16:9'],dur:90,style:'luxe',beat:false,captions:true}},
+];
+async function runTrend(id){
+  const t=TRENDS.find(x=>x.id===id);if(!t)return;
+  const ok=await confirmBox(`Modèle « ${t.name} »`,t.d+'. La timeline actuelle est remplacée (Ctrl+Z pour annuler). Les infos du bien et de l\'agence de l\'Assistant sont utilisées.','Créer');if(!ok)return;
+  aiBusy('Création du modèle…');try{await generateVideo({...A_OPTS,...t.o,voice:A_OPTS.voice});if(t.post){t.post();commit();refreshAll()}aiBusy('');showAfterGen({...A_OPTS,...t.o})}catch(e){aiBusy('');toast('Erreur : '+(e.message||e))}
+}
+
+/* ===== 28i-vision.js ===== */
+/* ---------- vision (MediaPipe, Apache-2.0, runs on the device): person cut-out, automatic face blur, auto-reframe ----------
+   Also: camera / screen recorder with teleprompter, emoji stickers. */
+const MP_VER='1.0.1';
+const MP_URL=`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VER}/vision_bundle.mjs`;
+const MP_WASM=`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VER}/wasm`;
+const MP_MODELS={
+  seg:'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite',
+  face:'https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/latest/blaze_face_short_range.tflite',
+};
+const VIS={seg:null,face:null,loading:null,err:null,ts:0,cache:new Map(),
+  async load(){
+    if(this.seg&&this.face)return true;if(this.loading)return this.loading;
+    this.loading=(async()=>{try{aiBusy('Chargement de la vision IA (MediaPipe)…');
+      const mp=await withTimeout(import(MP_URL),20000);const fs=await mp.FilesetResolver.forVisionTasks(MP_WASM);
+      const mk=async(cls,opts)=>{try{return await cls.createFromOptions(fs,{...opts,baseOptions:{...opts.baseOptions,delegate:'GPU'}})}catch(e){return cls.createFromOptions(fs,{...opts,baseOptions:{...opts.baseOptions,delegate:'CPU'}})}};
+      this.seg=await mk(mp.ImageSegmenter,{baseOptions:{modelAssetPath:MP_MODELS.seg},runningMode:'VIDEO',outputConfidenceMasks:true,outputCategoryMask:false});
+      this.face=await mk(mp.FaceDetector,{baseOptions:{modelAssetPath:MP_MODELS.face},runningMode:'VIDEO',minDetectionConfidence:.45});
+      aiBusy('');req();return true}catch(e){aiBusy('');this.err=e;this.loading=null;toast('Vision IA indisponible ici (téléchargement bloqué). Ouvrez Top Clap depuis son adresse en ligne.');return false}})();
+    return this.loading;
+  },
+  stamp(){this.ts=Math.max(this.ts+1,performance.now());return this.ts},
+};
+const visTmp=document.createElement('canvas'),visMask=document.createElement('canvas'),visBlur=document.createElement('canvas');
+/* key so a still image is analysed once, a video once per displayed frame */
+function visKey(c,src){return c.id+':'+(src.currentTime!=null?src.currentTime.toFixed(3):'img')}
+function visAnalyse(c,src){
+  const k=visKey(c,src);let r=VIS.cache.get(k);if(r)return r;r={};
+  const sw=src.videoWidth||src.naturalWidth||src.width,sh=src.videoHeight||src.naturalHeight||src.height;
+  try{
+    if(c.bgRemove&&VIS.seg){const res=VIS.seg.segmentForVideo(src,VIS.stamp());const m=res.confidenceMasks&&res.confidenceMasks[0];
+      if(m){const w=m.width,h=m.height,a=m.getAsFloat32Array();const id=new ImageData(w,h);for(let i=0;i<a.length;i++){const v=a[i];id.data[i*4+3]=v<.2?0:v>.75?255:Math.round((v-.2)/.55*255)}m.close&&m.close();r.mask=id}
+      res.close&&res.close()}
+    if(c.blurFaces&&VIS.face){const res=VIS.face.detectForVideo(src,VIS.stamp());r.faces=(res.detections||[]).map(d=>d.boundingBox).filter(Boolean).map(b=>({x:b.originX/sw,y:b.originY/sh,w:b.width/sw,h:b.height/sh}))}
+  }catch(e){console.warn('vision',e)}
+  if(VIS.cache.size>240)VIS.cache.delete(VIS.cache.keys().next().value);VIS.cache.set(k,r);return r;
+}
+/* returns the image to draw for a media clip after cut-out / face blur (or the input image untouched) */
+function visionPass(c,src,img){
+  if(!(c.bgRemove||c.blurFaces))return img;
+  if(!VIS.seg||!VIS.face){if(!VIS.err)VIS.load();return img}
+  const r=visAnalyse(c,src);const W=img.videoWidth||img.naturalWidth||img.width,H=img.videoHeight||img.naturalHeight||img.height;
+  const k=Math.min(1,1280/Math.max(W,H)),w=Math.round(W*k),h=Math.round(H*k);
+  if(visTmp.width!==w||visTmp.height!==h){visTmp.width=w;visTmp.height=h}
+  const g=visTmp.getContext('2d');g.globalCompositeOperation='source-over';g.filter='none';g.clearRect(0,0,w,h);g.drawImage(img,0,0,w,h);
+  if(r.faces&&r.faces.length){
+    if(visBlur.width!==w||visBlur.height!==h){visBlur.width=w;visBlur.height=h}const b=visBlur.getContext('2d');b.filter=`blur(${Math.max(8,Math.round(w/45))}px)`;b.clearRect(0,0,w,h);b.drawImage(visTmp,0,0);b.filter='none';
+    g.save();g.beginPath();for(const f of r.faces){const cx=(f.x+f.w/2)*w,cy=(f.y+f.h/2)*h;g.moveTo(cx+f.w*w*.75,cy);g.ellipse(cx,cy,f.w*w*.75,f.h*h*.9,0,0,Math.PI*2)}g.clip();g.drawImage(visBlur,0,0);g.restore();
+  }
+  if(r.mask){const m=r.mask;if(visMask.width!==m.width||visMask.height!==m.height){visMask.width=m.width;visMask.height=m.height}visMask.getContext('2d').putImageData(m,0,0);
+    g.globalCompositeOperation='destination-in';g.imageSmoothingEnabled=true;g.drawImage(visMask,0,0,w,h);g.globalCompositeOperation='source-over'}
+  return visTmp;
+}
+/* auto-reframe: follows the main face of a video with keyframes on X (for 9:16 / 1:1 / 4:5 crops of a 16:9 video) */
+async function autoReframe(c){
+  if(!c||c.kind!=='video'){toast('Sélectionnez une vidéo avec une personne');return}
+  if(!(await VIS.load()))return;const m=media[c.mediaId];
+  const v=document.createElement('video');v.muted=true;v.preload='auto';v.src=m.url;await once(v,'loadeddata');
+  const [W,H]=baseWH();const [dw]=fitWH(m.w,m.h,W,H,'cover');const sc=kv(c,'scale',0)||1;const slack=(dw*sc-W)/(2*W);
+  if(slack<.01){toast('La vidéo remplit déjà le cadre en largeur : passez au format 9:16 ou 1:1 d\'abord');return}
+  const step=Math.max(.4,c.dur/40),pts=[];aiBusy('Suivi du sujet…');
+  for(let t=0;t<=c.dur+.001;t+=step){v.currentTime=Math.min(m.dur-.05,c.in+t*c.speed);await once(v,'seeked',2500);
+    try{const res=VIS.face.detectForVideo(v,VIS.stamp());const d=(res.detections||[]).sort((a,b)=>b.boundingBox.width*b.boundingBox.height-a.boundingBox.width*a.boundingBox.height)[0];
+      if(d){const fx=(d.boundingBox.originX+d.boundingBox.width/2)/m.w;pts.push([t,clamp(.5-(fx-.5)*dw*sc/W,.5-slack,.5+slack)])}}catch(e){}}
+  aiBusy('');if(!pts.length){toast('Aucun visage détecté dans ce plan');return}
+  const sm=pts.map((p,i)=>{const a=pts.slice(Math.max(0,i-2),i+3);return [p[0],a.reduce((s,q)=>s+q[1],0)/a.length]});
+  c.kf=c.kf||{};c.kf.x=[];let last=null;for(const [t,x] of sm){if(last===null||Math.abs(x-last)>.008||t>=c.dur-step){c.kf.x.push({t:+t.toFixed(3),v:+x.toFixed(4),e:'ease'});last=x}}
+  commit();refreshAll();toast(`Recadrage automatique : ${c.kf.x.length} images clés sur le sujet`);
+}
+
+/* camera / screen recorder with teleprompter (Edits / CapCut style) */
+let recStream=null,recM=null,recChunks2=[],promptT=0;
+async function openRecorder(){
+  pause();const m=modal(`<h3>Enregistrer</h3><p class="note">Caméra ou écran, avec prompteur. La vidéo est ajoutée à la timeline et ses sous-titres peuvent être générés ensuite.</p>
+    <div class="rec-wrap"><video id="recV" autoplay muted playsinline></video><div class="prompter" id="recP" hidden><div id="recPT"></div></div><span class="rec-dot" id="recDot" hidden>● REC <b id="recTime">0:00</b></span></div>
+    <div class="row r2"><label for="recSrc">Source</label><select id="recSrc"><option value="user">Caméra avant</option><option value="environment">Caméra arrière</option><option value="screen">Écran</option></select></div>
+    <textarea class="ta" id="recScript" rows="3" placeholder="Texte du prompteur (facultatif)">${esc(typeof scriptFor==='function'?scriptFor(A_OPTS):'')}</textarea>
+    <div class="row"><label for="recSpeed">Vitesse prompteur</label><input type="range" id="recSpeed" min="10" max="120" value="40"><output>40</output></div>
+    <div class="mrow"><button class="btn" data-x="close">Fermer</button><button class="btn" data-x="start">${ic('play')}Activer</button><button class="btn pri" data-x="rec" disabled>${ic('mic')}Enregistrer</button></div>`);
+  const v=$('#recV',m),P_=$('#recP',m),PT=$('#recPT',m);
+  const stop=()=>{if(recM&&recM.state!=='inactive')recM.stop();if(recStream)recStream.getTracks().forEach(t=>t.stop());recStream=null;cancelAnimationFrame(promptT)};
+  m.addEventListener('input',e=>{if(e.target.id==='recSpeed')e.target.nextElementSibling.textContent=e.target.value});
+  m.addEventListener('click',async e=>{const b=e.target.closest('[data-x]');if(!b)return;const x=b.dataset.x;
+    if(x==='close'){stop();m.parentElement.remove();return}
+    if(x==='start'){stop();const src=$('#recSrc',m).value;
+      try{recStream=src==='screen'?await navigator.mediaDevices.getDisplayMedia({video:true,audio:true}):await navigator.mediaDevices.getUserMedia({video:{facingMode:src,width:{ideal:1920},height:{ideal:1080}},audio:{echoCancellation:true,noiseSuppression:true}})}
+      catch(err){toast('Caméra ou écran inaccessible : autorisez l\'accès, ou ouvrez Top Clap depuis son adresse en ligne.');return}
+      v.srcObject=recStream;$('[data-x=rec]',m).disabled=false;const txt=$('#recScript',m).value.trim();P_.hidden=!txt;PT.textContent=txt;PT.style.transform='translateY(0)';return}
+    if(x==='rec'){
+      if(recM&&recM.state==='recording'){recM.stop();b.innerHTML=ic('mic')+'Enregistrer';return}
+      recChunks2=[];const mime=pickMime()||'';try{recM=new MediaRecorder(recStream,mime?{mimeType:mime}:{})}catch(err){recM=new MediaRecorder(recStream)}
+      recM.ondataavailable=ev=>{if(ev.data.size)recChunks2.push(ev.data)};
+      recM.onstop=async()=>{$('#recDot',m).hidden=true;cancelAnimationFrame(promptT);if(!recChunks2.length)return;const blob=new Blob(recChunks2,{type:(recM.mimeType||'video/webm').split(';')[0]});
+        const id=uid();const med=await registerMedia(id,blob,{type:'video',name:'Enregistrement '+new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})});IDB.put(id,blob);addMediaToTimeline(med);const nc=selClip();if(nc){nc.role='voice';nc.voiceFx=true}commit();toast('Enregistrement ajouté. Onglet Auto › « Couper les silences » puis « Sous-titres ».')};
+      recM.start(500);b.innerHTML=ic('pause')+'Arrêter';$('#recDot',m).hidden=false;const t0=performance.now(),speed=+$('#recSpeed',m).value;
+      const tick=()=>{const s=(performance.now()-t0)/1000;$('#recTime',m).textContent=Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');PT.style.transform=`translateY(${-s*speed}px)`;promptT=requestAnimationFrame(tick)};tick();}
+  });
+}
+
+/* emoji stickers */
+const EMOJIS=['🏡','🔑','📍','✨','🔥','💎','🌅','🌙','🏊','🌳','📞','⭐','✅','❤️','👉','😍','🎉','💰','🛏️','🛁','🚗','☀️','🌊','⛰️'];
+function addEmoji(e){addText({text:e,font:'Montserrat',size:180,weight:400,animIn:'pop',inDur:.35,animOut:'fade',x:.82,y:.22,autofit:true},'Émoji '+e)}
+
+/* ===== 28j-tips.js ===== */
+/* ---------- tips and pitfalls guide (content: src/tips.json, injected by build.py, also written to ASTUCES.md) ---------- */
+const TIPS=[{"id": "hook", "title": "Accroche et rythme", "tips": [["Gagnez les 2 premières secondes", "Commencez par l'image la plus forte (piscine, vue, façade de nuit) et un texte court : lieu, prix ou question. C'est là que la plupart des spectateurs décident de rester."], ["Changez de plan toutes les 1,5 à 3 s en vertical", "Sur Reels, Shorts et TikTok, un plan fixe de plus de 5 s fait décrocher. Utilisez « Caler les coupes sur le rythme »."], ["Bouclez la fin sur le début", "Une fin qui enchaîne naturellement avec la première image fait revoir la vidéo, ce qui compte pour les algorithmes."], ["Une idée par vidéo", "Une visite complète en 16:9 pour YouTube, des extraits de 15–30 s pour les réseaux. Ne compressez pas tout dans un seul format."]]}, {"id": "format", "title": "Formats et zones masquées", "tips": [["9:16 en 1080 × 1920 pour Reels, Shorts, TikTok", "Exportez chaque format séparément (Exporter › plusieurs formats) plutôt que de recadrer après coup."], ["Gardez textes et visages hors des bords", "En vertical, le haut (≈ 12 %) et le bas (≈ 20 %) sont couverts par l'interface. Activez les repères « Zones sûres »."], ["Pas de vidéo avec le logo d'une autre plateforme", "Une vidéo TikTok re-publiée avec son filigrane sur Instagram ou YouTube est moins diffusée. Exportez toujours depuis Top Clap."], ["Gardez l'onglet visible pendant l'export", "L'export se fait en temps réel : un onglet en arrière-plan donne une vidéo saccadée."]]}, {"id": "sound", "title": "Son, musique et sous-titres", "tips": [["Sous-titrez tout ce qui est dit", "Une grande partie des vidéos est regardée sans le son. Sous-titres mot à mot : onglet Auto."], ["N'utilisez pas une musique du commerce", "YouTube, Instagram et TikTok détectent les musiques protégées : son coupé, vidéo bloquée ou revenus reversés aux ayants droit. Utilisez les musiques intégrées, la musique IA ou une bibliothèque libre de droits dont vous gardez la licence."], ["Activez le ducking", "La musique doit baisser sous la voix. « Ducking automatique » le fait pour vous."], ["Visez un volume homogène", "−14 LUFS est le niveau de référence des plateformes : le serveur IA peut le régler à l'export (finalisation MP4)."]]}, {"id": "legal", "title": "Annonces immobilières : obligations (France)", "tips": [["Affichez la classe énergie (DPE)", "Le DPE est obligatoire dans les annonces de vente et de location. Pour un logement classé F ou G, ajoutez « Logement à consommation énergétique excessive », en caractères au moins aussi grands que le texte de l'annonce."], ["Prix et honoraires", "Honoraires à la charge du vendeur : prix affiché sans mention des honoraires. À la charge de l'acquéreur : prix honoraires inclus (plus visible), prix hors honoraires et taux en %. Les honoraires affichés sont un maximum, et le barème doit être accessible."], ["Copropriété", "Indiquez le statut de copropriété, le nombre de lots, la quote-part annuelle moyenne des charges et toute procédure en cours."], ["Identification de l'agence", "Nom du titulaire de la carte professionnelle, et statut d'agent commercial le cas échéant. Gardez vos coordonnées réelles dans « Marque »."], ["Faites vérifier", "Ces points résument les règles générales ; votre réseau, votre syndicat professionnel ou un juriste confirment les mentions exactes pour vos supports."]]}, {"id": "ai", "title": "IA, retouches et honnêteté", "tips": [["Ne modifiez pas l'état réel du bien", "Nuit, ciel bleu, mise en scène virtuelle : oui, si l'acheteur ne peut pas être trompé. Effacer une fissure, agrandir une pièce ou ajouter une vue inexistante peut constituer une pratique commerciale trompeuse."], ["Mentionnez les images retouchées", "Ajoutez « Mise en scène virtuelle » ou « Image retouchée par IA · non contractuelle ». « Vérifier ma vidéo » le propose automatiquement."], ["Cochez « contenu IA » sur les plateformes", "YouTube demande de déclarer un contenu réaliste modifié ou généré ; TikTok et Instagram ont un label IA. Les retouches de couleur ou les sous-titres n'en ont pas besoin."], ["Règlement européen sur l'IA", "À partir du 2 août 2026, les images manipulées réalistes (hypertrucages) doivent être signalées de façon visible. Préférez toujours la transparence."], ["Lisez les conditions des outils gratuits", "Les studios vidéo IA gratuits (Kling, Hailuo, Vidu…) ajoutent souvent un filigrane et interdisent parfois l'usage commercial en version gratuite. Vérifiez avant de publier une annonce."]]}, {"id": "privacy", "title": "Droit à l'image et sécurité", "tips": [["Floutez visages et plaques", "Occupants, voisins, passants : utilisez « Flouter tous les visages ». Floutez aussi les plaques d'immatriculation et les documents visibles (masque + flou)."], ["Ne montrez pas ce qui aide un cambrioleur", "Évitez l'alarme, les clés, l'adresse exacte avec les horaires d'absence, les objets de valeur."], ["Drone : vérifiez la réglementation", "Le vol de drone est encadré par la DGAC (catégories, zones interdites, survol des personnes et des agglomérations). Faites appel à un télépilote déclaré si besoin, ou utilisez l'effet « Drone cinématique »."], ["Musique et images d'autrui", "N'intégrez que des médias dont vous avez les droits : vos photos, celles du vendeur avec accord, ou des médias libres de droits."]]}, {"id": "publish", "title": "Publication", "tips": [["Titre, description, hashtags", "« Textes réseaux sociaux » génère un titre YouTube, une description avec chapitres et des hashtags par plateforme : relisez-les avant de publier."], ["Miniature lisible sur téléphone", "3 à 5 mots, gros caractères, un visuel fort. « Miniature / couverture » la prépare."], ["Un appel à l'action clair", "Terminez par le contact, « visite sur rendez-vous » ou « lien en bio »."], ["Lancez « Vérifier ma vidéo » avant chaque publication", "Il contrôle accroche, sous-titres, zones masquées, droits musicaux, DPE, mentions IA et appel à l'action, avec correction en un clic."]]}];
+function openTips(sel){
+  pause();const cur=sel||TIPS[0].id;
+  const m=modal(`<h3>Astuces et pièges à éviter</h3><p class="note">Ce qui fait la différence sur YouTube, Reels, TikTok et Facebook, et les erreurs qui coûtent cher (droits, obligations des annonces, IA).</p>
+    <div class="chip-row tips-tabs">${TIPS.map(s=>`<button class="btn${s.id===cur?' on':''}" data-tip="${s.id}">${esc(s.title)}</button>`).join('')}</div>
+    <div class="tips-body">${(TIPS.find(s=>s.id===cur)||TIPS[0]).tips.map(([t,d])=>`<div class="tip"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div>
+    <div class="mrow"><button class="btn" data-x="check">${ic('check')}Vérifier ma vidéo</button><span class="sp"></span><button class="btn pri" data-x="close">Fermer</button></div>`);
+  m.addEventListener('click',e=>{const b=e.target.closest('[data-tip],[data-x]');if(!b)return;
+    if(b.dataset.tip){m.parentElement.remove();openTips(b.dataset.tip);return}
+    m.parentElement.remove();if(b.dataset.x==='check')openCheck()});
 }
 
 /* ===== 29-refresh-boot.js ===== */
@@ -2485,19 +3146,23 @@ async function runTool(id,btn){
 function refreshAll(){renderTimeline();renderInspector();renderPanel();updUndo();renderGuides();req()}
 async function boot(){
   renderRail();renderTlBar();updateTransport();stageBox.appendChild(scopeBox);$('#scopeX').innerHTML=ic('x');S.capStyle='karaoke';
-  let saved=null;try{saved=JSON.parse(localStorage.getItem(LS_KEY)||'null')}catch(e){}
-  if(saved&&saved.P&&saved.P.clips){
-    for(const m of saved.media||[]){if(m.demo){ensureDemoMusic(m.demo,m.id);continue}const blob=await IDB.get(m.id);if(blob){try{await registerMedia(m.id,blob,{type:m.type,name:m.name})}catch(e){}}}
-    Object.assign(P,saved.P);normalizeProject();const before=P.clips.length;P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);
-    if(saved.S){S.pps=saved.S.pps||60;S.magnet=saved.S.magnet!==false;S.snap=saved.S.snap!==false}
+  let st=projStore();
+  if(!st.list){try{const old=JSON.parse(localStorage.getItem(LS_KEY)||'null');if(old&&old.P){const id=uid();st={current:id,list:{[id]:{name:old.P.name,updated:Date.now(),aspect:old.P.aspect,P:old.P}},media:old.media,S:old.S}}}catch(e){}}
+  for(const m of st.media||[]){if(m.demo){ensureDemoMusic(m.demo,m.id);continue}const blob=await IDB.get(m.id);if(blob){try{await registerMedia(m.id,blob,{type:m.type,name:m.name})}catch(e){}}}
+  const cur=st.list&&st.current&&st.list[st.current];
+  if(cur&&cur.P&&cur.P.clips){
+    curProj=st.current;Object.assign(P,cur.P);normalizeProject();const before=P.clips.length;P.clips=P.clips.filter(c=>!c.mediaId||media[c.mediaId]);
+    if(st.S){S.pps=st.S.pps||60;S.magnet=st.S.magnet!==false;S.snap=st.S.snap!==false}
     if(before!==P.clips.length)setTimeout(()=>toast('Certains médias n\'ont pas été retrouvés : réimportez-les.'),800);
-    if(!P.clips.length)buildDemo();
-  }else buildDemo();
+    if(!P.clips.length&&!before)buildDemo();
+  }else{curProj=uid();buildDemo()}
   if(isPhone()){S.pq=.4;S.pps=40}
   $('#aspectSel').value=P.aspect;$('#projName').value=P.name;setRes(S.pq);renderTlBar();
   commit();refreshAll();
   if(document.fonts){document.fonts.addEventListener&&document.fonts.addEventListener('loadingdone',req);document.fonts.ready.then(req)}
   requestAnimationFrame(tick);
+  const hsh=location.hash.replace('#','');
+  if(hsh==='assistant')openAssistant();else if(hsh==='nouveau'){newProjectBlank()}else if(startPref())openStart();
 }
 addEventListener('resize',()=>{fitViewport();renderTimeline()});
 boot();
